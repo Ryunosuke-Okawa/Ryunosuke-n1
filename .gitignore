@@ -1,0 +1,33 @@
+# 環境変数・APIキー
+.env
+.env.*
+*.key
+*.pem
+credentials/
+credentials.json
+token.json
+oauth_token*
+
+# MCP認証情報
+.claude/mcp-credentials*
+*_secret*
+*_token*
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
+
+# エディタ設定
+.vscode/
+.idea/
+
+# 一時ファイル
+*.tmp
+*.bak
+*.swp
+
+# node_modules（MCPサーバー関連）
+node_modules/
+
+# 機密性の高いメモ（必要に応じてコメントアウトを解除）
+# 00_context/memories/clients.md
