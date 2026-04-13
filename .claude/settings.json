@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -d /Users/kyouyuu/claude/*/)",
+      "Bash(ls ~/.claude/projects/-Users-kyouyuu-claude/*.jsonl)",
+      "Bash(ls -la /private/tmp/claude-501/-Users-kyouyuu-claude/5f3d578f-ce4a-413f-be24-d5d3ea33aa32/tasks/*.output)",
+      "Bash(ls -la \"/Users/kyouyuu/Downloads/\"*Eight*EXPO* \"/Users/kyouyuu/Downloads/\"*expo* \"/Users/kyouyuu/Downloads/\"*EXPO* \"/Users/kyouyuu/Downloads/\"*出展*)",
+      "Bash(grep -l \"import json\\\\|import requests\" tools/*.py)",
+      "mcp__google-workspace__deleteSpreadsheetSheet",
+      "Bash(find /Users/kyouyuu/claude -type f \\\\\\( -name \"*.md\" -o -name \"*.txt\" \\\\\\) -exec grep -l \"W×H\\\\|mm\\\\|サイズ\\\\|仕様\\\\|organizer\" {} \\\\;)",
+      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/panel_mockup_v1.html)",
+      "mcp__google-workspace__downloadGmailAttachment",
+      "Bash(grep -r \"差別化\\\\|特徴\\\\|強み\\\\|ターゲット\\\\|実績\\\\|導入\" /Users/kyouyuu/claude/knowledge/*.md)",
+      "Bash(cp -r /Users/kyouyuu/claude/.claude/skills/obsidian-markdown /tmp/claude-template/.claude/skills/)",
+      "Bash(cp -r /Users/kyouyuu/claude/.claude/skills/obsidian-bases /tmp/claude-template/.claude/skills/)",
+      "Bash(cp -r /Users/kyouyuu/claude/.claude/skills/obsidian-cli /tmp/claude-template/.claude/skills/)",
+      "Bash(cp -r /Users/kyouyuu/claude/.claude/skills/json-canvas /tmp/claude-template/.claude/skills/)",
+      "Bash(cp -r /Users/kyouyuu/claude/.claude/skills/defuddle /tmp/claude-template/.claude/skills/)",
+      "Bash(zip -r claude-template.zip claude-template/ -x \"*.DS_Store\")",
+      "Bash(open -R /Users/kyouyuu/claude/claude-template.zip)",
+      "Bash(gh auth:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(curl -sL https://github.com/cli/cli/releases/latest/download/gh_2.74.0_macOS_arm64.zip -o /tmp/gh.zip)",
+      "Bash(unzip -o /tmp/gh.zip -d /tmp/gh_install)",
+      "Bash(curl -sL \"https://github.com/cli/cli/releases/download/v2.74.0/gh_2.74.0_macOS_arm64.tar.gz\" -o /tmp/gh.tar.gz)",
+      "Bash(tar xzf:*)",
+      "Bash(ls /tmp/gh_*/bin/)",
+      "Bash(curl -sI \"https://github.com/cli/cli/releases/latest\")",
+      "Bash(curl -sL \"https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_macOS_arm64.zip\" -o /tmp/gh.zip)",
+      "Bash(/tmp/gh_install/bin/gh --version)",
+      "Bash(/tmp/gh_install/gh_2.89.0_macOS_arm64/bin/gh --version)"
+    ],
+    "additionalDirectories": [
+      "/tmp/claude-template/.claude"
+    ]
+  }
+}

@@ -40,4 +40,4 @@
 
 ## 参照ディレクトリ
 
-`/Users/kyouyuu/cloude/00_context/memories/`
+`/Users/kyouyuu/claude/00_context/memories/`

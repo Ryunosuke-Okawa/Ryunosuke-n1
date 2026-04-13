@@ -21,10 +21,19 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Obsidian（ワークスペースは除外、設定は追跡）
+.obsidian/workspace.json
+
+# バイナリ・アーカイブ
+*.zip
+
 # 一時ファイル
 *.tmp
 *.bak
 *.swp
+
+# Claude Code ワークツリー（一時的な作業ブランチ）
+.claude/worktrees/
 
 # node_modules（MCPサーバー関連）
 node_modules/

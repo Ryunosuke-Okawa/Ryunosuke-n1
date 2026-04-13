@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>背面グラフィックパネル モックアップ v1 — W4910×H2050mm</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #2d2d2d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    padding: 40px 20px;
+  }
+
+  .info {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.8;
+  }
+  .info strong { color: #ccc; }
+
+  /* Panel: 4910×2050 → aspect ratio 2.395:1 */
+  .panel-wrapper {
+    width: 90vw;
+    max-width: 1200px;
+    aspect-ratio: 4910 / 2050;
+    position: relative;
+  }
+
+  .panel {
+    width: 100%;
+    height: 100%;
+    background: #f5d600;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    padding: 4% 5%;
+  }
+
+  /* 左側: メインコピー */
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: 4%;
+  }
+
+  .main-copy {
+    font-size: clamp(24px, 4.5vw, 72px);
+    font-weight: 900;
+    color: #1a1a1a;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+  }
+
+  .main-copy .kakko {
+    font-weight: 900;
+  }
+
+  /* 右側: ロゴ + サブコピー + QR */
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .logo {
+    font-size: clamp(20px, 3vw, 56px);
+    font-weight: 900;
+    color: #1a1a1a;
+    letter-spacing: 0.05em;
+  }
+
+  .bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .sub-copy {
+    font-size: clamp(12px, 1.5vw, 24px);
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  .qr-placeholder {
+    width: clamp(60px, 8vw, 120px);
+    height: clamp(60px, 8vw, 120px);
+    background: #1a1a1a;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f5d600;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  /* サイズ表示 */
+  .dimension-h {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+  }
+  .dimension-v {
+    position: absolute;
+    right: -60px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    color: #666;
+    font-size: 13px;
+  }
+
+  .note {
+    color: #777;
+    font-size: 13px;
+    margin-top: 50px;
+    max-width: 800px;
+    line-height: 2;
+    text-align: left;
+  }
+  .note h3 {
+    color: #aaa;
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .note ul { padding-left: 1.5em; }
+</style>
+</head>
+<body>
+
+<div class="info">
+  <strong>背面グラフィックパネル — レイアウト案 v1</strong><br>
+  実寸: W4,910mm × H2,050mm ｜ 比率 2.4:1 ｜ Sansan Eight EXPO 2026
+</div>
+
+<div class="panel-wrapper">
+  <div class="panel">
+
+    <!-- 左半分: メインコピー -->
+    <div class="left">
+      <div class="main-copy">
+        <span class="kakko">「当たり前」</span>の仕事、<br>
+        あなたが本当に<br>
+        やるべきことですか？
+      </div>
+    </div>
+
+    <!-- 右半分: ロゴ + サブコピー + QR -->
+    <div class="right">
+      <div class="logo">Kawaru</div>
+      <div class="bottom-right">
+        <div class="sub-copy">
+          いいえ、その考え<br>もう古いです
+        </div>
+        <div class="qr-placeholder">QR</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dimension-h">← W4,910mm →</div>
+  <div class="dimension-v">↑ H2,050mm ↓</div>
+</div>
+
+<div class="note">
+  <h3>レイアウト構成メモ</h3>
+  <ul>
+    <li>前回の縦パネルの要素（ロゴ・メインコピー・サブコピー・QR）をそのまま横展開</li>
+    <li>左半分にメインコピーを大きく配置 → 通路からの視認性確保</li>
+    <li>右上にKawaruロゴ、右下にサブコピー＋QR → 前回と同じ配置関係を維持</li>
+    <li>黄色（#f5d600）ベタ背景 → 前回踏襲</li>
+    <li>角丸は入稿時に確認（パネル仕様による）</li>
+  </ul>
+</div>
+
+</body>
+</html>

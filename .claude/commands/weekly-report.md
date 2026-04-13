@@ -54,6 +54,6 @@
 
 ## 参照ファイル
 
-- `/Users/kyouyuu/cloude/DAILY.md`
-- `/Users/kyouyuu/cloude/03_projects/`
-- `/Users/kyouyuu/cloude/00_context/memories/`
+- `/Users/kyouyuu/claude/DAILY.md`
+- `/Users/kyouyuu/claude/03_projects/`
+- `/Users/kyouyuu/claude/00_context/memories/`
