@@ -1,4 +1,17 @@
 {
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kyouyuu/claude/.claude/hooks/auto-push.sh"
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
     "allow": [
       "*",
