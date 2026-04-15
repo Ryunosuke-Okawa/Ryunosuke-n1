@@ -291,7 +291,8 @@
       "WebFetch(domain:n1-inc.co.jp)",
       "Bash(find /Users/kyouyuu/claude -type f -name \"*.md\" -exec grep -l \"contract\\\\|規約\\\\|利用条件\\\\|Terms\\\\|Privacy\" {} \\\\;)",
       "Bash(grep -r \"URL\\\\|website\\\\|homepage\\\\|サイト\\\\|規約\\\\|ポリシー\" /Users/kyouyuu/claude/marketing/articles/kawaru* --include=\"*.md\")",
-      "Bash(MS365_MCP_CLIENT_ID=2afbad9b-1557-4bec-a1a5-0cf8a0436193 npx -y @softeria/ms-365-mcp-server --login)"
+      "Bash(MS365_MCP_CLIENT_ID=2afbad9b-1557-4bec-a1a5-0cf8a0436193 npx -y @softeria/ms-365-mcp-server --login)",
+      "Bash(defuddle parse *)"
     ],
     "additionalDirectories": [
       "/tmp",
