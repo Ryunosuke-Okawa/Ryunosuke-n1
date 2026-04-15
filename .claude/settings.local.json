@@ -300,7 +300,10 @@
       "Bash(curl -sI \"https://lp.kawaru-ai.jp/\")",
       "Bash(aws --version)",
       "Bash(export PATH=\"$PATH:/Users/kyouyuu/Library/Python/3.9/bin\")",
-      "Bash(aws sts *)"
+      "Bash(aws sts *)",
+      "Bash(git --version)",
+      "Bash(pip3 list *)",
+      "Bash(npx surge *)"
     ],
     "additionalDirectories": [
       "/tmp",
