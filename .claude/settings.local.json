@@ -295,7 +295,12 @@
       "Bash(defuddle parse *)",
       "Bash(curl -sL \"https://lp.kawaru-ai.jp/\" -o /Users/kyouyuu/claude/marketing/kawaru_lp.html)",
       "Skill(schedule)",
-      "Skill(schedule:*)"
+      "Skill(schedule:*)",
+      "Bash(dig lp.kawaru-ai.jp +short)",
+      "Bash(curl -sI \"https://lp.kawaru-ai.jp/\")",
+      "Bash(aws --version)",
+      "Bash(export PATH=\"$PATH:/Users/kyouyuu/Library/Python/3.9/bin\")",
+      "Bash(aws sts *)"
     ],
     "additionalDirectories": [
       "/tmp",
