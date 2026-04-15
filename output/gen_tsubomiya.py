@@ -9,6 +9,8 @@ from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
+from pptx.oxml.ns import qn
+from lxml import etree
 
 # ── Colors ──
 TEAL = RGBColor(0x42, 0xA4, 0xAF)
@@ -325,7 +327,7 @@ y = tb(slide, 'AI活用は「手探り」の段階', '現状②　AI活用状況
 # Table
 tools = [
     ('ChatGPT / Gemini', 'テキスト生成（簡単な質問・調べもの）', '時々', CARD),
-    ('Claude Code', 'LP制作を試行（完成度80%、モバイル崩れ）', '試行段階', HL_YELLOW),
+    ('アンチグレイビティ\n× Claude Code', 'LP制作を試行（完成度80%、モバイル崩れ）', '試行段階', HL_YELLOW),
     ('Dify / n8n 等', '未使用', '—', HL_RED),
     ('業務自動化ワークフロー', '未経験', '—', HL_RED),
 ]
@@ -363,7 +365,7 @@ bk(slide, Mv, ty, CW, 0.55,
 
 ty += 0.70
 bk(slide, Mv, ty, CW, 0.55,
-   'Claude CodeでLPを自作する行動力はある。正しいガイドがあれば加速できるポテンシャル。', 13,
+   'アンチグレイビティ×Claude CodeでLPを自作する行動力がある。正しいガイドがあれば加速できるポテンシャル。', 13,
    bg=HL_GREEN, tc=OK_TEXT, bar=OK_BAR, anchor=MSO_ANCHOR.MIDDLE)
 
 
@@ -437,7 +439,7 @@ branches = [
     ]),
     ('B. AI活用の\n知識・スキル不足', [
         ('AI全般に「かなり疎い」と自認', True),
-        ('Claude CodeでLP制作は80%止まり', True),
+        ('アンチグレイビティ×Claude CodeでLP制作は80%止まり', True),
         ('適切なツール選定ができない', False),
     ]),
     ('C. FC展開の\n基盤が未整備', [
@@ -633,7 +635,7 @@ bk(slide, ax + 0.20, y + 0.25, 1.40, 0.35, 'After', 13,
    anchor=MSO_ANCHOR.MIDDLE, ml=0.03)
 
 after_items = [
-    ('LP制作', 'Claude Codeで自作、数時間で公開'),
+    ('LP制作', 'アンチグレイビティ等で自作、数時間で公開'),
     ('LP更新', '自分で即修正、A/Bテストも即座に'),
     ('FC募集LP', 'FC募集用LPを自作・公開済み'),
     ('バナー・SNS', 'AIで素材を量産、PDCAを自分で回す'),
