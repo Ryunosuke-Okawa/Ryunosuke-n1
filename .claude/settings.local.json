@@ -275,7 +275,13 @@
       "mcp__google-workspace__insertTable",
       "mcp__google-workspace__editTableCell",
       "mcp__ms-365__upload-file-content",
-      "Bash(find ~/.ms-365-mcp* -type f)"
+      "Bash(find ~/.ms-365-mcp* -type f)",
+      "Bash(brew search *)",
+      "Bash(/opt/homebrew/bin/brew list *)",
+      "Bash(/opt/homebrew/bin/brew search *)",
+      "Bash(mdfind \"kMDItemFSName == 'Microsoft Excel.app'\")",
+      "Read(//Applications/**)",
+      "Bash(mdfind \"kMDItemCFBundleIdentifier == 'com.microsoft.Excel'\")"
     ],
     "additionalDirectories": [
       "/tmp",
