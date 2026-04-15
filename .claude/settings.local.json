@@ -306,7 +306,11 @@
       "Bash(npx surge *)",
       "Bash(git config *)",
       "Bash(npx --yes vercel --version)",
-      "Bash(npx vercel *)"
+      "Bash(npx vercel *)",
+      "Bash(mkdir -p /tmp/kawaru-lp-gas)",
+      "Bash(clasp create *)",
+      "Bash(clasp login *)",
+      "Bash(clasp list *)"
     ],
     "additionalDirectories": [
       "/tmp",
