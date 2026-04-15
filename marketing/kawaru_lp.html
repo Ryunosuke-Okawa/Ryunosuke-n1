@@ -1557,10 +1557,21 @@
                 <h2>実際の動きを、ご覧ください</h2>
             </div>
             <div class="video-wrapper">
-                <video class="demo-video" autoplay muted loop playsinline>
-                    <source src="movie.mp4" type="video/mp4">
-                    お使いのブラウザは動画再生に対応していません。
-                </video>
+                <div id="demo-video-container" style="aspect-ratio: 16 / 9; width: 100%; border-radius: 16px; overflow: hidden;"></div>
+                <script>
+                    (function() {
+                        var c = document.getElementById('demo-video-container');
+                        var f = document.createElement('iframe');
+                        f.src = 'https://drive.google.com/file/d/1Z8lwDJ0XDgTIHxupMwwiTUhSKEqjTRY_/preview';
+                        f.width = '100%';
+                        f.height = '100%';
+                        f.style.border = 'none';
+                        f.style.borderRadius = '16px';
+                        f.setAttribute('allow', 'autoplay');
+                        f.setAttribute('allowfullscreen', 'true');
+                        c.appendChild(f);
+                    })();
+                </script>
             </div>
             <div class="video-cta-section">
                 <p>今すぐ体験したい方はこちら</p>
