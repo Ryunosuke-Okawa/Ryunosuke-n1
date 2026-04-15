@@ -283,7 +283,10 @@
       "Read(//Applications/**)",
       "Bash(mdfind \"kMDItemCFBundleIdentifier == 'com.microsoft.Excel'\")",
       "Bash(curl -L -o /tmp/Microsoft_Excel.pkg \"https://go.microsoft.com/fwlink/?linkid=525135\" --progress-bar)",
-      "Bash(open /tmp/Microsoft_Excel.pkg)"
+      "Bash(open /tmp/Microsoft_Excel.pkg)",
+      "WebFetch(domain:yoom.co.jp)",
+      "WebFetch(domain:intercom.help)",
+      "Bash(open -a \"Microsoft Excel\" \"/Users/kyouyuu/Downloads/クラウドサービス安全性評価ツール_選定編.xlsx\")"
     ],
     "additionalDirectories": [
       "/tmp",
