@@ -303,7 +303,10 @@
       "Bash(aws sts *)",
       "Bash(git --version)",
       "Bash(pip3 list *)",
-      "Bash(npx surge *)"
+      "Bash(npx surge *)",
+      "Bash(git config *)",
+      "Bash(npx --yes vercel --version)",
+      "Bash(npx vercel *)"
     ],
     "additionalDirectories": [
       "/tmp",
