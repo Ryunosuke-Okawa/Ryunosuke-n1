@@ -1561,15 +1561,17 @@
                 <script>
                     (function() {
                         var c = document.getElementById('demo-video-container');
-                        var f = document.createElement('iframe');
-                        f.src = 'https://drive.google.com/file/d/1Z8lwDJ0XDgTIHxupMwwiTUhSKEqjTRY_/preview';
-                        f.width = '100%';
-                        f.height = '100%';
-                        f.style.border = 'none';
-                        f.style.borderRadius = '16px';
-                        f.setAttribute('allow', 'autoplay');
-                        f.setAttribute('allowfullscreen', 'true');
-                        c.appendChild(f);
+                        var v = document.createElement('video');
+                        v.src = 'https://drive.google.com/uc?export=download&id=1Z8lwDJ0XDgTIHxupMwwiTUhSKEqjTRY_';
+                        v.autoplay = true;
+                        v.muted = true;
+                        v.loop = true;
+                        v.playsInline = true;
+                        v.style.width = '100%';
+                        v.style.height = '100%';
+                        v.style.objectFit = 'cover';
+                        v.style.borderRadius = '16px';
+                        c.appendChild(v);
                     })();
                 </script>
             </div>
