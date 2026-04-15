@@ -1,17 +1,4 @@
 {
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/kyouyuu/claude/.claude/hooks/auto-push.sh"
-          }
-        ]
-      }
-    ]
-  },
   "permissions": {
     "allow": [
       "*",
@@ -286,11 +273,26 @@
       "WebFetch(domain:www.g2.com)",
       "mcp__google-workspace__addSpreadsheetSheet",
       "mcp__google-workspace__insertTable",
-      "mcp__google-workspace__editTableCell"
+      "mcp__google-workspace__editTableCell",
+      "mcp__ms-365__upload-file-content",
+      "Bash(find ~/.ms-365-mcp* -type f)"
     ],
     "additionalDirectories": [
       "/tmp",
       "/private/tmp"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kyouyuu/claude/.claude/hooks/auto-push.sh"
+          }
+        ]
+      }
     ]
   }
 }
