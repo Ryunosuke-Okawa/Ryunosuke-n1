@@ -281,7 +281,9 @@
       "Bash(/opt/homebrew/bin/brew search *)",
       "Bash(mdfind \"kMDItemFSName == 'Microsoft Excel.app'\")",
       "Read(//Applications/**)",
-      "Bash(mdfind \"kMDItemCFBundleIdentifier == 'com.microsoft.Excel'\")"
+      "Bash(mdfind \"kMDItemCFBundleIdentifier == 'com.microsoft.Excel'\")",
+      "Bash(curl -L -o /tmp/Microsoft_Excel.pkg \"https://go.microsoft.com/fwlink/?linkid=525135\" --progress-bar)",
+      "Bash(open /tmp/Microsoft_Excel.pkg)"
     ],
     "additionalDirectories": [
       "/tmp",
