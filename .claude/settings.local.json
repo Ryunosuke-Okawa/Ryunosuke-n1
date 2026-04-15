@@ -286,7 +286,11 @@
       "Bash(open /tmp/Microsoft_Excel.pkg)",
       "WebFetch(domain:yoom.co.jp)",
       "WebFetch(domain:intercom.help)",
-      "Bash(open -a \"Microsoft Excel\" \"/Users/kyouyuu/Downloads/クラウドサービス安全性評価ツール_選定編.xlsx\")"
+      "Bash(open -a \"Microsoft Excel\" \"/Users/kyouyuu/Downloads/クラウドサービス安全性評価ツール_選定編.xlsx\")",
+      "Bash(find /Users/kyouyuu/claude -type f -name \"*.md\" -exec grep -l \"TOPPAN\\\\|凸版\\\\|Privacy\\\\|利用規約\\\\|セキュリティ\\\\|ISMS\\\\|ISMAP\" {} \\\\;)",
+      "WebFetch(domain:n1-inc.co.jp)",
+      "Bash(find /Users/kyouyuu/claude -type f -name \"*.md\" -exec grep -l \"contract\\\\|規約\\\\|利用条件\\\\|Terms\\\\|Privacy\" {} \\\\;)",
+      "Bash(grep -r \"URL\\\\|website\\\\|homepage\\\\|サイト\\\\|規約\\\\|ポリシー\" /Users/kyouyuu/claude/marketing/articles/kawaru* --include=\"*.md\")"
     ],
     "additionalDirectories": [
       "/tmp",
