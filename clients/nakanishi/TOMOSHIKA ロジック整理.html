@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>TOMOSHIKA ロジック整理（三者会議用）</title>
+<script src="deck-stage.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#000000;
+    --ink-2:#141414;
+    --muted:#3a3a3a;
+    --line:#c8c3b6;
+    --line-2:#dcd6c6;
+    --bg:#f6f2e9;
+    --paper:#fbf8f1;
+    --accent:oklch(45% 0.14 45);
+    --accent-2:oklch(42% 0.16 235);
+    --ok:oklch(45% 0.14 145);
+    --warn:oklch(50% 0.16 75);
+    --chip:#efeadd;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#000;color:var(--ink);font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",-apple-system,system-ui,sans-serif;}
+  section.slide{
+    background:var(--paper);
+    padding:60px 76px;
+    display:flex;flex-direction:column;
+    font-size:26px;line-height:1.65;
+    color:var(--ink);
+    font-weight:500;
+  }
+  .mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;}
+  .kicker{
+    font-size:20px;letter-spacing:.22em;color:var(--ink-2);
+    text-transform:uppercase;font-weight:700;margin-bottom:12px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .kicker .dot{width:10px;height:10px;background:var(--accent);border-radius:2px;}
+  h1.title{font-size:68px;line-height:1.15;margin:0 0 14px;font-weight:900;letter-spacing:-.01em;color:var(--ink);}
+  h2.title{font-size:48px;line-height:1.2;margin:0 0 24px;font-weight:900;letter-spacing:-.005em;color:var(--ink);}
+  h3{font-size:30px;margin:28px 0 12px;font-weight:800;color:var(--ink);}
+  h4{font-size:26px;margin:22px 0 8px;font-weight:800;color:var(--ink);}
+  p{margin:10px 0;color:var(--ink);}
+  .sub{color:var(--ink-2);font-size:24px;font-weight:500;}
+  .hr{height:1px;background:var(--line);margin:16px 0;}
+  .pagenum{position:absolute;right:48px;bottom:30px;font-size:16px;color:var(--muted);letter-spacing:.2em;font-weight:600;}
+  .brand{position:absolute;left:48px;bottom:30px;font-size:16px;color:var(--muted);letter-spacing:.18em;font-weight:600;}
+  .chip{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--chip);font-size:20px;color:var(--ink);border:1px solid var(--line);font-weight:600;}
+  .chip.accent{background:color-mix(in oklch, var(--accent) 12%, var(--paper));border-color:color-mix(in oklch, var(--accent) 35%, var(--paper));color:var(--accent);}
+  .chip.blue{background:color-mix(in oklch, var(--accent-2) 12%, var(--paper));border-color:color-mix(in oklch, var(--accent-2) 35%, var(--paper));color:var(--accent-2);}
+  .chip.ok{background:color-mix(in oklch, var(--ok) 12%, var(--paper));border-color:color-mix(in oklch, var(--ok) 35%, var(--paper));color:var(--ok);}
+  .chip.warn{background:color-mix(in oklch, var(--warn) 14%, var(--paper));border-color:color-mix(in oklch, var(--warn) 40%, var(--paper));color:var(--warn);}
+  table{border-collapse:collapse;width:100%;font-size:22px;background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:500;}
+  th,td{border:1px solid var(--line-2);padding:10px 14px;text-align:left;vertical-align:top;color:var(--ink);}
+  th{background:#ede6d2;font-weight:800;color:var(--ink);}
+  td b, th b{color:var(--ink);font-weight:800;}
+  td code,th code,.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.95em;color:var(--ink);}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;color:var(--ink);}
+  .card .label{font-size:18px;color:var(--ink-2);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;font-weight:700;}
+  pre.ascii{
+    background:#fff;border:1px solid var(--line);border-radius:8px;
+    padding:18px 22px;font-size:19px;line-height:1.5;white-space:pre;overflow:auto;
+    font-family:"JetBrains Mono",ui-monospace,monospace;color:var(--ink);font-weight:500;
+  }
+  .callout{
+    background:color-mix(in oklch, var(--accent-2) 10%, var(--paper));
+    border:1px solid color-mix(in oklch, var(--accent-2) 40%, var(--paper));
+    border-left:5px solid var(--accent-2);
+    padding:16px 20px;border-radius:6px;font-size:23px;color:var(--ink);
+  }
+  .callout.warn{
+    background:color-mix(in oklch, var(--warn) 12%, var(--paper));
+    border-color:color-mix(in oklch, var(--warn) 40%, var(--paper));
+    border-left-color:var(--warn);
+  }
+  .callout b{display:block;margin-bottom:4px;color:var(--ink);}
+  .step{
+    display:flex;gap:18px;align-items:flex-start;
+    background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;
+    font-size:24px;color:var(--ink);
+  }
+  .step .num{
+    flex:0 0 auto;width:48px;height:48px;border-radius:8px;
+    background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:22px;
+  }
+  .step.green .num{background:var(--ok);}
+  .step.blue .num{background:var(--accent-2);}
+  .step.orange .num{background:var(--accent);}
+  .step.gray .num{background:#2a2a2a;}
+  .small{font-size:20px;color:var(--ink-2);font-weight:500;}
+  .bullets{margin:8px 0 8px 22px;padding:0;}
+  .bullets li{margin:6px 0;color:var(--ink);}
+  ul.clean{list-style:none;padding:0;margin:0;}
+  ul.clean li{padding:8px 0;border-bottom:1px dashed var(--line-2);color:var(--ink);}
+  ul.clean li:last-child{border-bottom:0;}
+  .header-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;}
+  .phase-tag{display:inline-block;padding:4px 12px;border-radius:6px;background:var(--ink);color:var(--paper);font-size:18px;letter-spacing:.08em;font-weight:700;}
+  .cover{
+    background:linear-gradient(180deg,#1b1b1b 0%, #0e0e0e 100%);
+    color:#f5efe2;
+    padding:90px 100px;justify-content:flex-end;
+  }
+  .cover h1{color:#ffffff;font-size:96px;line-height:1.05;letter-spacing:-.015em;margin:0 0 18px;font-weight:900;}
+  .cover .kicker{color:#d6cfbc;}
+  .cover .kicker .dot{background:oklch(75% 0.15 45);}
+  .cover .meta{display:flex;gap:32px;font-size:24px;color:#d6cfbc;margin-top:24px;font-weight:600;}
+  .cover .accent{color:oklch(82% 0.14 45);}
+  .tag-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+  .divider-section{
+    background:#1a1a1a;color:#ffffff;justify-content:center;align-items:flex-start;
+    padding:120px 100px;
+  }
+  .divider-section .num{font-size:170px;font-weight:900;line-height:1;color:oklch(75% 0.15 45);margin-bottom:8px;}
+  .divider-section h2{font-size:76px;color:#ffffff;margin:0;font-weight:900;}
+  .divider-section .sub{color:#e3dcc9;font-size:28px;margin-top:18px;max-width:1200px;font-weight:500;line-height:1.55;}
+  .flow{display:grid;grid-template-columns:repeat(4, 1fr);gap:14px;align-items:stretch;}
+  .flow .node{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px;position:relative;color:var(--ink);}
+  .flow .node .n{font-size:18px;letter-spacing:.2em;color:var(--ink-2);font-weight:700;}
+  .flow .node h4{margin:6px 0 4px;font-size:26px;color:var(--ink);}
+  .flow .node .owner{font-size:19px;color:var(--accent);font-weight:800;}
+  .flow .node .desc{font-size:20px;color:var(--ink);margin-top:8px;line-height:1.5;font-weight:500;}
+  .tiny{font-size:19px;color:var(--ink);font-weight:500;}
+  .twocol{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;align-items:start;}
+  .mini-table{font-size:20px;}
+  .mini-table th, .mini-table td{font-size:20px;padding:8px 12px;}
+  .big-nums{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px;}
+  .big-nums .c{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;text-align:center;}
+  .big-nums .c .t{font-size:18px;color:var(--ink-2);letter-spacing:.1em;font-weight:700;}
+  .big-nums .c .v{font-size:40px;font-weight:900;font-family:"JetBrains Mono",monospace;color:var(--ink);}
+  .big-nums .c.hi{background:color-mix(in oklch, var(--accent) 18%, #fff);border-color:var(--accent);border-width:2px;}
+  .big-nums .c.hi2{background:color-mix(in oklch, var(--accent-2) 15%, #fff);border-color:var(--accent-2);border-width:2px;}
+  .confirm-box{
+    background:#fff3d6;border:2px dashed var(--warn);border-radius:8px;padding:14px 18px;font-size:22px;
+    color:#3d2f05;font-weight:500;
+  }
+  .confirm-box b{color:#6b3a00;}
+</style>
+</head>
+<body>
+
+<script type="application/json" id="speaker-notes">[]</script>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 1. COVER -->
+<section class="slide cover" data-label="表紙">
+  <div class="kicker"><span class="dot"></span>三者会議資料 / 2026-04-18</div>
+  <h1>TOMOSHIKA<br/>ロジック整理</h1>
+  <div class="sub" style="color:#e3dcc9;max-width:1200px;font-size:30px;line-height:1.55;font-weight:500;">
+    学生が適性検査を受けてから、結果画面に推薦企業が表示されるまでの流れを<br/>
+    <span class="accent">4つのフェーズ</span>に分けて整理したもの
+  </div>
+  <div class="meta">
+    <div>中西製作所 様</div>
+    <div>MIL 様</div>
+    <div>エヌイチ</div>
+  </div>
+  <div class="brand" style="color:#a39d8c;">TOMOSHIKA / 三者会議</div>
+</section>
+
+<!-- 2. 全体の流れ -->
+<section class="slide" data-label="全体の流れ">
+  <div class="kicker"><span class="dot"></span>OVERVIEW</div>
+  <h2 class="title">全体の流れ</h2>
+  <div class="flow">
+    <div class="node">
+      <div class="n">PHASE 1</div>
+      <h4>適性検査を受ける</h4>
+      <div class="owner">【MIL様】</div>
+      <div class="desc">学生が51問に回答する</div>
+    </div>
+    <div class="node">
+      <div class="n">PHASE 2 →</div>
+      <h4>データを送る</h4>
+      <div class="owner">【MIL様 → Dify】</div>
+      <div class="desc">MIL様が検査結果をDifyに送る</div>
+    </div>
+    <div class="node">
+      <div class="n">PHASE 3</div>
+      <h4>企業のマッチング</h4>
+      <div class="owner">【Dify】</div>
+      <div class="desc">受け取った点数で企業リストと照合する</div>
+    </div>
+    <div class="node">
+      <div class="n">PHASE 4 →</div>
+      <h4>結果を返す</h4>
+      <div class="owner">【Dify → MIL様】</div>
+      <div class="desc">マッチング結果をMIL様に返す</div>
+    </div>
+  </div>
+
+  <h3>三社の役割</h3>
+  <table>
+    <tr><th style="width:200px">会社</th><th>何をするか</th></tr>
+    <tr><td><b>MIL様</b></td><td>学生に適性検査を受けてもらう画面を作る。検査結果をDifyに送り、返ってきた結果を学生に見せる</td></tr>
+    <tr><td><b>エヌイチ</b></td><td>中西製作所様のDifyアカウント上に「検査結果を受け取って企業をマッチングするしくみ」を構築・運用する</td></tr>
+    <tr><td><b>中西製作所様</b></td><td>Difyアカウントの持ち主。どの企業を推薦するか、どういう条件で中西を出すかの最終決定権を持つ</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">02</div>
+</section>
+
+<!-- 3. Difyについて -->
+<section class="slide" data-label="Difyについて">
+  <div class="kicker"><span class="dot"></span>OVERVIEW</div>
+  <h2 class="title">Difyについて</h2>
+  <ul class="clean" style="font-size:28px;">
+    <li><b>Dify</b>は、プログラムの処理を組み立てて動かすためのツール（クラウドサービス）</li>
+    <li>このDifyのアカウントは<b style="color:var(--accent);">中西製作所様のもの</b></li>
+    <li>エヌイチがこのアカウント上でしくみ（ワークフロー）を作っている</li>
+    <li>フェーズ2・4で必要になる接続先の情報や認証キーも、中西製作所様のアカウントから発行される</li>
+  </ul>
+
+  <h3 style="margin-top:40px;">アカウント構造のイメージ</h3>
+  <pre class="ascii">    ┌──────────────────────────────────────────────────┐
+    │   中西製作所様 Difyアカウント（オーナー）            │
+    │   ┌──────────────────────────────────────────┐   │
+    │   │  ワークフロー：適性検査 → 企業マッチング    │   │
+    │   │  （エヌイチが構築・運用）                  │   │
+    │   └──────────────────────────────────────────┘   │
+    │        ↑ API接続                                 │
+    └────────┼─────────────────────────────────────────┘
+             │
+       MIL様のサーバー（学生に画面を出す）</pre>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">03</div>
+</section>
+
+<!-- 4. SECTION DIVIDER: PHASE 1 -->
+<section class="slide divider-section" data-label="Phase1 仕切り">
+  <div class="kicker" style="color:#d6cfbc;"><span class="dot" style="background:oklch(75% 0.15 45);"></span>PHASE 01 / MIL 様</div>
+  <div class="num">01</div>
+  <h2>適性検査を受ける</h2>
+  <div class="sub">学生が51問の質問に答えると、その回答から<b style="color:oklch(82% 0.14 45);">11個の数値（点数）</b>が算出される。この点数がフェーズ3の企業マッチングの材料になる。</div>
+</section>
+
+<!-- 5. Q1〜Q24 メインの質問 -->
+<section class="slide" data-label="Q1-Q24 メインの質問">
+  <div class="kicker"><span class="dot"></span>PHASE 01 / 質問の中身</div>
+  <h2 class="title">メインの質問: Q1〜Q24（志向性を測る24問）</h2>
+  <p>この24問で<b>「この学生がどんな仕事に向いているか」を6タイプで数値化</b>する。</p>
+  <p>24問は6つのタイプに4問ずつ割り振られていて、各問は「1点（あてはまらない）〜 5点（あてはまる）」で答える。同じタイプの4問の合計がそのタイプの点数になる。</p>
+
+  <pre class="ascii">例: R型（現実型）の4問にそれぞれ 5点, 4点, 3点, 3点 と答えた場合
+→ R型スコア = 5 + 4 + 3 + 3 = 15点（20点満点中）</pre>
+
+  <h3>これを6タイプ分計算する</h3>
+  <table>
+    <tr><th style="width:180px">タイプ</th><th>対応する設問</th><th>算出方法</th><th>点数の範囲</th></tr>
+    <tr><td><b>R型</b>（現実型）</td><td>Q1〜Q4</td><td>4問の合計</td><td>4〜20点</td></tr>
+    <tr><td><b>I型</b>（研究型）</td><td>Q5〜Q8</td><td>4問の合計</td><td>4〜20点</td></tr>
+    <tr><td><b>A型</b>（芸術型）</td><td>Q9〜Q12</td><td>4問の合計</td><td>4〜20点</td></tr>
+    <tr><td><b>S型</b>（社会型）</td><td>Q13〜Q16</td><td>4問の合計</td><td>4〜20点</td></tr>
+    <tr><td><b>E型</b>（企業型）</td><td>Q17〜Q20</td><td>4問の合計</td><td>4〜20点</td></tr>
+    <tr><td><b>C型</b>（慣習型）</td><td>Q21〜Q24</td><td>4問の合計</td><td>4〜20点</td></tr>
+  </table>
+  <p style="margin-top:16px;"><b>点数が高いほど、そのタイプの志向が強い</b>ということ。</p>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">05</div>
+</section>
+
+<!-- 6. 6タイプの意味 -->
+<section class="slide" data-label="6タイプの意味">
+  <div class="kicker"><span class="dot"></span>PHASE 01 / 質問の中身</div>
+  <h2 class="title">6タイプそれぞれの意味</h2>
+  <table>
+    <tr><th style="width:180px">タイプ</th><th>どんな人か</th><th style="width:380px">向いている仕事</th></tr>
+    <tr><td><b>R型</b>（現実型）</td><td>手を動かすのが好き。技術や機械に興味がある</td><td>エンジニア、製造、建設</td></tr>
+    <tr><td><b>I型</b>（研究型）</td><td>分析や調べものが好き。データや理論に興味がある</td><td>研究開発、コンサル、分析</td></tr>
+    <tr><td><b>A型</b>（芸術型）</td><td>創造や表現が好き。自由な発想を大事にする</td><td>デザイナー、企画、クリエイティブ</td></tr>
+    <tr><td><b>S型</b>（社会型）</td><td>人の役に立つのが好き。対人支援に興味がある</td><td>教育、福祉、人事</td></tr>
+    <tr><td><b>E型</b>（企業型）</td><td>リーダーシップを発揮したい。経営や組織運営に興味がある</td><td>営業、マネジメント、起業</td></tr>
+    <tr><td><b>C型</b>（慣習型）</td><td>正確さや管理が好き。堅実に物事を進める</td><td>経理、法務、事務、品質管理</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">06</div>
+</section>
+
+<!-- 7. Q25〜Q51 特殊な質問 -->
+<section class="slide" data-label="Q25-Q51 特殊な質問">
+  <div class="kicker"><span class="dot"></span>PHASE 01 / 質問の中身</div>
+  <h2 class="title">特殊な質問: Q25〜Q51</h2>
+  <table>
+    <tr><th style="width:170px">設問</th><th>何を測るか</th><th style="width:180px">回答形式</th><th>どう使うか</th></tr>
+    <tr><td>Q25〜Q36</td><td>行動特性（ポータブルスキル）</td><td>各問1〜5点</td><td>このうち<b>Q30（主体性）とQ31（変革意欲）</b>だけをフェーズ3で使う</td></tr>
+    <tr><td>Q37〜Q48</td><td>価値観（キャリア・アンカー）</td><td>各問1〜5点</td><td>今回の判定では使わない</td></tr>
+    <tr><td><b>Q49</b></td><td>嘘回答の傾向（L尺度）</td><td>1〜5点</td><td>5点の場合、6タイプの点数を割り引く（フェーズ3のStep 0）</td></tr>
+    <tr><td><b>Q50</b></td><td>BtoB企業が好きか</td><td>1〜5点</td><td>3点以上→BtoB企業リスト、3点未満→BtoC企業リストを出す</td></tr>
+    <tr><td><b>Q51</b></td><td>メーカー/インフラ企業が好きか</td><td>1〜5点</td><td>Q50と合わせて中西製作所様との相性を判定する</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">07</div>
+</section>
+
+<!-- 8. 回答結果の決まり方 -->
+<section class="slide" data-label="回答結果の決まり方">
+  <div class="kicker"><span class="dot"></span>PHASE 01 / 回答結果の決まり方</div>
+  <h2 class="title">回答結果の決まり方</h2>
+  <p>6タイプの点数を高い順に並べて、<b>1位と2位</b>を取る。これが「この学生はどんなタイプか」の結論。</p>
+
+  <h3>具体例①: ある学生の6タイプの点数</h3>
+  <div class="big-nums">
+    <div class="c"><div class="t">R型</div><div class="v">8</div></div>
+    <div class="c"><div class="t">I型</div><div class="v">6</div></div>
+    <div class="c"><div class="t">A型</div><div class="v">7</div></div>
+    <div class="c hi"><div class="t">S型（1位）</div><div class="v">18</div></div>
+    <div class="c hi2"><div class="t">E型（2位）</div><div class="v">10</div></div>
+    <div class="c"><div class="t">C型</div><div class="v">5</div></div>
+  </div>
+  <ul class="bullets">
+    <li>一番高い点数は <b>S型の18点</b> → これが <b>1位タイプ</b></li>
+    <li>二番目に高いのは <b>E型の10点</b> → これが <b>2位タイプ</b></li>
+    <li>この学生は<b>「人の役に立ちたい（S型）」が一番強く、「リーダーシップ（E型）」も持っている</b></li>
+  </ul>
+
+  <h3>もう1つの例</h3>
+  <div class="big-nums">
+    <div class="c"><div class="t">R型</div><div class="v">10</div></div>
+    <div class="c"><div class="t">I型</div><div class="v">8</div></div>
+    <div class="c hi2"><div class="t">A型（2位）</div><div class="v">16</div></div>
+    <div class="c"><div class="t">S型</div><div class="v">12</div></div>
+    <div class="c hi"><div class="t">E型（1位）</div><div class="v">19</div></div>
+    <div class="c"><div class="t">C型</div><div class="v">7</div></div>
+  </div>
+  <ul class="bullets">
+    <li>1位: <b>E型（19点）</b> → 2位: <b>A型（16点）</b></li>
+    <li>この学生は<b>「経営・リーダーシップ（E型）」が一番で、「創造力（A型）」もある</b></li>
+  </ul>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">08</div>
+</section>
+
+<!-- 9. ポイント -->
+<section class="slide" data-label="ポイント">
+  <div class="kicker"><span class="dot"></span>PHASE 01 / 回答結果の決まり方</div>
+  <h2 class="title">ポイント</h2>
+  <div class="grid-3" style="margin-top:20px;">
+    <div class="card">
+      <div class="label">1位タイプ</div>
+      <div style="font-size:28px;font-weight:800;margin-bottom:10px;color:var(--ink);">メインの推薦企業を決める基準</div>
+      <div style="font-size:22px;color:var(--ink);font-weight:500;">1位タイプがメインの推薦企業を決める基準になる</div>
+    </div>
+    <div class="card">
+      <div class="label">2位タイプ</div>
+      <div style="font-size:28px;font-weight:800;margin-bottom:10px;color:var(--ink);">補足の推薦企業</div>
+      <div style="font-size:22px;color:var(--ink);font-weight:500;">「あなたにはこういう面もありますよ」という補足の推薦企業になる</div>
+    </div>
+    <div class="card">
+      <div class="label">同点の場合</div>
+      <div style="font-size:28px;font-weight:800;margin-bottom:10px;color:var(--ink);">R → I → A → S → E → C</div>
+      <div style="font-size:22px;color:var(--ink);font-weight:500;">1位と2位が同点の場合は R → I → A → S → E → C の順で先にくる方が1位</div>
+    </div>
+  </div>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">09</div>
+</section>
+
+<!-- 10. 11個の数値 -->
+<section class="slide" data-label="11個の数値">
+  <div class="kicker"><span class="dot"></span>PHASE 01 / アウトプット</div>
+  <h2 class="title">フェーズ1でできあがるもの（＝フェーズ2で送る11個の数値）</h2>
+  <table>
+    <tr><th style="width:110px">項目</th><th style="width:110px">値の例</th><th>何の点数か</th><th>フェーズ3のどこで使うか</th></tr>
+    <tr><td>R</td><td>8</td><td>R型の合計点（4〜20点）</td><td>1位・2位タイプの判定に使う</td></tr>
+    <tr><td>I</td><td>6</td><td>I型の合計点</td><td>同上</td></tr>
+    <tr><td>A</td><td>7</td><td>A型の合計点</td><td>同上</td></tr>
+    <tr><td>S</td><td>18</td><td>S型の合計点</td><td>同上</td></tr>
+    <tr><td>E</td><td>10</td><td>E型の合計点</td><td>同上</td></tr>
+    <tr><td>C</td><td>5</td><td>C型の合計点</td><td>同上</td></tr>
+    <tr><td>Q30</td><td>4</td><td>主体性の点数（1〜5点）</td><td>中西製作所様向きかの判定に使う</td></tr>
+    <tr><td>Q31</td><td>4</td><td>変革意欲の点数（1〜5点）</td><td>同上</td></tr>
+    <tr><td>Q49</td><td>3</td><td>嘘回答検知の点数（1〜5点）</td><td>5点のときだけ6タイプの点数を補正する</td></tr>
+    <tr><td>Q50</td><td>4</td><td>BtoB志向の点数（1〜5点）</td><td>BtoB企業 or BtoC企業の切り替えに使う</td></tr>
+    <tr><td>Q51</td><td>4</td><td>メーカー志向の点数（1〜5点）</td><td>中西製作所様との相性判定に使う</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">10</div>
+</section>
+
+<!-- 11. フェーズ1 現在の設計 / 確認事項 -->
+<section class="slide" data-label="Phase1 確認事項">
+  <div class="kicker"><span class="dot"></span>PHASE 01 / 現在の設計</div>
+  <h2 class="title">現在の設計 と 確認事項</h2>
+  <div class="callout">
+    <b>ℹ️ 現在の設計</b>
+    <ul class="bullets" style="margin-top:6px;">
+      <li><b>6タイプの合計点の算出</b>: MIL様側で合計してからDifyに送る設計になっている（Dify側は合計済みの点数を受け取る）</li>
+      <li><b>嘘回答補正（Q49=5のとき点数を×0.8する処理）</b>: Dify側で自動的に処理する設計になっている（MIL様は素の点数を送ればOK）</li>
+    </ul>
+  </div>
+  <div class="confirm-box" style="margin-top:22px;">
+    <b>→ 会議で上記の認識に相違がないか確認する</b>
+  </div>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">11</div>
+</section>
+
+<!-- 12. DIVIDER PHASE 2 -->
+<section class="slide divider-section" data-label="Phase2 仕切り">
+  <div class="kicker" style="color:#d6cfbc;"><span class="dot" style="background:oklch(75% 0.15 45);"></span>PHASE 02 / MIL 様 → Dify</div>
+  <div class="num">02</div>
+  <h2>検査結果をDifyに送る</h2>
+  <div class="sub">フェーズ1で算出された11個の数値を、MIL様のサーバーから中西製作所様のDifyに送る。送ると自動的にフェーズ3の判定処理が走り、結果が返ってくる（フェーズ4）。</div>
+</section>
+
+<!-- 13. Phase2 and Phase4 1回のやり取り -->
+<section class="slide" data-label="Phase2 1回のやり取り">
+  <div class="kicker"><span class="dot"></span>PHASE 02 / 通信の構造</div>
+  <h2 class="title">フェーズ2（送る）とフェーズ4（返ってくる）は1回のやり取り</h2>
+  <p>電話でいうと、MIL様が電話をかけて質問し、Difyが電話口で答えを返す ── これが1回で完結する。</p>
+  <pre class="ascii">MIL様のサーバー                    中西製作所様のDifyアカウント
+                                  （エヌイチが構築・運用）
+
+  ① 11個の数値を送る ─────→    ② 受け取って判定処理を実行
+                                   （フェーズ3の処理が動く）
+  ④ 結果を受け取る   ←─────    ③ 判定結果を返す
+                                   （フェーズ4）</pre>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">13</div>
+</section>
+
+<!-- 14. 送るために必要なもの -->
+<section class="slide" data-label="送るために必要なもの">
+  <div class="kicker"><span class="dot"></span>PHASE 02 / 準備</div>
+  <h2 class="title">送るために必要なもの</h2>
+  <p>MIL様がDifyにデータを送るには、以下の<b>2つの情報</b>が必要。どちらも<b>中西製作所様のDifyアカウントから発行されるもの</b>で、エヌイチが代行してMIL様に共有する。</p>
+  <table>
+    <tr><th style="width:240px">必要なもの</th><th>何か</th><th style="width:280px">誰が発行するか</th><th style="width:220px">誰に渡すか</th></tr>
+    <tr><td><b>エンドポイントURL</b>（接続先）</td><td>データの送り先アドレス</td><td>中西製作所様のDifyアカウント</td><td>MIL様に共有</td></tr>
+    <tr><td><b>APIキー</b>（認証キー）</td><td>「この人は使っていいですよ」という合鍵</td><td>中西製作所様のDifyアカウント</td><td>MIL様に共有</td></tr>
+  </table>
+
+  <h3>準備の流れ</h3>
+  <ol class="bullets">
+    <li>エヌイチが中西製作所様のDifyアカウント上でしくみを完成させる</li>
+    <li>Difyの管理画面で「公開」すると、<b>エンドポイントURL</b>と<b>APIキー</b>が自動発行される</li>
+    <li>この2つをエヌイチからMIL様に共有する</li>
+    <li>MIL様はこの2つを自社サーバーに設定して、学生が検査を完了するたびにデータを送れるようにする</li>
+  </ol>
+  <div class="callout" style="margin-top:14px;">
+    <b>MIL様が何かを発行してエヌイチや中西製作所様に渡す必要はありません。</b>
+    中西製作所様のDifyから出た情報を、MIL様が受け取って使うだけです。
+  </div>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">14</div>
+</section>
+
+<!-- 15. 送るデータの中身 -->
+<section class="slide" data-label="送るデータの中身">
+  <div class="kicker"><span class="dot"></span>PHASE 02 / データ</div>
+  <h2 class="title">送るデータの中身</h2>
+  <p>フェーズ1でできた11個の数値をまとめて送る。</p>
+  <pre class="ascii">送信データの中身（例）:
+
+  R   = 8        ← R型の合計点
+  I   = 6        ← I型の合計点
+  A   = 7        ← A型の合計点
+  S   = 18       ← S型の合計点
+  E   = 10       ← E型の合計点
+  C   = 5        ← C型の合計点
+  Q30 = 4        ← 主体性の点数
+  Q31 = 4        ← 変革意欲の点数
+  Q49 = 3        ← 嘘回答検知の点数
+  Q50 = 4        ← BtoB志向の点数
+  Q51 = 4        ← メーカー志向の点数</pre>
+  <p><b>全部で11個、すべて数値。</b></p>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">15</div>
+</section>
+
+<!-- 16. Phase 2 現在の設計 / 確認 -->
+<section class="slide" data-label="Phase2 確認事項">
+  <div class="kicker"><span class="dot"></span>PHASE 02 / 現在の設計</div>
+  <h2 class="title">現在の設計 と 確認・相談事項</h2>
+  <div class="callout">
+    <b>ℹ️ 現在の設計</b>
+    <ul class="bullets" style="margin-top:6px;">
+      <li><b>データの項目名</b>: R, I, A, S, E, C, Q30, Q31, Q49, Q50, Q51 でDify側の受け口を作っている</li>
+      <li><b>APIキー</b>: まだ発行していない。Difyの有料プラン（Professional: 月額約9,000円）に切り替えた後に発行・共有する予定</li>
+    </ul>
+  </div>
+  <div class="grid-2" style="margin-top:22px;">
+    <div class="confirm-box"><b>→ 確認</b><br/>項目名がMIL様側の実装と合っているか</div>
+    <div class="confirm-box"><b>→ 相談</b><br/>APIキーの共有方法・タイミング</div>
+  </div>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">16</div>
+</section>
+
+<!-- 17. DIVIDER PHASE 3 -->
+<section class="slide divider-section" data-label="Phase3 仕切り">
+  <div class="kicker" style="color:#d6cfbc;"><span class="dot" style="background:oklch(75% 0.15 45);"></span>PHASE 03 / Dify / エヌイチ構築</div>
+  <div class="num">03</div>
+  <h2>企業のマッチング</h2>
+  <div class="sub">MIL様から受け取った11個の数値をもとに、<b style="color:oklch(82% 0.14 45);">「この学生にどの企業を推薦するか」</b>を自動で判定する。</div>
+</section>
+
+<!-- 18. 判定に使うもの -->
+<section class="slide" data-label="判定に使うもの">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / 判定に使うもの</div>
+  <h2 class="title">判定に使うもの</h2>
+  <table>
+    <tr><th style="width:380px">何を</th><th>説明</th></tr>
+    <tr><td><b>11個の数値</b>（フェーズ2で受け取ったもの）</td><td>学生の志向性タイプ・行動特性・業界志向</td></tr>
+    <tr><td><b>企業リスト</b>（Difyの中にあらかじめ登録してあるもの）</td><td>7タイプ × BtoB/BtoC = 14パターンの企業名と推薦理由。津丸様提供のExcel「紹介企業」シートに基づき4/10に登録済み</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">18</div>
+</section>
+
+<!-- 19. 判定のしくみ 概観 -->
+<section class="slide" data-label="判定のしくみ 概観">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / 判定のしくみ</div>
+  <h2 class="title">判定のしくみ（津丸様との確認に基づく確定ロジック）</h2>
+  <p>判定は<b>4段階</b>あり、<b>上から順番にチェックしていく</b>。どこかのステップに当てはまったら、そこで結果が確定する。下のステップは見ない。</p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;">
+    <div class="step gray"><div class="num">0</div><div><b>前処理</b>: 嘘回答の補正</div></div>
+    <div class="step orange"><div class="num">1</div><div><b>最優先</b>: 「志向が定まっていない」学生を検出 <span class="small">→ 当てはまったら → トモキャリに誘導して終了</span></div></div>
+    <div class="step green"><div class="num">2</div><div>「主体性・変革意欲が高い」かつ「BtoB志向」の学生を検出 <span class="small">→ 当てはまったら → 中西製作所様を推薦して終了</span></div></div>
+    <div class="step green"><div class="num">3</div><div>「中西と相性のいいタイプ＋業界志向」の学生を検出 <span class="small">→ 当てはまったら → 中西製作所様を推薦して終了</span></div></div>
+    <div class="step blue"><div class="num">4</div><div>タイプに合った企業を推薦</div></div>
+  </div>
+  <p class="sub" style="margin-top:18px;">以下、各ステップを順番に説明します。</p>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">19</div>
+</section>
+
+<!-- 20. Step 0 -->
+<section class="slide" data-label="Step 0 嘘回答補正">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / Step 0</div>
+  <h2 class="title">Step 0: 嘘回答の補正（前処理）</h2>
+  <h4>目的</h4>
+  <p>自分をよく見せようとして回答を盛っている可能性がある学生の点数を割り引く。</p>
+  <h4>しくみ</h4>
+  <ul class="bullets">
+    <li>Q49（嘘回答検知）の点数が <b>5点（満点）のときだけ</b>、6タイプ（R, I, A, S, E, C）の点数すべてに<b>×0.8</b>をかける</li>
+    <li>Q49が5点以外のときは、何もしない</li>
+  </ul>
+  <h4>例</h4>
+  <table>
+    <tr><th>学生</th><th>Q49の点数</th><th>補正前のE型</th><th>補正前のR型</th><th>→ 補正後のE型</th><th>→ 補正後のR型</th></tr>
+    <tr><td>Xさん</td><td><b>5点</b></td><td>20点</td><td>15点</td><td><b>16点</b>（×0.8）</td><td><b>12点</b>（×0.8）</td></tr>
+    <tr><td>Yさん</td><td>3点</td><td>20点</td><td>15点</td><td>20点（そのまま）</td><td>15点（そのまま）</td></tr>
+  </table>
+  <p style="margin-top:12px;">この補正後の点数を使って、以降のStep 1〜4を判定する。</p>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">20</div>
+</section>
+
+<!-- 21. Step 1 -->
+<section class="slide" data-label="Step 1 未分化検出">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / Step 1</div>
+  <h2 class="title">Step 1: 志向が定まっていない学生を検出する（最優先）</h2>
+  <h4>目的</h4>
+  <p>6タイプの点数にほとんど差がない学生 ＝ どの仕事に向いているか判断できない学生を検出して、企業を推薦せずに<b>キャリア相談（トモキャリ）に誘導する</b>。</p>
+  <h4>条件</h4>
+  <p>6タイプの中で一番高い点数と一番低い点数の差が <b>1点以下</b></p>
+  <h4>例</h4>
+  <table>
+    <tr><th>学生</th><th>R</th><th>I</th><th>A</th><th>S</th><th>E</th><th>C</th><th>最高−最低</th><th>結果</th></tr>
+    <tr><td>Aさん</td><td>12</td><td>12</td><td>11</td><td>12</td><td>12</td><td>11</td><td>12−11 = <b>1点</b></td><td>→ <b>トモキャリ誘導</b>（差がなさすぎて判定できない）</td></tr>
+    <tr><td>Bさん</td><td>15</td><td>12</td><td>8</td><td>18</td><td>10</td><td>6</td><td>18−6 = <b>12点</b></td><td>→ 次のStep 2へ（はっきり差がある）</td></tr>
+  </table>
+  <p style="margin-top:14px;">→ Aさんのように全タイプの点数が横並びの場合は、企業を推薦しても意味がないのでトモキャリに案内する。</p>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">21</div>
+</section>
+
+<!-- 22. Step 2 -->
+<section class="slide" data-label="Step 2 主体性変革意欲BtoB">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / Step 2</div>
+  <h2 class="title">Step 2: 主体性・変革意欲が高く、BtoB志向の学生を検出する</h2>
+  <h4>目的</h4>
+  <p>中西製作所様の社風に合う学生を検出して、<b>中西製作所様を推薦する</b>。</p>
+  <h4>背景（津丸様との確認に基づく）</h4>
+  <p>中西製作所様は「安定した基盤がありながらベンチャー精神で変革を推進する」社風。この社風に合う人材は、<b>主体性（Q30）と変革意欲（Q31）が両方高い人</b>。ただし中西製作所様はBtoB企業なので、<b>BtoC志向が強い学生には中西を案内しない</b>。</p>
+  <h4>条件（3つを<b>すべて</b>満たす）</h4>
+  <ol class="bullets">
+    <li>Q30（主体性）が <b>4点以上</b>（5点満点中）</li>
+    <li>Q31（変革意欲）が <b>4点以上</b>（5点満点中）</li>
+    <li>Q50（BtoB志向）が <b>3点以上</b>（＝ BtoB寄り）</li>
+  </ol>
+  <h4>例</h4>
+  <table>
+    <tr><th>学生</th><th>Q30</th><th>Q31</th><th>Q50</th><th>結果</th></tr>
+    <tr><td>Aさん</td><td>4</td><td>5</td><td>4</td><td>3つとも満たす → <b>中西製作所様を推薦</b></td></tr>
+    <tr><td>Bさん</td><td>5</td><td>3</td><td>4</td><td>Q31が4未満 → 次のStep 3へ</td></tr>
+    <tr><td>Cさん</td><td>4</td><td>4</td><td>2</td><td>Q50が3未満（BtoC寄り）→ 次のStep 3へ</td></tr>
+    <tr><td>Dさん</td><td>3</td><td>4</td><td>4</td><td>Q30が4未満 → 次のStep 3へ</td></tr>
+  </table>
+  <p class="sub" style="margin-top:12px;">→ Cさんは主体性・変革意欲は高いが、BtoC志向が強いため中西製作所様（BtoB企業）には案内せず、Step 4の通常判定でBtoC企業を推薦する。</p>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">22</div>
+</section>
+
+<!-- 23. Step 3 -->
+<section class="slide" data-label="Step 3 タイプ x 業界志向">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / Step 3</div>
+  <h2 class="title">Step 3: 中西と相性のいいタイプ × 業界志向の学生を検出する</h2>
+  <p>目的: Step 2に当てはまらなかったけど、<b>タイプ的にも業界志向的にも中西製作所様と合っている学生</b>を拾って、<b>中西製作所様を推薦する</b>。以下の3つの条件を<b>すべて</b>満たす必要がある。</p>
+  <div class="grid-3" style="margin-top:12px;">
+    <div class="card"><div class="label">条件 ①</div><div style="font-weight:800;font-size:24px;color:var(--ink);">タイプの相性</div><p class="tiny">1位タイプか2位タイプの<b>どちらかが E型・I型・A型 のいずれか</b>であること。</p>
+      <ul class="bullets tiny">
+        <li><b>E型</b>（経営・リーダーシップ志向）→ 中西の求める人材像と合う</li>
+        <li><b>I型</b>（研究・分析志向）→ 同上</li>
+        <li><b>A型</b>（創造・企画志向）→ 同上</li>
+      </ul>
+      <p class="tiny">1位でなくても、2位に入っていればOK。</p>
+    </div>
+    <div class="card"><div class="label">条件 ②</div><div style="font-weight:800;font-size:24px;color:var(--ink);">業界志向の相性</div><p class="tiny">Q50（BtoB志向）とQ51（メーカー志向）の<b>平均が3点以上</b>であること。<br/>→ BtoB企業やメーカーに興味がある ＝ 中西製作所様の業界と合っている。</p></div>
+    <div class="card"><div class="label">条件 ③</div><div style="font-weight:800;font-size:24px;color:var(--ink);">BtoB志向</div><p class="tiny">Q50（BtoB志向）が<b>3点以上</b>であること。<br/>→ 中西製作所様はBtoB企業なので、BtoC寄りの学生には案内しない。</p></div>
+  </div>
+  <h4>例</h4>
+  <table class="mini-table">
+    <tr><th>学生</th><th>1位</th><th>2位</th><th>Q50</th><th>Q51</th><th>平均</th><th>条件①</th><th>条件②</th><th>条件③</th><th>結果</th></tr>
+    <tr><td>Aさん</td><td>E型(19)</td><td>A型(16)</td><td>4</td><td>4</td><td>4.0</td><td>✅</td><td>✅</td><td>✅</td><td>→ <b>中西製作所様を推薦</b></td></tr>
+    <tr><td>Bさん</td><td>S型(18)</td><td>I型(15)</td><td>4</td><td>3</td><td>3.5</td><td>✅</td><td>✅</td><td>✅</td><td>→ <b>中西製作所様を推薦</b></td></tr>
+    <tr><td>Cさん</td><td>S型(18)</td><td>R型(15)</td><td>4</td><td>4</td><td>4.0</td><td>❌</td><td>✅</td><td>✅</td><td>→ Step 4へ（タイプが対象外）</td></tr>
+    <tr><td>Dさん</td><td>E型(19)</td><td>A型(16)</td><td>2</td><td>4</td><td>3.0</td><td>✅</td><td>✅</td><td>❌</td><td>→ Step 4へ（BtoC寄り）</td></tr>
+  </table>
+  <p class="sub" style="margin-top:10px;">→ Dさんはタイプ・業界志向の平均は合うが、Q50が3未満でBtoC寄りなので中西製作所様は案内せず、Step 4（通常判定）に進む。</p>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">23</div>
+</section>
+
+<!-- 24. Step 4 -->
+<section class="slide" data-label="Step 4 通常判定">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / Step 4</div>
+  <h2 class="title">Step 4: タイプに合った企業を推薦する（通常判定）</h2>
+  <h4>目的</h4>
+  <p>Step 1〜3のどれにも当てはまらなかった学生に対し、<b>その学生のタイプに合った企業を推薦する</b>。</p>
+  <h4>しくみ</h4>
+  <p>以下の2つを出す。</p>
+  <ol class="bullets">
+    <li><b>メインの推薦企業</b>: 1位タイプに対応する企業リストから出す</li>
+    <li><b>補足の推薦企業</b>: 2位タイプに対応する企業リストから出す（「あなたにはこんな面もありますよ」という補足）</li>
+  </ol>
+  <p>さらに、<b>Q50（BtoB志向）の点数</b>で、BtoB企業リストとBtoC企業リストを切り替える。</p>
+  <ul class="bullets">
+    <li>Q50が <b>3点以上</b> → BtoB企業リストを使う</li>
+    <li>Q50が <b>3点未満</b> → BtoC企業リストを使う</li>
+  </ul>
+  <h4>具体例: 1位 = S型、2位 = R型、Q50 = 4点 の学生の場合</h4>
+  <pre class="ascii">1位 S型 → Q50が4点（3以上なのでBtoB） → 企業リストの「S型 × BtoB」を見る
+  → メイン推薦: ベネッセ, リクルートマネジメント, パソナ, ワークスアプリ, LITALICO
+
+2位 R型 → Q50が4点（3以上なのでBtoB） → 企業リストの「R型 × BtoB」を見る
+  → 補足推薦: 三菱電機, 村田製作所, 安川電機, 栗田工業, THK</pre>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">24</div>
+</section>
+
+<!-- 25. 企業リスト -->
+<section class="slide" data-label="企業リスト">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / 企業リスト</div>
+  <h2 class="title">企業リスト（Difyの中に登録済み）</h2>
+  <p class="sub">津丸様から提供いただいたExcelシート「紹介企業」にもとづいて、以下のリストをDifyの中に登録している（4/10登録済み）。各企業に対する推薦理由テキストも登録済み。</p>
+  <table style="font-size:20px;">
+    <tr><th style="width:220px">タイプ</th><th>BtoB企業（Q50が3点以上のとき）</th><th>BtoC企業（Q50が3点未満のとき）</th></tr>
+    <tr><td><b>中西型</b>（Step 2,3で該当した場合）</td><td>中西製作所, キーエンス, 平田機工, マクニカ, ダイフク</td><td>※中西該当かつBtoC寄りの場合は中西を案内せず、Step 4で通常判定に回す</td></tr>
+    <tr><td><b>R型</b>（現実型）</td><td>三菱電機, 村田製作所, 安川電機, 栗田工業, THK</td><td>トヨタ, 任天堂, スノーピーク, ヤマハ, マキタ</td></tr>
+    <tr><td><b>I型</b>（研究型）</td><td>野村総研, 島津製作所, 中外製薬, オムロン, ユーザーベース</td><td>Google, 武田薬品, コーセー, エーザイ, メルカリ</td></tr>
+    <tr><td><b>A型</b>（芸術型）</td><td>電通, 博報堂, チームラボ, Sansan, 乃村工藝社</td><td>サンリオ, オリエンタルランド, 資生堂, 集英社, 無印良品</td></tr>
+    <tr><td><b>S型</b>（社会型）</td><td>ベネッセ, リクルートマネジメント, パソナ, ワークスアプリ, LITALICO</td><td>日本赤十字, 損保ジャパン, 星野リゾート, Zoff, クラシコム</td></tr>
+    <tr><td><b>E型</b>（企業型）</td><td>三菱商事, 伊藤忠, 光通信, サイバーエージェント, レバレジーズ</td><td>ソフトバンク, 楽天, ファーストリテイリング, ZOZO</td></tr>
+    <tr><td><b>C型</b>（慣習型）</td><td>日本生命, 東京海上, 三菱UFJ, 富士通, オービック</td><td>JR東日本, ANA, 日本郵便, 公務員, ゆうちょ銀行</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">25</div>
+</section>
+
+<!-- 26. 判定結果と企業リストの組み合わせ -->
+<section class="slide" data-label="判定結果と企業リスト組合せ">
+  <div class="kicker"><span class="dot"></span>PHASE 03 / まとめ</div>
+  <h2 class="title">判定結果と企業リストの組み合わせまとめ</h2>
+  <table>
+    <tr><th style="width:320px">判定結果</th><th>企業リストのどこを使うか</th><th>出力例</th></tr>
+    <tr><td>Step 2 or 3 で<b>中西該当</b>（Q50≧3のみ）</td><td>「中西型 × BtoB」の行を使う</td><td>中西製作所, キーエンス, 平田機工…</td></tr>
+    <tr><td>Step 4 の<b>メイン推薦</b></td><td>1位タイプの行。Q50でBtoB/BtoC切替</td><td>1位がE型 × BtoB → 三菱商事, 伊藤忠…</td></tr>
+    <tr><td>Step 4 の<b>補足推薦</b></td><td>2位タイプの行。Q50でBtoB/BtoC切替</td><td>2位がA型 × BtoB → 電通, 博報堂…</td></tr>
+    <tr><td>Step 1 で<b>未分化</b></td><td>企業リストは使わない</td><td>トモキャリ誘導（企業推薦なし）</td></tr>
+  </table>
+
+  <div class="callout" style="margin-top:22px;">
+    <b>ℹ️ 現在の設計</b>
+    <ul class="bullets" style="margin-top:6px;">
+      <li><b>企業リスト</b>: 4/10に津丸様提供のExcelに基づいて登録済み。推薦理由テキストも全タイプ分登録済み</li>
+      <li><b>推薦理由テキストの作成</b>: エヌイチ側でExcelの内容をもとに作成・登録した。中西製作所様側での最終チェックはまだ</li>
+    </ul>
+  </div>
+  <div class="grid-2" style="margin-top:14px;">
+    <div class="confirm-box"><b>→ 確認</b><br/>企業リストの内容に変更・追加がないか</div>
+    <div class="confirm-box"><b>→ 相談</b><br/>推薦理由テキストの最終チェックを誰がいつやるか</div>
+  </div>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">26</div>
+</section>
+
+<!-- 27. DIVIDER PHASE 4 -->
+<section class="slide divider-section" data-label="Phase4 仕切り">
+  <div class="kicker" style="color:#d6cfbc;"><span class="dot" style="background:oklch(75% 0.15 45);"></span>PHASE 04 / Dify → MIL 様</div>
+  <div class="num">04</div>
+  <h2>結果をMIL様に返す</h2>
+  <div class="sub">フェーズ3の判定が終わると、その結果がMIL様に自動的に返される。フェーズ2でMIL様がデータを送ったのと<b style="color:oklch(82% 0.14 45);">同じ通信の「返事」として返ってくる</b>ので、MIL様側で特別な設定は不要。APIキーも不要（フェーズ2で送信したときに認証は済んでいるため）。</div>
+</section>
+
+<!-- 28. 返ってくるデータの中身 -->
+<section class="slide" data-label="返ってくるデータの中身">
+  <div class="kicker"><span class="dot"></span>PHASE 04 / 返却データ</div>
+  <h2 class="title">返ってくるデータの中身</h2>
+  <p>判定結果として以下の8つの情報が返ってくる。MIL様はこれをもとに学生の結果画面を表示する。</p>
+  <table>
+    <tr><th style="width:220px">項目</th><th>何が入るか</th><th style="width:400px">MIL様での使い方</th></tr>
+    <tr><td><b>判定カテゴリ</b></td><td>「中西該当」「タイプ別マッチング」「トモキャリ誘導」のいずれか</td><td>どの結果画面を出すかの判別に使う</td></tr>
+    <tr><td><b>1位タイプ</b></td><td>R〜Cのいずれか</td><td>「あなたは〇〇タイプです」として表示</td></tr>
+    <tr><td><b>2位タイプ</b></td><td>R〜Cのいずれか</td><td>「〇〇な面もあります」として補足表示</td></tr>
+    <tr><td><b>メインの推薦企業</b></td><td>企業名のリスト（最大5社）</td><td>結果画面にメインとして企業名を表示</td></tr>
+    <tr><td><b>メインの推薦理由</b></td><td>各企業への推薦理由テキスト</td><td>企業名の下に表示</td></tr>
+    <tr><td><b>補足の推薦企業</b></td><td>企業名のリスト(通常判定時のみ)</td><td>「こんな企業も」として表示</td></tr>
+    <tr><td><b>補足の推薦理由</b></td><td>各企業への推薦理由テキスト</td><td>同上</td></tr>
+    <tr><td><b>メッセージ</b></td><td>学生への一言メッセージ</td><td>結果画面の冒頭 or 末尾に表示</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">28</div>
+</section>
+
+<!-- 29. 判定カテゴリごとの違い -->
+<section class="slide" data-label="判定カテゴリごとの違い">
+  <div class="kicker"><span class="dot"></span>PHASE 04 / 返却データ</div>
+  <h2 class="title">判定カテゴリごとに返ってくる内容の違い</h2>
+  <table>
+    <tr><th></th><th>中西該当（Step 2 or 3）</th><th>タイプ別マッチング（Step 4）</th><th>トモキャリ誘導（Step 1）</th></tr>
+    <tr><td><b>メインの推薦企業</b></td><td>中西製作所様＋同系統5社</td><td>1位タイプに合う企業</td><td>なし（企業推薦しない）</td></tr>
+    <tr><td><b>補足の推薦企業</b></td><td>なし（中西への誘導を優先）</td><td>2位タイプに合う企業</td><td>なし</td></tr>
+    <tr><td><b>メッセージ</b></td><td>中西製作所様向けメッセージ</td><td>タイプに合わせたメッセージ</td><td>トモキャリへの誘導文</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">29</div>
+</section>
+
+<!-- 30. 具体例 中西該当 -->
+<section class="slide" data-label="返却例 中西該当">
+  <div class="kicker"><span class="dot"></span>PHASE 04 / 具体例</div>
+  <h2 class="title">具体例: Step 2で中西該当になった学生の場合</h2>
+  <pre class="ascii">返ってくるデータ:
+  判定カテゴリ    = 中西該当
+  1位タイプ       = S型（社会型）
+  2位タイプ       = R型（現実型）
+  メインの推薦企業 = 中西製作所, キーエンス, 平田機工, マクニカ, ダイフク
+  メインの推薦理由 = （各社の「なぜあなたに合うか」テキスト）
+  補足の推薦企業  = なし
+  補足の推薦理由  = なし
+  メッセージ     = 「あなたの主体性と変革意欲は、安定基盤×ベンチャー志向の
+                   企業で大きく花開きます。」</pre>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">30</div>
+</section>
+
+<!-- 31. 具体例 通常判定 -->
+<section class="slide" data-label="返却例 通常判定">
+  <div class="kicker"><span class="dot"></span>PHASE 04 / 具体例</div>
+  <h2 class="title">具体例: Step 4で通常判定になった学生の場合</h2>
+  <pre class="ascii">返ってくるデータ:
+  判定カテゴリ    = タイプ別マッチング
+  1位タイプ       = E型（企業型）
+  2位タイプ       = A型（芸術型）
+  メインの推薦企業 = 三菱商事, 伊藤忠, 光通信, サイバーエージェント, レバレジーズ
+  メインの推薦理由 = （各社の理由テキスト）
+  補足の推薦企業  = 電通, 博報堂, チームラボ, Sansan, 乃村工藝社
+  補足の推薦理由  = （各社の理由テキスト）
+  メッセージ     = 「あなたはE型の特性が最も強く、A型の側面も備わっています。」</pre>
+
+  <div class="callout" style="margin-top:22px;">
+    <b>ℹ️ 現在の設計</b>
+    <ul class="bullets" style="margin-top:6px;">
+      <li><b>データの形式</b>: エヌイチ側で上記の構成で作っている。MIL様側の実装に合わせて調整可能（上馬場様からの回答待ち）</li>
+      <li><b>企業名の形式</b>: 現在はカンマ区切りの文字列で返している</li>
+    </ul>
+  </div>
+  <div class="grid-2" style="margin-top:14px;">
+    <div class="confirm-box"><b>→ 確認</b><br/>データの項目名・形式がMIL様の実装に合うか</div>
+    <div class="confirm-box"><b>→ 相談</b><br/>企業名を配列とカンマ区切りのどちらで返すか</div>
+  </div>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">31</div>
+</section>
+
+<!-- 32. DIVIDER - 会議で扱う事項 -->
+<section class="slide divider-section" data-label="会議で扱う事項 仕切り">
+  <div class="kicker" style="color:#d6cfbc;"><span class="dot" style="background:oklch(75% 0.15 45);"></span>AGENDA</div>
+  <div class="num">※</div>
+  <h2>会議で扱う事項まとめ</h2>
+  <div class="sub">共有 ／ 確認 ／ 相談 の3種類に分けて整理する。</div>
+</section>
+
+<!-- 33. 共有 -->
+<section class="slide" data-label="共有">
+  <div class="kicker"><span class="dot"></span>AGENDA / 共有</div>
+  <h2 class="title">共有（エヌイチから三社に伝える事項）</h2>
+  <table>
+    <tr><th style="width:60px">#</th><th>内容</th></tr>
+    <tr><td>1</td><td>6タイプの合計点はMIL様側で計算し、Difyには合計済みの点数を送る設計になっている</td></tr>
+    <tr><td>2</td><td>嘘回答補正（Q49=5のとき×0.8）はDify側で処理する設計になっている</td></tr>
+    <tr><td>3</td><td>企業リスト・推薦理由テキストは4/10に津丸様のExcelに基づいて登録済み</td></tr>
+    <tr><td>4</td><td>中西該当の場合でもQ50が3点未満（BtoC寄り）の学生には中西製作所様を案内しない。通常判定（Step 4）に回してBtoC企業を推薦する</td></tr>
+    <tr><td>5</td><td>APIキーとエンドポイントURLは中西製作所様のDifyアカウントから発行される。Dify有料プラン切替後にMIL様へ共有する</td></tr>
+    <tr><td>6</td><td>フェーズ2（送信）とフェーズ4（返却）は1回の通信の行きと帰り。フェーズ4でMIL様側の追加設定は不要</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">33</div>
+</section>
+
+<!-- 34. 確認 -->
+<section class="slide" data-label="確認">
+  <div class="kicker"><span class="dot"></span>AGENDA / 確認</div>
+  <h2 class="title">確認（三社間で認識を合わせる事項）</h2>
+  <table>
+    <tr><th style="width:60px">#</th><th>内容</th><th style="width:260px">確認相手</th></tr>
+    <tr><td>7</td><td>データの項目名（R, I, A, S, E, C, Q30, Q31, Q49, Q50, Q51）がMIL様の実装と合っているか</td><td>MIL様</td></tr>
+    <tr><td>8</td><td>各点数の範囲（6タイプは4〜20、その他は1〜5）に認識のずれがないか</td><td>MIL様・中西製作所様</td></tr>
+    <tr><td>9</td><td>返却データの項目名・形式がMIL様の画面実装に合うか</td><td>MIL様</td></tr>
+    <tr><td>10</td><td>企業リストの内容に変更・追加がないか</td><td>中西製作所様</td></tr>
+    <tr><td>11</td><td>偏差値化（強調フラグ）は初期運用では保留し、1,000件以降で実装する方針でよいか</td><td>中西製作所様</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">34</div>
+</section>
+
+<!-- 35. 相談 -->
+<section class="slide" data-label="相談">
+  <div class="kicker"><span class="dot"></span>AGENDA / 相談</div>
+  <h2 class="title">相談（会議で議論・決定する事項）</h2>
+  <table>
+    <tr><th style="width:60px">#</th><th style="width:380px">内容</th><th>論点</th></tr>
+    <tr><td>12</td><td>APIキーの共有方法・タイミング</td><td>メール・Slackなど。セキュリティ上の取り扱い</td></tr>
+    <tr><td>13</td><td>企業名の返却形式</td><td>配列とカンマ区切り文字列のどちらがMIL様にとって扱いやすいか</td></tr>
+    <tr><td>14</td><td>推薦理由テキストの最終チェック</td><td>誰がいつやるか。現状はエヌイチが作成・登録した内容のまま</td></tr>
+  </table>
+  <div class="brand">TOMOSHIKA</div><div class="pagenum">35</div>
+</section>
+
+<!-- 36. END -->
+<section class="slide cover" data-label="End">
+  <div class="kicker"><span class="dot"></span>END / 2026-04-18</div>
+  <h1 style="font-size:120px;">ありがとう<br/>ございました</h1>
+  <div class="sub" style="color:#e3dcc9;font-size:28px;font-weight:500;">ご質問・ご指摘は随時お願いいたします。</div>
+  <div class="meta">
+    <div>中西製作所 様</div>
+    <div>MIL 様</div>
+    <div>エヌイチ</div>
+  </div>
+</section>
+
+</deck-stage>
+</body>
+</html>
