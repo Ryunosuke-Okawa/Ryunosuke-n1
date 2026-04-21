@@ -1,6 +1,6 @@
 ---
 title: TOMOSHIKA API エラーコード一覧（MIL様向け）
-date: 2026-04-20
+date: 2026-04-21
 tags:
   - 中西製作所
   - TOMOSHIKA
@@ -9,15 +9,15 @@ tags:
   - エラーコード
   - draft
 status: draft
-version: Draft v1.0
+version: Draft v1.1
 ---
 
 # TOMOSHIKA API エラーコード一覧（MIL様向け）
 
-**バージョン**: Draft v1.0
+**バージョン**: Draft v1.1
 **発行**: 株式会社エヌイチ
 **対象**: 株式会社MIL様
-**最終更新**: 2026-04-20
+**最終更新**: 2026-04-21
 
 ---
 

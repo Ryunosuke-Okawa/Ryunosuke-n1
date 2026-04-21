@@ -1,6 +1,6 @@
 ---
 title: TOMOSHIKA API I/F仕様書（MIL様向け）
-date: 2026-04-20
+date: 2026-04-21
 tags:
   - 中西製作所
   - TOMOSHIKA
@@ -8,15 +8,15 @@ tags:
   - API仕様
   - draft
 status: draft
-version: Draft v1.0
+version: Draft v1.1
 ---
 
 # TOMOSHIKA API I/F仕様書（MIL様向け）
 
-**バージョン**: Draft v1.0
+**バージョン**: Draft v1.1
 **発行**: 株式会社エヌイチ
 **対象**: 株式会社MIL様
-**最終更新**: 2026-04-20
+**最終更新**: 2026-04-21
 
 ---
 
@@ -121,11 +121,23 @@ Content-Type: application/json
     "outputs": {
       "result_type": "nakanishi",
       "primary_type": "S",
-      "secondary_type": "R",
-      "primary_companies": "中西製作所, キーエンス, 平田機工, マクニカ, ダイフク",
-      "primary_reasons":   "（各社の推薦理由テキスト）",
-      "secondary_companies": "",
-      "secondary_reasons":   "",
+      "secondary_type": "E",
+      "primary_companies": [
+        "中西製作所（厨房機器）",
+        "キーエンス（自動制御）",
+        "平田機工（生産システム）",
+        "マクニカ（半導体商社）",
+        "ダイフク（物流システム）"
+      ],
+      "primary_reasons": [
+        "業界シェア1位の盤石な基盤。安定した環境で「攻め」のビジネスを展開したいあなたに最適。",
+        "圧倒的な付加価値を生むロジック。若いうちから「稼ぐ本質」を学びたい野心家へ。",
+        "世界の製造現場を支える技術力。オーダーメイドの課題解決で「一品モノ」を創る醍醐味。",
+        "最先端技術の目利き。商社でありながら技術力で世界を動かすスピード感を求める方へ。",
+        "Eコマースを支える物流自動化の旗手。巨大なインフラを変革する達成感がある。"
+      ],
+      "secondary_companies": [],
+      "secondary_reasons": [],
       "message": "あなたの主体性と変革意欲は、安定基盤×ベンチャー志向の企業で大きく花開きます。"
     },
     "error": null,
@@ -141,22 +153,24 @@ Content-Type: application/json
 
 | キー | 型 | 値の例 | 説明 |
 |------|-----|--------|------|
-| `result_type`        | string | `"nakanishi"` / `"type_match"` / `"tomocari"` | 判定カテゴリ |
-| `primary_type`       | string | `"R"` / `"I"` / `"A"` / `"S"` / `"E"` / `"C"` | 第1位タイプ |
-| `secondary_type`     | string | 同上 | 第2位タイプ |
-| `primary_companies`  | string | カンマ区切りの企業名 | メイン推薦企業（最大5社） |
-| `primary_reasons`    | string | 推薦理由テキスト | メイン推薦理由 |
-| `secondary_companies`| string | カンマ区切りの企業名 / 空文字 | 補足推薦企業（`result_type="type_match"`時のみ値あり） |
-| `secondary_reasons`  | string | 推薦理由テキスト / 空文字 | 補足推薦理由（同上） |
-| `message`            | string | 1文のメッセージ | 結果画面用の一言 |
+| `result_type`        | string          | `"nakanishi"` / `"type_match"` / `"tomocari"` | 判定カテゴリ |
+| `primary_type`       | string          | `"R"` / `"I"` / `"A"` / `"S"` / `"E"` / `"C"` | 第1位タイプ |
+| `secondary_type`     | string          | 同上 | 第2位タイプ |
+| `primary_companies`  | array of string | `["中西製作所（厨房機器）", "キーエンス（自動制御）", ...]` | メイン推薦企業（最大5社） |
+| `primary_reasons`    | array of string | `["業界シェア1位の盤石な基盤...", ...]` | メイン推薦理由（`primary_companies`と同順・同数） |
+| `secondary_companies`| array of string | `["三菱電機 / 村田製作所", ...]` / `[]` | 補足推薦企業（`result_type="type_match"`時のみ値あり、それ以外は空配列） |
+| `secondary_reasons`  | array of string | 同上 / `[]` | 補足推薦理由（同上） |
+| `message`            | string          | 1文のメッセージ | 結果画面用の一言 |
+
+> `primary_companies` と `primary_reasons` は**同じ順序・同じ要素数**で返されます（`primary_companies[0]` に対応する理由が `primary_reasons[0]`）。`secondary_*` も同様。
 
 ### 4.4 `result_type` 別の出力パターン
 
 | result_type | primary_companies | secondary_companies | message |
 |---|---|---|---|
-| `nakanishi`   | 中西製作所＋同系統企業 | 空文字 | 中西向けメッセージ |
-| `type_match`  | 1位タイプの企業群 | 2位タイプの企業群 | タイプ別メッセージ |
-| `tomocari`    | 空文字 | 空文字 | トモキャリ誘導文 |
+| `nakanishi`   | 中西製作所＋同系統企業（配列） | 空配列 `[]` | 中西向けメッセージ |
+| `type_match`  | 1位タイプの企業群（配列） | 2位タイプの企業群（配列） | タイプ別メッセージ |
+| `tomocari`    | 空配列 `[]` | 空配列 `[]` | トモキャリ誘導文 |
 
 ---
 
@@ -188,7 +202,11 @@ res = requests.post(
 )
 res.raise_for_status()
 outputs = res.json()["data"]["outputs"]
-print(outputs["result_type"], outputs["primary_companies"])
+
+# primary_companies は配列（array of string）で返される
+print(outputs["result_type"])            # 例: "nakanishi"
+for company, reason in zip(outputs["primary_companies"], outputs["primary_reasons"]):
+    print(f"- {company}: {reason}")
 ```
 
 ---
