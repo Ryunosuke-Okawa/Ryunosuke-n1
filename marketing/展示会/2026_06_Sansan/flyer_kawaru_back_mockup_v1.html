@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru フライヤー裏面 v1</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* A4 Portrait: 210mm x 297mm */
+  .flyer {
+    width: 210mm;
+    height: 297mm;
+    background: #ffffff;
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 12mm 10mm;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Soft blue gradient accent in background */
+  .flyer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 80mm;
+    background: linear-gradient(180deg, #e8f4ff 0%, rgba(232,244,255,0) 100%);
+    z-index: 0;
+  }
+
+  .flyer > * { position: relative; z-index: 1; }
+
+  /* Header */
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6mm;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 4mm; }
+  .logo-k {
+    width: 12mm; height: 12mm;
+    background: #0f3057;
+    border-radius: 2mm;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 900; font-size: 18pt; letter-spacing: -1px;
+  }
+  .logo-text { font-size: 14pt; font-weight: 800; color: #0f3057; letter-spacing: 1px; }
+  .tag {
+    background: #1e90ff; color: #fff;
+    padding: 2mm 5mm;
+    border-radius: 20mm;
+    font-size: 8.5pt; font-weight: 700;
+  }
+
+  /* Hero Heading */
+  .hero {
+    margin: 4mm 0 8mm;
+    text-align: center;
+  }
+  .hero .quote {
+    color: #1e90ff;
+    font-weight: 900;
+  }
+  .hero h1 {
+    font-size: 26pt;
+    font-weight: 900;
+    color: #0f3057;
+    line-height: 1.3;
+    letter-spacing: -0.5pt;
+  }
+  .hero .sub {
+    font-size: 11pt; color: #4a6b8a; margin-top: 3mm;
+    font-weight: 600;
+  }
+  .hero .divider {
+    width: 18mm; height: 0.8mm;
+    background: linear-gradient(90deg, #1e90ff, #4ecdc4);
+    margin: 5mm auto 0;
+    border-radius: 1mm;
+  }
+
+  /* Before / After */
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 4mm;
+    align-items: center;
+    margin-bottom: 6mm;
+  }
+  .screen {
+    background: #fff;
+    border: 1px solid #dfe7ef;
+    border-radius: 3mm;
+    box-shadow: 0 2px 10px rgba(15,48,87,0.08);
+    padding: 3mm;
+    aspect-ratio: 16/10;
+    position: relative;
+    overflow: hidden;
+  }
+  .screen .browser-bar {
+    display: flex; gap: 1.2mm; margin-bottom: 2mm;
+  }
+  .screen .browser-bar span {
+    width: 2mm; height: 2mm; border-radius: 50%; background: #e3eaf2;
+  }
+  .screen .browser-bar span:nth-child(1) { background: #ff6b6b; }
+  .screen .browser-bar span:nth-child(2) { background: #ffd93d; }
+  .screen .browser-bar span:nth-child(3) { background: #4ecdc4; }
+
+  /* Before screen (チャット入力) */
+  .screen-before .content {
+    display: flex; flex-direction: column; height: calc(100% - 4mm);
+    justify-content: center; align-items: center;
+    text-align: center;
+  }
+  .screen-before .q {
+    font-size: 9.5pt; font-weight: 800; color: #0f3057; margin-bottom: 2mm;
+  }
+  .screen-before .input-bar {
+    width: 90%;
+    background: #f2f6fa;
+    border: 1px solid #dfe7ef;
+    border-radius: 2mm;
+    padding: 2mm;
+    font-size: 7pt; color: #8ea3ba;
+    margin-bottom: 2mm;
+  }
+  .screen-before .chips {
+    display: flex; flex-wrap: wrap; gap: 1mm; justify-content: center;
+  }
+  .screen-before .chip {
+    background: #e8f4ff; color: #1e90ff;
+    border-radius: 10mm; padding: 1mm 2mm;
+    font-size: 6.5pt; font-weight: 600;
+  }
+
+  /* After screen (ノード型ワークフロー) */
+  .screen-after .content {
+    display: flex; flex-direction: column; height: calc(100% - 4mm);
+    gap: 1.5mm; padding: 1mm 2mm;
+  }
+  .node {
+    display: flex; align-items: center; gap: 2mm;
+    background: #f2f8ff;
+    border-left: 1mm solid #1e90ff;
+    border-radius: 1.5mm;
+    padding: 1.2mm 2mm;
+    font-size: 6.5pt; font-weight: 600; color: #0f3057;
+  }
+  .node .dot {
+    width: 3mm; height: 3mm; border-radius: 50%;
+    background: #1e90ff; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5pt; flex-shrink: 0;
+  }
+  .node:nth-child(1) { border-left-color: #4caf50; }
+  .node:nth-child(1) .dot { background: #4caf50; }
+  .node:nth-child(6) { border-left-color: #ff9800; }
+  .node:nth-child(6) .dot { background: #ff9800; }
+
+  /* Arrow between screens */
+  .arrow {
+    text-align: center;
+    color: #1e90ff;
+    font-weight: 900;
+  }
+  .arrow .big { font-size: 22pt; line-height: 1; }
+  .arrow .label {
+    background: #1e90ff; color: #fff;
+    font-size: 8.5pt; font-weight: 800;
+    border-radius: 10mm;
+    padding: 1.5mm 3mm;
+    margin-top: 2mm;
+    display: inline-block;
+  }
+
+  .caption {
+    text-align: center;
+    margin-top: 2mm;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #0f3057;
+  }
+  .caption .num {
+    color: #1e90ff;
+    font-weight: 900;
+    margin-right: 1mm;
+  }
+
+  /* Strengths */
+  .strengths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3mm;
+    margin-bottom: 6mm;
+  }
+  .strength-card {
+    background: linear-gradient(180deg, #e8f4ff 0%, #ffffff 100%);
+    border: 1px solid #cfe4f9;
+    border-radius: 3mm;
+    padding: 4mm 3mm;
+    text-align: center;
+  }
+  .strength-card .num {
+    font-size: 9pt;
+    font-weight: 900;
+    color: #1e90ff;
+    letter-spacing: 2px;
+  }
+  .strength-card .title {
+    font-size: 13pt;
+    font-weight: 900;
+    color: #0f3057;
+    margin: 1mm 0 2mm;
+  }
+  .strength-card .desc {
+    font-size: 7.5pt;
+    color: #4a6b8a;
+    line-height: 1.5;
+  }
+
+  /* Train diagram section */
+  .train-section h2 {
+    font-size: 11pt;
+    font-weight: 900;
+    color: #0f3057;
+    margin-bottom: 3mm;
+    padding-bottom: 2mm;
+    border-bottom: 0.5mm solid #e8f4ff;
+    display: flex; align-items: center; gap: 2mm;
+  }
+  .train-section h2::before {
+    content: "";
+    width: 1mm; height: 5mm; background: #1e90ff; border-radius: 0.5mm;
+  }
+  .nodes-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5mm;
+  }
+  .mini-node {
+    background: #f8fbff;
+    border: 1px solid #cfe4f9;
+    border-radius: 1.5mm;
+    padding: 1.5mm 1mm;
+    font-size: 6pt;
+    font-weight: 700;
+    color: #0f3057;
+    text-align: center;
+    aspect-ratio: 1.2/1;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1.2;
+  }
+  .mini-node.trigger { background: #e8f7ea; border-color: #a8d9ae; }
+  .mini-node.action { background: #fff3e0; border-color: #ffcc80; }
+
+  /* Footer CTA */
+  footer.cta {
+    margin-top: auto;
+    background: linear-gradient(90deg, #0f3057 0%, #1e90ff 100%);
+    border-radius: 3mm;
+    padding: 4mm 5mm;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4mm;
+  }
+  .cta-text .main {
+    font-size: 12pt;
+    font-weight: 900;
+    margin-bottom: 1mm;
+  }
+  .cta-text .sub {
+    font-size: 8pt;
+    opacity: 0.9;
+  }
+  .qr-box {
+    width: 18mm; height: 18mm;
+    background: #fff;
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6pt; color: #888;
+    flex-shrink: 0;
+  }
+  .cta-logo {
+    display: flex; align-items: center; gap: 2mm;
+    flex-shrink: 0;
+  }
+  .cta-logo .logo-k-white {
+    width: 9mm; height: 9mm;
+    background: #fff;
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    color: #0f3057; font-weight: 900; font-size: 13pt;
+  }
+  .cta-logo .logo-text-white {
+    font-size: 11pt; font-weight: 800; letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- Header -->
+  <header class="top">
+    <div class="logo-wrap">
+      <div class="logo-k">K</div>
+      <div class="logo-text">Kawaru</div>
+    </div>
+    <div class="tag">AI Workflow Builder</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1><span class="quote">「チャットで」</span>誰でもかんたんに、<br>ワークフローがつくれる。</h1>
+    <div class="divider"></div>
+    <div class="sub">日本語で話すだけ。AIを学ばなくていい。組まなくていい。</div>
+  </section>
+
+  <!-- Before → After -->
+  <section>
+    <div class="before-after">
+      <div>
+        <div class="screen screen-before">
+          <div class="browser-bar"><span></span><span></span><span></span></div>
+          <div class="content">
+            <div class="q">どんな課題がありますか？</div>
+            <div class="input-bar">何でも尋ねて、何でも作成</div>
+            <div class="chips">
+              <div class="chip">メール対応に時間が…</div>
+              <div class="chip">連絡を見逃す</div>
+              <div class="chip">会議の振り返りが面倒</div>
+            </div>
+          </div>
+        </div>
+        <div class="caption"><span class="num">①</span>課題をチャットするだけ</div>
+      </div>
+
+      <div class="arrow">
+        <div class="big">➔</div>
+        <div class="label">自動で</div>
+      </div>
+
+      <div>
+        <div class="screen screen-after">
+          <div class="browser-bar"><span></span><span></span><span></span></div>
+          <div class="content">
+            <div class="node"><div class="dot">✓</div>未読メールを監視</div>
+            <div class="node"><div class="dot">✓</div>返信が必要か判定</div>
+            <div class="node"><div class="dot">✓</div>条件で分岐</div>
+            <div class="node"><div class="dot">✓</div>返信文を下書き</div>
+            <div class="node"><div class="dot">✓</div>Gmailに保存</div>
+            <div class="node"><div class="dot">✓</div>Slackに通知</div>
+          </div>
+        </div>
+        <div class="caption"><span class="num">②</span>複数ノードのワークフローが完成</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3つの強み -->
+  <section class="strengths">
+    <div class="strength-card">
+      <div class="num">01</div>
+      <div class="title">専門知識不要</div>
+      <div class="desc">エンジニアリングやAIの専門知識は一切不要。誰でも初日から使える。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">02</div>
+      <div class="title">構築時間不要</div>
+      <div class="desc">複雑なノードをつなぐ作業は不要。チャットで指示するだけで自動構築。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">03</div>
+      <div class="title">人材育成不要</div>
+      <div class="desc">日本語で話せれば誰でも使える。専門的なトレーニングや研修は不要。</div>
+    </div>
+  </section>
+
+  <!-- 活用事例（電車図） -->
+  <section class="train-section">
+    <h2>活用事例：ノーコードでワークフローを構築</h2>
+    <div class="nodes-grid">
+      <div class="mini-node trigger">メール<br>受信</div>
+      <div class="mini-node">AI<br>要約</div>
+      <div class="mini-node">返信文<br>生成</div>
+      <div class="mini-node action">下書き<br>保存</div>
+      <div class="mini-node trigger">会議<br>録画</div>
+      <div class="mini-node">文字<br>起こし</div>
+      <div class="mini-node">議事録<br>生成</div>
+      <div class="mini-node action">Slack<br>通知</div>
+      <div class="mini-node trigger">商談<br>完了</div>
+      <div class="mini-node">情報<br>取得</div>
+      <div class="mini-node">データ<br>整形</div>
+      <div class="mini-node action">SF<br>格納</div>
+      <div class="mini-node trigger">Slack<br>スタンプ</div>
+      <div class="mini-node">情報<br>抽出</div>
+      <div class="mini-node">リード<br>作成</div>
+      <div class="mini-node action">SF<br>登録</div>
+      <div class="mini-node trigger">毎朝<br>定時</div>
+      <div class="mini-node">未読<br>メール</div>
+      <div class="mini-node">AI<br>要約</div>
+      <div class="mini-node action">Teams<br>通知</div>
+      <div class="mini-node trigger">定期<br>実行</div>
+      <div class="mini-node">業界<br>リサーチ</div>
+      <div class="mini-node">ニュース<br>要約</div>
+      <div class="mini-node action">配信</div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <footer class="cta">
+    <div class="cta-text">
+      <div class="main">まずは無料相談から</div>
+      <div class="sub">30分で、あなたの業務をワークフロー化</div>
+    </div>
+    <div class="qr-box">QR</div>
+    <div class="cta-logo">
+      <div class="logo-k-white">K</div>
+      <div class="logo-text-white">Kawaru</div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
