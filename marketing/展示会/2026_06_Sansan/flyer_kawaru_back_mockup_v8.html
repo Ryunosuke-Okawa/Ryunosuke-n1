@@ -28,14 +28,13 @@
 
   .flyer {
     width: 210mm;
-    height: 297mm;
+    min-height: 297mm;
     background: var(--white);
     position: relative;
     box-shadow: 0 4px 24px rgba(0,0,0,0.15);
     padding: 8mm 10mm 0;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
   }
 
   .flyer::before {
@@ -138,7 +137,7 @@
     box-shadow: 0 3px 10px rgba(30,144,255,0.12);
     overflow: hidden;
     background: var(--blue-lighter);
-    height: 32mm;
+    height: 42mm;
     display: flex;
     align-items: center;
     justify-content: center;
