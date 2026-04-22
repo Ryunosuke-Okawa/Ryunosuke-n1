@@ -32,7 +32,9 @@
       "Bash(/tmp/gh_install/bin/gh --version)",
       "Bash(/tmp/gh_install/gh_2.89.0_macOS_arm64/bin/gh --version)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --allow-file-access-from-files --screenshot=/Users/kyouyuu/Desktop/flyer_kawaru_back_v10.png --window-size=834,1300 --force-device-scale-factor=2 --virtual-time-budget=5000 file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v10.html)",
-      "Bash(open \"/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v10.html\")"
+      "Bash(open \"/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v10.html\")",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --allow-file-access-from-files --screenshot=/Users/kyouyuu/Desktop/flyer_kawaru_back_v11.png --window-size=834,1350 --force-device-scale-factor=2 --virtual-time-budget=5000 file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v11.html)",
+      "Bash(open \"/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v11.html\")"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",

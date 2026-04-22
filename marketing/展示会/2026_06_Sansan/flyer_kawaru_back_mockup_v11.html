@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru フライヤー裏面 v11（Section ① 大きく＋吹き出し）</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1e90ff;
+    --blue-dark: #0f3057;
+    --blue-light: #e8f4ff;
+    --blue-lighter: #f2f8ff;
+    --orange: #ff9800;
+    --white: #ffffff;
+    --gray: #4a6b8a;
+    --border: #dfe7ef;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .flyer {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 8mm 10mm 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flyer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 70mm;
+    background: linear-gradient(180deg, var(--blue-light) 0%, rgba(232,244,255,0) 100%);
+    z-index: 0;
+  }
+
+  .flyer > * { position: relative; z-index: 1; }
+
+  /* ========== Header ========== */
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5mm;
+    height: 10mm;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 3mm; }
+  .logo-k {
+    width: 10mm; height: 10mm;
+    background: var(--blue-dark);
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 14pt;
+  }
+  .logo-text { font-size: 12pt; font-weight: 800; color: var(--blue-dark); letter-spacing: 1px; }
+  .tag {
+    background: var(--blue); color: var(--white);
+    padding: 1.5mm 3.5mm;
+    border-radius: 20mm;
+    font-size: 7.5pt; font-weight: 700;
+  }
+
+  /* ========== Hero ========== */
+  .hero {
+    margin: 0 0 4mm;
+    text-align: center;
+  }
+  .hero .quote { color: var(--blue); font-weight: 900; }
+  .hero h1 {
+    font-size: 20pt;
+    font-weight: 900;
+    color: var(--blue-dark);
+    line-height: 1.25;
+  }
+  .hero .divider {
+    width: 12mm; height: 0.8mm;
+    background: var(--orange);
+    margin: 2mm auto 0;
+    border-radius: 1mm;
+  }
+  .hero .sub {
+    font-size: 8.5pt; color: var(--gray); margin-top: 1.5mm;
+    font-weight: 600;
+  }
+
+  /* ========== セクションタイトル ========== */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    margin-bottom: 2.5mm;
+  }
+  .section-number {
+    width: 8mm; height: 8mm;
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10pt; font-weight: 900;
+    flex-shrink: 0;
+  }
+  .section-text .main {
+    font-size: 11pt;
+    font-weight: 900;
+    color: var(--blue-dark);
+    line-height: 1.2;
+  }
+  .section-text .sub {
+    font-size: 6.5pt;
+    color: var(--gray);
+    font-weight: 600;
+    margin-top: 0.3mm;
+  }
+  /* Section ① のタイトルは大きめ */
+  .section-hero .section-number {
+    width: 10mm; height: 10mm;
+    font-size: 12pt;
+  }
+  .section-hero .section-text .main {
+    font-size: 13pt;
+  }
+  .section-hero .section-text .sub {
+    font-size: 7.5pt;
+  }
+
+  /* ========== ⭐ Section ①（ヒーロー・大・全幅・吹き出し付き） ========== */
+  .feature-hero {
+    margin-bottom: 4mm;
+  }
+
+  .hero-visual {
+    position: relative;
+    padding: 0 2mm;
+  }
+
+  .hero-screen {
+    border: 1.5px solid var(--blue);
+    border-radius: 3mm;
+    box-shadow: 0 4px 16px rgba(30,144,255,0.15);
+    overflow: hidden;
+    background: var(--blue-lighter);
+    height: 58mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-screen img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+
+  /* 吹き出し */
+  .callout {
+    position: absolute;
+    color: var(--white);
+    padding: 2mm 3mm;
+    border-radius: 2mm;
+    font-size: 8pt;
+    font-weight: 800;
+    line-height: 1.3;
+    max-width: 50mm;
+    z-index: 5;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+  .callout::before {
+    content: "";
+    position: absolute;
+    width: 0; height: 0;
+    border-style: solid;
+  }
+  .callout .num {
+    display: inline-block;
+    background: var(--white);
+    width: 4.5mm; height: 4.5mm;
+    line-height: 4.5mm;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 1.5mm;
+    font-weight: 900;
+    font-size: 8.5pt;
+  }
+
+  .callout-chat {
+    top: 12mm;
+    left: -2mm;
+    background: var(--orange);
+  }
+  .callout-chat .num { color: var(--orange); }
+  .callout-chat::before {
+    right: -3mm; top: 50%; margin-top: -2mm;
+    border-width: 2mm 0 2mm 3mm;
+    border-color: transparent transparent transparent var(--orange);
+  }
+
+  .callout-nodes {
+    top: 12mm;
+    right: -2mm;
+    background: var(--blue);
+  }
+  .callout-nodes .num { color: var(--blue); }
+  .callout-nodes::before {
+    left: -3mm; top: 50%; margin-top: -2mm;
+    border-width: 2mm 3mm 2mm 0;
+    border-color: transparent var(--blue) transparent transparent;
+  }
+
+  /* ========== Section ②③ 2カラム（サブ） ========== */
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-bottom: 4mm;
+  }
+
+  .screen-img-wrap {
+    border: 1.5px solid var(--blue);
+    border-radius: 2mm;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.1);
+    overflow: hidden;
+    background: var(--blue-lighter);
+    height: 35mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .screen-img-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+
+  /* Section ③ コンパクトフロー */
+  .tpl-flow-compact {
+    background: var(--white);
+    border: 1.5px solid var(--blue);
+    border-radius: 2mm;
+    padding: 3mm 2mm;
+    display: grid;
+    grid-template-columns: 1fr 4mm 1fr 4mm 1fr;
+    align-items: center;
+    gap: 1mm;
+    height: 35mm;
+  }
+  .tpl-step {
+    background: var(--blue-lighter);
+    border: 0.5mm solid var(--blue);
+    border-radius: 1.5mm;
+    padding: 1.5mm 1mm;
+    text-align: center;
+  }
+  .tpl-step.highlight {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+  .tpl-step.highlight .step-icon,
+  .tpl-step.highlight .step-label { color: var(--white); }
+  .tpl-step .step-icon {
+    font-size: 11pt;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 0.5mm;
+  }
+  .tpl-step .step-label {
+    font-size: 5.5pt;
+    font-weight: 800;
+    color: var(--blue-dark);
+    line-height: 1.2;
+  }
+  .tpl-arrow {
+    text-align: center;
+    font-size: 11pt;
+    color: var(--orange);
+    font-weight: 900;
+  }
+
+  /* ========== 3強み ========== */
+  .strengths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5mm;
+    margin-bottom: 4mm;
+  }
+  .strength-card {
+    background: var(--blue-lighter);
+    border-left: 1mm solid var(--orange);
+    border-radius: 1.5mm;
+    padding: 2.5mm 3mm;
+  }
+  .strength-card .num {
+    font-size: 8pt;
+    font-weight: 900;
+    color: var(--orange);
+    letter-spacing: 1.5px;
+  }
+  .strength-card .title {
+    font-size: 11pt;
+    font-weight: 900;
+    color: var(--blue-dark);
+    margin: 0.3mm 0 1mm;
+  }
+  .strength-card .desc {
+    font-size: 6pt;
+    color: var(--gray);
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  /* ========== Bottom: 活用事例 + CTA ========== */
+  .bottom-section {
+    margin-top: auto;
+    margin-left: -10mm;
+    margin-right: -10mm;
+  }
+
+  .workflows-section {
+    background: var(--blue-dark);
+    color: var(--white);
+    padding: 4mm 10mm;
+  }
+  .workflows-section h2 {
+    font-size: 10.5pt;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 3mm;
+    text-align: center;
+  }
+  .workflows-section h2 .icon-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 8.5pt;
+    padding: 1mm 3mm;
+    border-radius: 10mm;
+    margin-right: 2mm;
+  }
+
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8mm;
+  }
+
+  .workflow {
+    background: var(--white);
+    border-radius: 1.5mm;
+    padding: 1.5mm 2mm;
+    display: flex;
+    align-items: center;
+    gap: 1.5mm;
+  }
+
+  .wf-title {
+    font-size: 5.8pt;
+    font-weight: 900;
+    color: var(--blue-dark);
+    width: 18mm;
+    flex-shrink: 0;
+    line-height: 1.2;
+  }
+
+  .wf-steps {
+    display: flex;
+    align-items: center;
+    gap: 0.8mm;
+    flex: 1;
+  }
+
+  .wf-node {
+    background: var(--blue-lighter);
+    border: 0.4mm solid var(--blue);
+    border-radius: 1mm;
+    padding: 0.8mm 1mm;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3mm;
+    flex: 1;
+    min-width: 0;
+  }
+  .wf-node.trigger {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+  .wf-node.trigger .wf-icon,
+  .wf-node.trigger .wf-label { color: var(--white); }
+  .wf-icon {
+    font-size: 7.5pt;
+    line-height: 1;
+    color: var(--blue);
+  }
+  .wf-label {
+    font-size: 4.2pt;
+    font-weight: 700;
+    color: var(--blue-dark);
+    line-height: 1.1;
+  }
+  .wf-arrow {
+    color: var(--orange);
+    font-weight: 900;
+    font-size: 7.5pt;
+    flex-shrink: 0;
+  }
+
+  /* ========== CTA ========== */
+  .cta-footer {
+    background: var(--orange);
+    padding: 3.5mm 10mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4mm;
+  }
+  .cta-main {
+    color: var(--white);
+    font-size: 14pt;
+    font-weight: 900;
+  }
+  .cta-left {
+    display: flex; align-items: center; gap: 3mm;
+  }
+  .qr-box {
+    width: 15mm; height: 15mm;
+    background: var(--white);
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7pt; color: #888;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .cta-logo {
+    display: flex; align-items: center; gap: 2mm;
+    background: var(--white);
+    padding: 2mm 3mm;
+    border-radius: 1.8mm;
+  }
+  .cta-logo .logo-k-blue {
+    width: 7mm; height: 7mm;
+    background: var(--blue-dark);
+    border-radius: 1.2mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 10pt;
+  }
+  .cta-logo .logo-text-blue {
+    font-size: 10.5pt; font-weight: 800; letter-spacing: 1px; color: var(--blue-dark);
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- Header -->
+  <header class="top">
+    <div class="logo-wrap">
+      <div class="logo-k">K</div>
+      <div class="logo-text">Kawaru</div>
+    </div>
+    <div class="tag">AI Workflow Builder</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1><span class="quote">「チャットで」</span>誰でもかんたんに、<br>ワークフローがつくれる。</h1>
+    <div class="divider"></div>
+    <div class="sub">日本語で話すだけ。AIを学ばなくていい。組まなくていい。</div>
+  </section>
+
+  <!-- ⭐ Section ① ヒーロー（大・全幅・吹き出し付き） -->
+  <div class="feature-hero section-hero">
+    <div class="section-title">
+      <div class="section-number">1</div>
+      <div class="section-text">
+        <div class="main">チャットでワークフローを作れる</div>
+        <div class="sub">日本語で話すだけで、AIが対話しながらノードを自動構築</div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- 吹き出し① チャット欄を指す -->
+      <div class="callout callout-chat">
+        <span class="num">1</span>ここに面倒なことを<br>書くだけ
+      </div>
+
+      <!-- 吹き出し② ノードグラフを指す -->
+      <div class="callout callout-nodes">
+        <span class="num">2</span>AIがノードを<br>自動で組み立てる
+      </div>
+
+      <div class="hero-screen">
+        <img src="file:///Users/kyouyuu/Desktop/kawaru_screen_2.png" alt="Kawaruワークフロー作成画面">
+      </div>
+    </div>
+  </div>
+
+  <!-- Section ②③ 2カラム（サブ） -->
+  <div class="feature-row">
+    <!-- Section ② -->
+    <div>
+      <div class="section-title">
+        <div class="section-number">2</div>
+        <div class="section-text">
+          <div class="main">テンプレで即スタート</div>
+          <div class="sub">公式100種以上。選ぶだけで使える</div>
+        </div>
+      </div>
+      <div class="screen-img-wrap">
+        <img src="file:///Users/kyouyuu/Desktop/kawaru_screen_3.png" alt="Kawaruテンプレート選択画面">
+      </div>
+    </div>
+
+    <!-- Section ③ -->
+    <div>
+      <div class="section-title">
+        <div class="section-number">3</div>
+        <div class="section-text">
+          <div class="main">1クリックでテンプレ化</div>
+          <div class="sub">自社ワークフローもチームで共有</div>
+        </div>
+      </div>
+      <div class="tpl-flow-compact">
+        <div class="tpl-step">
+          <div class="step-icon">🛠</div>
+          <div class="step-label">自社で<br>作成</div>
+        </div>
+        <div class="tpl-arrow">➔</div>
+        <div class="tpl-step highlight">
+          <div class="step-icon">⭐</div>
+          <div class="step-label">ワンクリック<br>化</div>
+        </div>
+        <div class="tpl-arrow">➔</div>
+        <div class="tpl-step">
+          <div class="step-icon">👥</div>
+          <div class="step-label">チーム<br>共有</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3強み -->
+  <section class="strengths">
+    <div class="strength-card">
+      <div class="num">01</div>
+      <div class="title">専門知識不要</div>
+      <div class="desc">エンジニアリングやAIの専門知識は一切不要。誰でも初日から使える。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">02</div>
+      <div class="title">構築時間不要</div>
+      <div class="desc">複雑なノードをつなぐ作業は不要。チャットで指示するだけで自動構築。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">03</div>
+      <div class="title">人材育成不要</div>
+      <div class="desc">日本語で話せれば誰でも使える。研修やトレーニング不要。</div>
+    </div>
+  </section>
+
+  <!-- Bottom: 活用事例 + CTA -->
+  <div class="bottom-section">
+    <section class="workflows-section">
+      <h2><span class="icon-badge">活用事例</span>こんなワークフローが作れる</h2>
+
+      <div class="workflow-grid">
+        <div class="workflow">
+          <div class="wf-title">メール返信<br>自動化</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">✉</div><div class="wf-label">メール<br>受信</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🤖</div><div class="wf-label">AI<br>判定</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">✎</div><div class="wf-label">下書き<br>作成</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📂</div><div class="wf-label">Gmail<br>保存</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">会議議事録<br>Slack共有</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">🎥</div><div class="wf-label">会議<br>録画</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🎙</div><div class="wf-label">文字<br>起こし</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📝</div><div class="wf-label">議事録<br>生成</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">💬</div><div class="wf-label">Slack<br>通知</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">商談情報<br>CRM登録</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">📞</div><div class="wf-label">商談<br>完了</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🔎</div><div class="wf-label">情報<br>抽出</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📊</div><div class="wf-label">データ<br>整形</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">💼</div><div class="wf-label">SF<br>登録</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">朝礼<br>メールまとめ</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">⏰</div><div class="wf-label">毎朝<br>定時</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">✉</div><div class="wf-label">未読<br>取得</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🤖</div><div class="wf-label">AI<br>要約</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📱</div><div class="wf-label">Teams<br>通知</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">問い合わせ<br>自動対応</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">📮</div><div class="wf-label">問合せ<br>受信</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🗂</div><div class="wf-label">カテゴリ<br>分類</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">💡</div><div class="wf-label">FAQ<br>回答</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">👥</div><div class="wf-label">チーム<br>通知</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">業界ニュース<br>配信</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">🕐</div><div class="wf-label">定期<br>実行</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🔍</div><div class="wf-label">ニュース<br>検索</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📰</div><div class="wf-label">記事<br>要約</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">💬</div><div class="wf-label">Slack<br>配信</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">日報<br>自動作成</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">🕓</div><div class="wf-label">定時<br>実行</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📋</div><div class="wf-label">業務<br>ログ収集</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🤖</div><div class="wf-label">AI<br>整形</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📤</div><div class="wf-label">Slack<br>投稿</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">契約書<br>チェック</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">📄</div><div class="wf-label">PDF<br>アップ</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🧠</div><div class="wf-label">AI<br>解析</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">⚠</div><div class="wf-label">リスク<br>指摘</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📧</div><div class="wf-label">メール<br>通知</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">リサーチ<br>自動化</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">🔤</div><div class="wf-label">キーワード<br>入力</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">🌐</div><div class="wf-label">Web<br>検索</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📝</div><div class="wf-label">AI<br>要約</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📒</div><div class="wf-label">Notion<br>保存</div></div>
+          </div>
+        </div>
+
+        <div class="workflow">
+          <div class="wf-title">KPIレポート<br>配信</div>
+          <div class="wf-steps">
+            <div class="wf-node trigger"><div class="wf-icon">📅</div><div class="wf-label">週次<br>実行</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📊</div><div class="wf-label">データ<br>集計</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">📈</div><div class="wf-label">AI<br>分析</div></div>
+            <div class="wf-arrow">→</div>
+            <div class="wf-node"><div class="wf-icon">💬</div><div class="wf-label">Slack<br>配信</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="cta-footer">
+      <div class="cta-main">まずは無料相談から</div>
+      <div class="cta-left">
+        <div class="qr-box">QR</div>
+        <div class="cta-logo">
+          <div class="logo-k-blue">K</div>
+          <div class="logo-text-blue">Kawaru</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</div>
+</body>
+</html>
