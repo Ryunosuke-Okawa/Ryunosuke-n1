@@ -23,11 +23,11 @@ tags:
 | --- | --- |
 | ステータス | 連携済み |
 | URL | https://nulab.com/ja/login/ |
-| ID | kawaru.info@n1-inc.co.jp |
-| パスワード | Kawaru260218@ |
+| ID | ？ |
+| パスワード | ？ |
 | 認証方式 | OAuth 2.0 / APIキー |
 | アカウント数 | 1 |
-| プラン | フリープラン |
+| プラン | 有料プラン |
 
 ---
 
