@@ -30,7 +30,9 @@
       "Bash(curl -sI \"https://github.com/cli/cli/releases/latest\")",
       "Bash(curl -sL \"https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_macOS_arm64.zip\" -o /tmp/gh.zip)",
       "Bash(/tmp/gh_install/bin/gh --version)",
-      "Bash(/tmp/gh_install/gh_2.89.0_macOS_arm64/bin/gh --version)"
+      "Bash(/tmp/gh_install/gh_2.89.0_macOS_arm64/bin/gh --version)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --allow-file-access-from-files --screenshot=/Users/kyouyuu/Desktop/flyer_kawaru_back_v10.png --window-size=834,1300 --force-device-scale-factor=2 --virtual-time-budget=5000 file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v10.html)",
+      "Bash(open \"/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v10.html\")"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude"
