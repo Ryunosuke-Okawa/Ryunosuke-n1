@@ -35,7 +35,8 @@
       "Bash(open \"/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v10.html\")"
     ],
     "additionalDirectories": [
-      "/tmp/claude-template/.claude"
+      "/tmp/claude-template/.claude",
+      "/Users/kyouyuu/claude/marketing"
     ]
   }
 }
