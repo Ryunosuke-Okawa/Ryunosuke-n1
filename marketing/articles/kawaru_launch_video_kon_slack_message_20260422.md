@@ -23,6 +23,11 @@ status: ready-to-send
 近さん、お疲れ様です！
 Kawaru β版ローンチ（5/26）のSNS告知動画の台本作成、お願いしたいです。
 
+【動画のゴール】
+動画を見た非エンジニアが「これ、自分でもできそう」と感じてLINE登録する状態。
+ターゲットはClaude Code・Difyに興味はあったけど難しくて諦めた人。
+「自分には無理かも」という不安を「これなら大丈夫」に変えることがゴールです。
+
 【依頼概要】
 - 全媒体（YouTube・X・Instagram）の台本ディレクション
 - 出演者：YouTube＝河村／X・Instagram＝奥山
@@ -36,7 +41,7 @@ https://www.youtube.com/watch?v=9d7MrlDZefI
 この動画を要素ごとに分解して、Kawaru版に置き換えたらどうなるか、
 12ブロックの対応表にまとめました。これを下敷きにしてもらえれば、
 そのまま台本に落とし込めるはずです 👇
-[分解対応表のリンクを貼る]
+https://docs.google.com/document/d/1azQwzPu724uuf26r3e5-rei6LD6zRcs1v8ypBW9w2xo/edit
 
 【ターゲット】
 Claude Code・自動化ツールに興味あるけど挫折した層を入口に広く。
