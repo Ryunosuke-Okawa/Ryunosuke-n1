@@ -37,7 +37,9 @@
       "Bash(open \"/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v11.html\")",
       "WebFetch(domain:nulab.com)",
       "WebFetch(domain:developer.nulab.com)",
-      "WebFetch(domain:youtu.be)"
+      "WebFetch(domain:youtu.be)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
