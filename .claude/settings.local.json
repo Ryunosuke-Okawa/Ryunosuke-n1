@@ -317,7 +317,8 @@
       "Bash(find /Users/kyouyuu/claude -type f \\\\\\( -name \"*.md\" -o -name \"*.py\" -o -name \"*.js\" \\\\\\) ! -path \"*/node_modules/*\" ! -path \"*/archive/*\" ! -path \"*/.git/*\" ! -path \"*/.claude/worktrees/*\" -exec ls -lh {} \\\\;)",
       "Bash(awk '{if \\($5 == \"0B\"\\) print $NF}')",
       "Bash(awk '{print $9, $5}')",
-      "Bash(find /Users/kyouyuu/claude/clients/nakanishi -type f \\\\\\( -name \"*.py\" -o -name \"*.js\" \\\\\\) -exec wc -l {} +)"
+      "Bash(find /Users/kyouyuu/claude/clients/nakanishi -type f \\\\\\( -name \"*.py\" -o -name \"*.js\" \\\\\\) -exec wc -l {} +)",
+      "mcp__scheduled-tasks__create_scheduled_task"
     ],
     "additionalDirectories": [
       "/tmp",
