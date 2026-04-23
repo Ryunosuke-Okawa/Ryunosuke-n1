@@ -311,7 +311,8 @@
       "Bash(clasp create *)",
       "Bash(clasp login *)",
       "Bash(clasp list *)",
-      "Bash(git worktree *)"
+      "Bash(git worktree *)",
+      "Bash(unzip -l /Users/kyouyuu/claude/claude-template.zip)"
     ],
     "additionalDirectories": [
       "/tmp",
