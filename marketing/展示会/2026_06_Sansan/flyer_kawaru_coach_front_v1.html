@@ -25,7 +25,7 @@
   .flyer {
     width: 210mm;
     height: 297mm;
-    background: linear-gradient(160deg, #9B5DE5 0%, #7C3AED 40%, #5A1DB5 100%);
+    background: #7C3AED;
     position: relative;
     box-shadow: 0 4px 24px rgba(0,0,0,0.25);
     display: flex;
@@ -34,26 +34,6 @@
     padding: 12mm 14mm;
     overflow: hidden;
   }
-
-  .flyer::before {
-    content: "";
-    position: absolute;
-    top: -40mm; right: -20mm;
-    width: 130mm; height: 130mm;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.05);
-    z-index: 0;
-  }
-  .flyer::after {
-    content: "";
-    position: absolute;
-    bottom: -30mm; left: -20mm;
-    width: 100mm; height: 100mm;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-    z-index: 0;
-  }
-  .flyer > * { position: relative; z-index: 1; }
 
   /* ========== Header ========== */
   .header {
