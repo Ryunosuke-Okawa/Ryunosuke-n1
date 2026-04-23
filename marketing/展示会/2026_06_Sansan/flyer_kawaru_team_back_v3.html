@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team フライヤー裏面 v3</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange:        #FF6600;
+    --orange-dark:   #0F3057;
+    --orange-light:  #FFF3E0;
+    --orange-lighter:#FFF8F2;
+    --accent:        #FFD44A;
+    --white:         #ffffff;
+    --gray:          #4a6b8a;
+    --border:        #FFD0A0;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .flyer {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 8mm 10mm 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flyer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 70mm;
+    background: linear-gradient(180deg, var(--orange-light) 0%, rgba(255,243,224,0) 100%);
+    z-index: 0;
+  }
+
+  .flyer > * { position: relative; z-index: 1; }
+
+  /* ========== Header ========== */
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5mm;
+    height: 10mm;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 3mm; }
+  .logo-k {
+    width: 10mm; height: 10mm;
+    background: var(--orange-dark);
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 14pt;
+  }
+  .logo-text { font-size: 11pt; font-weight: 800; color: var(--orange-dark); letter-spacing: 0.5px; }
+  .tag {
+    background: var(--orange); color: var(--white);
+    padding: 1.5mm 3.5mm;
+    border-radius: 20mm;
+    font-size: 7.5pt; font-weight: 700;
+  }
+
+  /* ========== Hero ========== */
+  .hero {
+    margin: 0 0 4mm;
+    text-align: center;
+  }
+  .hero .quote { color: var(--orange); font-weight: 900; }
+  .hero h1 {
+    font-size: 19pt;
+    font-weight: 900;
+    color: var(--orange-dark);
+    line-height: 1.3;
+  }
+  .hero .divider {
+    width: 12mm; height: 0.8mm;
+    background: var(--accent);
+    margin: 2mm auto 0;
+    border-radius: 1mm;
+  }
+  .hero .sub {
+    font-size: 8.5pt; color: var(--gray); margin-top: 1.5mm;
+    font-weight: 600;
+  }
+
+  /* ========== Section title ========== */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    margin-bottom: 2.5mm;
+  }
+  .section-number {
+    width: 8mm; height: 8mm;
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10pt; font-weight: 900;
+    flex-shrink: 0;
+  }
+  .section-text .main {
+    font-size: 11pt; font-weight: 900;
+    color: var(--orange-dark); line-height: 1.2;
+  }
+  .section-text .sub {
+    font-size: 6.5pt; color: var(--gray);
+    font-weight: 600; margin-top: 0.3mm;
+  }
+  .section-hero .section-number { width: 10mm; height: 10mm; font-size: 12pt; }
+  .section-hero .section-text .main { font-size: 13pt; }
+  .section-hero .section-text .sub { font-size: 7.5pt; }
+
+  /* ========== Section ① ヒーロー（全幅・吹き出し付き） ========== */
+  .feature-hero { margin-bottom: 4mm; }
+
+  .hero-visual { position: relative; padding: 0 2mm; }
+
+  .hero-screen {
+    border: 1.5px solid var(--orange);
+    border-radius: 3mm;
+    box-shadow: 0 4px 16px rgba(255,102,0,0.15);
+    overflow: hidden;
+    background: var(--orange-lighter);
+    height: 58mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3mm 4mm;
+  }
+
+  /* 吹き出し */
+  .callout {
+    position: absolute;
+    color: var(--white);
+    padding: 2mm 3mm;
+    border-radius: 2mm;
+    font-size: 8pt; font-weight: 800;
+    line-height: 1.3;
+    max-width: 48mm;
+    z-index: 5;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+  .callout::before {
+    content: "";
+    position: absolute;
+    width: 0; height: 0;
+    border-style: solid;
+  }
+  .callout .num {
+    display: inline-block;
+    background: var(--white);
+    width: 4.5mm; height: 4.5mm;
+    line-height: 4.5mm; text-align: center;
+    border-radius: 50%;
+    margin-right: 1.5mm;
+    font-weight: 900; font-size: 8.5pt;
+  }
+  .callout-left {
+    top: 10mm; left: -2mm;
+    background: var(--accent);
+    color: var(--orange-dark);
+  }
+  .callout-left .num { color: var(--orange-dark); }
+  .callout-left::before {
+    right: -3mm; top: 50%; margin-top: -2mm;
+    border-width: 2mm 0 2mm 3mm;
+    border-color: transparent transparent transparent var(--accent);
+  }
+  .callout-right {
+    top: 10mm; right: -2mm;
+    background: var(--orange);
+  }
+  .callout-right .num { color: var(--orange); }
+  .callout-right::before {
+    left: -3mm; top: 50%; margin-top: -2mm;
+    border-width: 2mm 3mm 2mm 0;
+    border-color: transparent var(--orange) transparent transparent;
+  }
+
+  /* ========== 4フェーズフロー（Section①の中身） ========== */
+  .flow-phases {
+    display: grid;
+    grid-template-columns: 1fr 7mm 1fr 7mm 1fr 7mm 1fr;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .flow-phase {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 2mm;
+    padding: 2mm 1.5mm;
+    text-align: center;
+    height: 50mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5mm;
+  }
+  .flow-phase.highlight {
+    background: var(--orange);
+    border-color: var(--orange);
+    box-shadow: 0 3px 12px rgba(255,102,0,0.35);
+  }
+  .flow-phase.highlight .phase-badge,
+  .flow-phase.highlight .phase-label,
+  .flow-phase.highlight .phase-desc { color: var(--white); }
+  .phase-badge {
+    font-size: 5.5pt; font-weight: 900;
+    color: var(--orange);
+    background: var(--orange-light);
+    padding: 0.5mm 2mm;
+    border-radius: 5mm;
+    letter-spacing: 0.3px;
+  }
+  .flow-phase.highlight .phase-badge {
+    background: rgba(255,255,255,0.25);
+    color: var(--white);
+  }
+  .phase-icon { font-size: 20pt; line-height: 1; }
+  .phase-label {
+    font-size: 7.5pt; font-weight: 900;
+    color: var(--orange-dark); line-height: 1.3;
+  }
+  .phase-desc {
+    font-size: 5pt; color: var(--gray); line-height: 1.4;
+    font-weight: 600;
+  }
+  .phase-arrow {
+    text-align: center; font-size: 14pt;
+    color: var(--orange); font-weight: 900;
+  }
+
+  /* ========== Section ②③ 2カラム ========== */
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-bottom: 4mm;
+  }
+
+  /* Section ②：部門カスタマイズ（コンパクトグリッド） */
+  .dept-compact {
+    border: 1.5px solid var(--orange);
+    border-radius: 2mm;
+    background: var(--orange-lighter);
+    height: 38mm;
+    padding: 2mm 2.5mm;
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+  }
+  .dept-compact-title {
+    font-size: 6pt; font-weight: 900;
+    color: var(--orange); margin-bottom: 0.5mm;
+  }
+  .dept-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1mm;
+    flex: 1;
+  }
+  .dept-chip {
+    background: var(--white);
+    border-radius: 1mm;
+    padding: 1.5mm 1.5mm;
+    display: flex; align-items: flex-start; gap: 1mm;
+  }
+  .dept-chip .d-icon { font-size: 9pt; flex-shrink: 0; margin-top: 0.5mm; }
+  .dept-chip .d-name {
+    font-size: 6pt; font-weight: 800;
+    color: var(--orange-dark); line-height: 1.3;
+    margin-bottom: 0.3mm;
+  }
+  .dept-chip .d-examples {
+    font-size: 4.5pt; color: var(--gray); line-height: 1.4;
+  }
+
+  /* Section ③：他の研修との違い 3要素カード */
+  .diff-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+    height: 38mm;
+  }
+  .diff-card {
+    background: var(--orange-lighter);
+    border: 0.5mm solid var(--border);
+    border-left: 1.5mm solid var(--accent);
+    border-radius: 1.5mm;
+    padding: 1.5mm 2.5mm;
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    flex: 1;
+  }
+  .diff-icon { font-size: 14pt; flex-shrink: 0; }
+  .diff-title {
+    font-size: 7pt; font-weight: 900;
+    color: var(--orange-dark); margin-bottom: 0.5mm;
+  }
+  .diff-desc {
+    font-size: 4.8pt; color: var(--gray); line-height: 1.35;
+    font-weight: 600;
+  }
+
+  /* ========== 3強みカード ========== */
+  .strengths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5mm;
+    margin-bottom: 4mm;
+  }
+  .strength-card {
+    background: var(--orange-lighter);
+    border-left: 1mm solid var(--accent);
+    border-radius: 1.5mm;
+    padding: 2.5mm 3mm;
+  }
+  .strength-card .num {
+    font-size: 8pt; font-weight: 900;
+    color: var(--accent); letter-spacing: 1.5px;
+  }
+  .strength-card .title {
+    font-size: 10.5pt; font-weight: 900;
+    color: var(--orange-dark); margin: 0.3mm 0 1mm; line-height: 1.2;
+  }
+  .strength-card .desc {
+    font-size: 6pt; color: var(--gray); line-height: 1.4; font-weight: 600;
+  }
+
+  /* ========== 活用事例 + CTA ========== */
+  .bottom-section {
+    margin-top: auto;
+    margin-left: -10mm;
+    margin-right: -10mm;
+  }
+
+  .usecases-section {
+    background: var(--orange-dark);
+    color: var(--white);
+    padding: 4mm 10mm;
+  }
+  .usecases-section h2 {
+    font-size: 10pt; font-weight: 900;
+    color: var(--white); margin-bottom: 3mm; text-align: center;
+  }
+  .usecases-section h2 .icon-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 8.5pt; padding: 1mm 3mm;
+    border-radius: 10mm; margin-right: 2mm;
+  }
+
+  .dept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8mm;
+  }
+  .dept-card {
+    background: var(--white); border-radius: 1.5mm; padding: 1.5mm 2.5mm;
+  }
+  .dept-card-name {
+    font-size: 7pt; font-weight: 900; color: var(--orange);
+    padding-bottom: 1mm; margin-bottom: 1mm;
+    border-bottom: 0.5mm solid var(--orange-light);
+    display: flex; align-items: center; gap: 1mm;
+  }
+  .dept-card-items {
+    font-size: 5.5pt; color: #555; line-height: 1.7; font-weight: 600;
+  }
+  .dept-card-items span { display: block; }
+  .dept-card-items span::before { content: "✓ "; color: var(--orange); font-weight: 900; }
+
+  /* ========== CTA ========== */
+  .cta-footer {
+    background: var(--orange);
+    padding: 3.5mm 10mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4mm;
+  }
+  .cta-left {}
+  .cta-main { color: var(--white); font-size: 14pt; font-weight: 900; line-height: 1.2; }
+  .cta-sub { font-size: 7pt; color: rgba(255,255,255,0.85); font-weight: 600; margin-top: 0.5mm; }
+  .cta-right { display: flex; align-items: center; gap: 3mm; }
+  .qr-box {
+    width: 16mm; height: 16mm;
+    background: var(--white); border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6.5pt; color: #888; flex-shrink: 0; font-weight: 700;
+    text-align: center; line-height: 1.4;
+  }
+  .cta-logo {
+    display: flex; align-items: center; gap: 2mm;
+    background: var(--white); padding: 2mm 3mm; border-radius: 1.8mm;
+  }
+  .cta-logo .logo-k-small {
+    width: 7mm; height: 7mm;
+    background: var(--orange-dark); border-radius: 1.2mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 10pt;
+  }
+  .cta-logo .logo-text-small {
+    font-size: 9pt; font-weight: 800; letter-spacing: 0.5px; color: var(--orange-dark);
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- Header -->
+  <header class="top">
+    <div class="logo-wrap">
+      <div class="logo-k">K</div>
+      <div class="logo-text">Kawaru Team</div>
+    </div>
+    <div class="tag">AI Research Program</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1><span class="quote">「完全カスタマイズ」</span>で、<br>組織のAI推進を前に進める。</h1>
+    <div class="divider"></div>
+    <div class="sub">貴社の業務・課題に合わせた組織開発型AI研修。ゴール設定から振り返りまで一気通貫で伴走。</div>
+  </section>
+
+  <!-- Section ① ヒーロー（全幅・吹き出し付き） -->
+  <div class="feature-hero section-hero">
+    <div class="section-title">
+      <div class="section-number">1</div>
+      <div class="section-text">
+        <div class="main">上流から振り返りまで、一気通貫で伴走</div>
+        <div class="sub">ゴール設定から実施・定着まで、組織開発として丸ごと支援</div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- 吹き出し① -->
+      <div class="callout callout-left">
+        <span class="num">1</span>御社の実務を題材に<br>1から設計
+      </div>
+      <!-- 吹き出し② -->
+      <div class="callout callout-right">
+        <span class="num">2</span>受講翌日から<br>業務に活かせる
+      </div>
+
+      <div class="hero-screen">
+        <div class="flow-phases">
+          <div class="flow-phase">
+            <div class="phase-badge">PHASE 1</div>
+            <div class="phase-icon">🔍</div>
+            <div class="phase-label">ヒアリング</div>
+            <div class="phase-desc">御社の業務・課題・目標を徹底的に把握</div>
+          </div>
+          <div class="phase-arrow">→</div>
+          <div class="flow-phase highlight">
+            <div class="phase-badge">PHASE 2</div>
+            <div class="phase-icon">⚙️</div>
+            <div class="phase-label">完全カスタマイズ設計</div>
+            <div class="phase-desc">御社専用の研修プログラムを1から構築</div>
+          </div>
+          <div class="phase-arrow">→</div>
+          <div class="flow-phase">
+            <div class="phase-badge">PHASE 3</div>
+            <div class="phase-icon">🏫</div>
+            <div class="phase-label">研修実施</div>
+            <div class="phase-desc">実業務を題材にした実践ワークショップ</div>
+          </div>
+          <div class="phase-arrow">→</div>
+          <div class="flow-phase">
+            <div class="phase-badge">PHASE 4</div>
+            <div class="phase-icon">📈</div>
+            <div class="phase-label">振り返り・定着</div>
+            <div class="phase-desc">フォローアップで現場活用率100%へ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section ②③ 2カラム -->
+  <div class="feature-row">
+
+    <!-- Section ② 部門別カスタマイズ -->
+    <div>
+      <div class="section-title">
+        <div class="section-number">2</div>
+        <div class="section-text">
+          <div class="main">部門ごとに完全カスタマイズ</div>
+          <div class="sub">貴社の業種・業務を題材にした実践ワークショップ</div>
+        </div>
+      </div>
+      <div class="dept-compact">
+        <div class="dept-compact-title">● 研修カスタマイズ例</div>
+        <div class="dept-row">
+          <div class="dept-chip">
+            <div class="d-icon">🎯</div>
+            <div>
+              <div class="d-name">営業部門</div>
+              <div class="d-examples">提案書効率化<br>商談メール自動化</div>
+            </div>
+          </div>
+          <div class="dept-chip">
+            <div class="d-icon">📣</div>
+            <div>
+              <div class="d-name">マーケ部門</div>
+              <div class="d-examples">競合リサーチ自動化<br>SNS文面生成</div>
+            </div>
+          </div>
+          <div class="dept-chip">
+            <div class="d-icon">👥</div>
+            <div>
+              <div class="d-name">人事部門</div>
+              <div class="d-examples">面接メモ要約<br>社内FAQ自動化</div>
+            </div>
+          </div>
+          <div class="dept-chip">
+            <div class="d-icon">💬</div>
+            <div>
+              <div class="d-name">CS部門</div>
+              <div class="d-examples">問い合わせ分類<br>回答下書き生成</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section ③ 他の研修との違い -->
+    <div>
+      <div class="section-title">
+        <div class="section-number">3</div>
+        <div class="section-text">
+          <div class="main">他の研修と、ここが違う</div>
+          <div class="sub">Kawaru Teamが選ばれる3つの理由</div>
+        </div>
+      </div>
+      <div class="diff-cards">
+        <div class="diff-card">
+          <div class="diff-icon">🎮</div>
+          <div>
+            <div class="diff-title">どこよりも楽しく学べる</div>
+            <div class="diff-desc">ゲームやカード教材を活用。AIに興味のない受講者も自然と巻き込める研修設計。</div>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">📋</div>
+          <div>
+            <div class="diff-title">御社の実業務で演習</div>
+            <div class="diff-desc">汎用パッケージではなく御社の実際の業務を題材に。受講翌日から使えるスキルを習得。</div>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">🤝</div>
+          <div>
+            <div class="diff-title">研修後も定着まで伴走</div>
+            <div class="diff-desc">フォローアップから内製化まで一気通貫でサポート。現場活用率100%を実現。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 3強みカード -->
+  <section class="strengths">
+    <div class="strength-card">
+      <div class="num">01</div>
+      <div class="title">完全フルカスタマイズ</div>
+      <div class="desc">貴社の業務・課題・目標に合わせて研修を一から設計。型にはまった汎用研修は提供しません。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">02</div>
+      <div class="title">組織開発視点で伴走</div>
+      <div class="desc">ゴール設定から振り返りまで、AI推進PJT全体を組織の成長として一気通貫でサポート。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">03</div>
+      <div class="title">楽しく・楽に学べる</div>
+      <div class="desc">興味のない人でも巻き込める実践体験型研修設計。翌日から使えるスキルを確実に習得。</div>
+    </div>
+  </section>
+
+  <!-- 活用事例 + CTA -->
+  <div class="bottom-section">
+    <section class="usecases-section">
+      <h2><span class="icon-badge">導入実績・活用事例</span>現場で使えるAI人材を育成</h2>
+      <div class="dept-grid">
+        <div class="dept-card">
+          <div class="dept-card-name">🎯 営業部門向け研修</div>
+          <div class="dept-card-items">
+            <span>提案資料作成の効率化</span>
+            <span>顧客情報の整理・分析</span>
+            <span>商談メール下書きの自動生成</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-card-name">📣 マーケティング部門向け研修</div>
+          <div class="dept-card-items">
+            <span>競合リサーチの自動化</span>
+            <span>キャンペーン企画のアイデア出し</span>
+            <span>SNS投稿文の生成</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-card-name">👥 人事部門向け研修</div>
+          <div class="dept-card-items">
+            <span>採用業務の効率化</span>
+            <span>面接メモの自動要約</span>
+            <span>社内FAQ対応の自動化</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-card-name">💬 CS部門向け研修</div>
+          <div class="dept-card-items">
+            <span>問い合わせ対応の自動分類</span>
+            <span>回答文の下書き生成</span>
+            <span>ナレッジベース構築</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="cta-footer">
+      <div class="cta-left">
+        <div class="cta-main">まずは無料相談から</div>
+        <div class="cta-sub">30分で、貴社の業務をAI研修に落とし込みます</div>
+      </div>
+      <div class="cta-right">
+        <div class="qr-box">QR<br>CODE</div>
+        <div class="cta-logo">
+          <div class="logo-k-small">K</div>
+          <div class="logo-text-small">Kawaru Team</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</div>
+</body>
+</html>
