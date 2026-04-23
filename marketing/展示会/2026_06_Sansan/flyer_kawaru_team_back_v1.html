@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team フライヤー裏面 v1</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #E86A00;
+    --orange-dark: #6B2F00;
+    --orange-light: #FEF0E0;
+    --orange-lighter: #FFF7F0;
+    --accent: #FFB300;
+    --white: #ffffff;
+    --gray: #8B5E3C;
+    --border: #F5D9BA;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .flyer {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 8mm 10mm 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flyer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 70mm;
+    background: linear-gradient(180deg, var(--orange-light) 0%, rgba(254,240,224,0) 100%);
+    z-index: 0;
+  }
+
+  .flyer > * { position: relative; z-index: 1; }
+
+  /* ========== Header ========== */
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5mm;
+    height: 10mm;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 3mm; }
+  .logo-k {
+    width: 10mm; height: 10mm;
+    background: var(--orange-dark);
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 14pt;
+  }
+  .logo-text { font-size: 11pt; font-weight: 800; color: var(--orange-dark); letter-spacing: 0.5px; }
+  .tag {
+    background: var(--orange); color: var(--white);
+    padding: 1.5mm 3.5mm;
+    border-radius: 20mm;
+    font-size: 7.5pt; font-weight: 700;
+  }
+
+  /* ========== Hero ========== */
+  .hero {
+    margin: 0 0 4mm;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 19pt;
+    font-weight: 900;
+    color: var(--orange-dark);
+    line-height: 1.3;
+  }
+  .hero h1 .highlight { color: var(--orange); }
+  .hero .divider {
+    width: 12mm; height: 0.8mm;
+    background: var(--accent);
+    margin: 2mm auto 0;
+    border-radius: 1mm;
+  }
+  .hero .sub {
+    font-size: 8.5pt; color: var(--gray); margin-top: 1.5mm;
+    font-weight: 600;
+  }
+
+  /* ========== お悩みセクション ========== */
+  .concern-section {
+    margin-bottom: 3.5mm;
+  }
+  .concern-label {
+    text-align: center;
+    font-size: 8.5pt;
+    font-weight: 900;
+    color: var(--orange-dark);
+    margin-bottom: 2.5mm;
+    letter-spacing: 0.5px;
+  }
+  .concern-bubbles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+  }
+  .bubble {
+    background: var(--orange-light);
+    border: 1.5px solid var(--orange);
+    border-radius: 3mm;
+    padding: 3mm 3.5mm;
+    font-size: 8.5pt;
+    font-weight: 800;
+    color: var(--orange-dark);
+    text-align: center;
+    line-height: 1.6;
+    position: relative;
+  }
+  .bubble .bubble-icon {
+    display: block;
+    font-size: 14pt;
+    margin-bottom: 1mm;
+  }
+
+  /* ========== 課題セクション ========== */
+  .issues-section {
+    margin-bottom: 3mm;
+  }
+  .issues-title {
+    font-size: 9pt;
+    font-weight: 900;
+    color: var(--orange-dark);
+    text-align: center;
+    margin-bottom: 2.5mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 1px solid var(--border);
+  }
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2mm;
+  }
+  .issue-card {
+    background: var(--orange-lighter);
+    border-top: 1mm solid var(--orange);
+    border-radius: 1.5mm;
+    padding: 2mm 2.5mm;
+  }
+  .issue-card .num {
+    font-size: 7.5pt;
+    font-weight: 900;
+    color: var(--orange);
+    letter-spacing: 1px;
+  }
+  .issue-card .title {
+    font-size: 8.5pt;
+    font-weight: 900;
+    color: var(--orange-dark);
+    margin: 0.5mm 0 1mm;
+  }
+  .issue-card .bullets {
+    font-size: 5.5pt;
+    color: var(--gray);
+    line-height: 1.6;
+    font-weight: 600;
+  }
+
+  /* ========== 解決宣言 ========== */
+  .resolve-banner {
+    background: var(--orange);
+    color: var(--white);
+    text-align: center;
+    padding: 2.5mm;
+    border-radius: 2mm;
+    font-size: 10.5pt;
+    font-weight: 900;
+    margin-bottom: 3.5mm;
+  }
+  .resolve-banner .service-name { font-size: 12.5pt; }
+
+  /* ========== 6キーワード矛盾構造 ========== */
+  .keywords-section {
+    margin-bottom: 3mm;
+  }
+  .keywords-label {
+    font-size: 7pt;
+    font-weight: 900;
+    color: var(--gray);
+    margin-bottom: 1.5mm;
+  }
+  .keywords-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5mm;
+  }
+  .keyword-chip {
+    background: var(--orange-light);
+    border: 0.5mm solid var(--orange);
+    border-radius: 1.5mm;
+    padding: 1.5mm 2mm;
+    text-align: center;
+    font-size: 6.5pt;
+    font-weight: 800;
+    color: var(--orange-dark);
+    line-height: 1.4;
+  }
+  .keyword-chip.want {
+    background: var(--orange);
+    color: var(--white);
+    border-color: var(--orange);
+  }
+  .keywords-bridge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4mm;
+    margin: 1.5mm 0;
+    font-size: 8pt;
+    font-weight: 900;
+    color: var(--gray);
+  }
+  .keywords-bridge .arrow { font-size: 13pt; color: var(--accent); }
+  .keywords-resolve {
+    background: var(--orange-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 2mm;
+    border-radius: 1.5mm;
+    font-size: 9pt;
+    font-weight: 900;
+    margin: 2mm 0 1mm;
+  }
+  .service-desc-line {
+    text-align: center;
+    font-size: 7.5pt;
+    color: var(--gray);
+    font-weight: 700;
+    margin-bottom: 3mm;
+  }
+
+  /* ========== 3強みカード ========== */
+  .strengths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5mm;
+    margin-bottom: 4mm;
+  }
+  .strength-card {
+    background: var(--orange-lighter);
+    border-left: 1mm solid var(--accent);
+    border-radius: 1.5mm;
+    padding: 2.5mm 3mm;
+  }
+  .strength-card .num {
+    font-size: 8pt;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+  }
+  .strength-card .title {
+    font-size: 10.5pt;
+    font-weight: 900;
+    color: var(--orange-dark);
+    margin: 0.3mm 0 1mm;
+    line-height: 1.2;
+  }
+  .strength-card .desc {
+    font-size: 6pt;
+    color: var(--gray);
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  /* ========== 活用事例 + CTA ========== */
+  .bottom-section {
+    margin-top: auto;
+    margin-left: -10mm;
+    margin-right: -10mm;
+  }
+
+  .usecase-section {
+    background: var(--orange-dark);
+    color: var(--white);
+    padding: 4mm 10mm;
+  }
+  .usecase-section h2 {
+    font-size: 9.5pt;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 3mm;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .usecase-section h2 .icon-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--orange-dark);
+    font-size: 8.5pt;
+    padding: 1mm 3mm;
+    border-radius: 10mm;
+    margin-right: 2mm;
+    font-weight: 900;
+  }
+
+  .dept-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8mm;
+  }
+  .dept-card {
+    background: var(--white);
+    border-radius: 1.5mm;
+    padding: 2mm 2.5mm;
+  }
+  .dept-name {
+    font-size: 7pt;
+    font-weight: 900;
+    color: var(--orange);
+    padding-bottom: 1mm;
+    margin-bottom: 1mm;
+    border-bottom: 0.5mm solid var(--orange-light);
+    display: flex;
+    align-items: center;
+    gap: 1mm;
+  }
+  .dept-items {
+    font-size: 5.5pt;
+    color: #555;
+    line-height: 1.7;
+    font-weight: 600;
+  }
+  .dept-items span { display: block; }
+  .dept-items span::before { content: "✓ "; color: var(--orange); font-weight: 900; }
+
+  /* ========== CTA ========== */
+  .cta-footer {
+    background: var(--orange);
+    padding: 3.5mm 10mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4mm;
+  }
+  .cta-main {
+    color: var(--white);
+    font-size: 14pt;
+    font-weight: 900;
+  }
+  .cta-right {
+    display: flex; align-items: center; gap: 3mm;
+  }
+  .qr-box {
+    width: 15mm; height: 15mm;
+    background: var(--white);
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7pt; color: #888;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .cta-logo {
+    display: flex; align-items: center; gap: 2mm;
+    background: var(--white);
+    padding: 2mm 3mm;
+    border-radius: 1.8mm;
+  }
+  .cta-logo .logo-k-dark {
+    width: 7mm; height: 7mm;
+    background: var(--orange-dark);
+    border-radius: 1.2mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 10pt;
+  }
+  .cta-logo .logo-text-dark {
+    font-size: 9pt; font-weight: 800; letter-spacing: 0.5px; color: var(--orange-dark);
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- Header -->
+  <header class="top">
+    <div class="logo-wrap">
+      <div class="logo-k">K</div>
+      <div class="logo-text">Kawaru Team</div>
+    </div>
+    <div class="tag">AI Research Program</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>AIがわかる人が、社内に<span class="highlight">1人</span>いれば——<br>すべてが変わる。</h1>
+    <div class="divider"></div>
+    <div class="sub">貴社の課題に完全フルカスタマイズ。本質を捉えた組織開発型AI研修</div>
+  </section>
+
+  <!-- お悩みセクション -->
+  <section class="concern-section">
+    <div class="concern-label">こんなお悩みありませんか？</div>
+    <div class="concern-bubbles">
+      <div class="bubble">
+        <span class="bubble-icon">😣</span>
+        組織にAIを浸透させたいのに、<br>なかなか浸透しない
+      </div>
+      <div class="bubble">
+        <span class="bubble-icon">😓</span>
+        現場の業務生産性を上げたいのに、<br>なかなか上がらない
+      </div>
+    </div>
+  </section>
+
+  <!-- 課題セクション -->
+  <section class="issues-section">
+    <div class="issues-title">生成AIが組織に浸透しない「3つの課題」</div>
+    <div class="issues-grid">
+      <div class="issue-card">
+        <div class="num">01</div>
+        <div class="title">組織的課題</div>
+        <div class="bullets">AI浸透のゴールが<br>設定されていない<br>活用しても評価されない</div>
+      </div>
+      <div class="issue-card">
+        <div class="num">02</div>
+        <div class="title">知識的課題</div>
+        <div class="bullets">自分にどんなメリットが<br>あるかわからない<br>生産性へのインパクトが見えない</div>
+      </div>
+      <div class="issue-card">
+        <div class="num">03</div>
+        <div class="title">技術的課題</div>
+        <div class="bullets">どう活用すれば<br>いいかわからない<br>実業務にどう落とし込むかわからない</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 解決宣言 -->
+  <div class="resolve-banner">
+    <span class="service-name">Kawaru Team</span> が解決します！
+  </div>
+
+  <!-- 6キーワード矛盾構造 -->
+  <div class="keywords-section">
+    <div class="keywords-label">▲ こんな制約がある……</div>
+    <div class="keywords-row">
+      <div class="keyword-chip">AIの始め方が<br>わからない</div>
+      <div class="keyword-chip">社内に<br>AIの知見がない</div>
+      <div class="keyword-chip">現場の<br>温度差が大きい</div>
+    </div>
+    <div class="keywords-bridge">
+      <span>でも同時に</span>
+      <span class="arrow">⇕</span>
+    </div>
+    <div class="keywords-row">
+      <div class="keyword-chip want">組織にAIを<br>浸透させたい</div>
+      <div class="keyword-chip want">現場の生産性を<br>上げたい</div>
+      <div class="keyword-chip want">AI推進を<br>加速させたい</div>
+    </div>
+    <div class="keywords-resolve">それを解決できるのが Kawaru Team です。</div>
+    <div class="service-desc-line">貴社の課題に完全フルカスタマイズ。組織開発型AI研修</div>
+  </div>
+
+  <!-- 3強みカード -->
+  <section class="strengths">
+    <div class="strength-card">
+      <div class="num">01</div>
+      <div class="title">完全<br>フルカスタマイズ</div>
+      <div class="desc">貴社の業務・課題・目標に合わせて研修内容を一から設計。型にはまった汎用研修は提供しません。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">02</div>
+      <div class="title">組織開発<br>視点で伴走</div>
+      <div class="desc">ゴール設定・課題の言語化・研修・振り返りまで、AI推進PJT全体を組織の成長として支援。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">03</div>
+      <div class="title">楽しく・楽に<br>学べる設計</div>
+      <div class="desc">興味のない人でも巻き込める実践体験型研修。座学中心ではなく、翌日から使えるスキルを習得。</div>
+    </div>
+  </section>
+
+  <!-- 活用事例 + CTA -->
+  <div class="bottom-section">
+    <section class="usecase-section">
+      <h2>
+        <span class="icon-badge">活用事例</span>
+        貴社の業務に合わせて、研修内容を完全カスタマイズ
+      </h2>
+      <div class="dept-grid">
+        <div class="dept-card">
+          <div class="dept-name">🎯 営業部門向け</div>
+          <div class="dept-items">
+            <span>提案資料作成の効率化</span>
+            <span>顧客情報の整理・分析</span>
+            <span>商談メール下書きの自動生成</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-name">📣 マーケティング部門向け</div>
+          <div class="dept-items">
+            <span>競合リサーチの自動化</span>
+            <span>キャンペーン企画のアイデア出し</span>
+            <span>SNS投稿文の生成</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-name">👥 人事部門向け</div>
+          <div class="dept-items">
+            <span>採用業務の効率化</span>
+            <span>面接メモの自動要約</span>
+            <span>社内FAQ対応の自動化</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-name">💬 CS部門向け</div>
+          <div class="dept-items">
+            <span>問い合わせ対応の自動分類</span>
+            <span>回答文の下書き生成</span>
+            <span>ナレッジベース構築</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="cta-footer">
+      <div class="cta-main">まずは無料相談から</div>
+      <div class="cta-right">
+        <div class="qr-box">QR</div>
+        <div class="cta-logo">
+          <div class="logo-k-dark">K</div>
+          <div class="logo-text-dark">Kawaru Team</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</div>
+</body>
+</html>

@@ -39,7 +39,8 @@
       "WebFetch(domain:developer.nulab.com)",
       "WebFetch(domain:youtu.be)",
       "Skill(update-config)",
-      "Skill(update-config:*)"
+      "Skill(update-config:*)",
+      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v1.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
