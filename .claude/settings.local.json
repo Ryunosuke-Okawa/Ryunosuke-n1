@@ -310,7 +310,8 @@
       "Bash(mkdir -p /tmp/kawaru-lp-gas)",
       "Bash(clasp create *)",
       "Bash(clasp login *)",
-      "Bash(clasp list *)"
+      "Bash(clasp list *)",
+      "Bash(git worktree *)"
     ],
     "additionalDirectories": [
       "/tmp",
