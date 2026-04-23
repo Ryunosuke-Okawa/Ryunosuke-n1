@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Coach フライヤー裏面 v1</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple:        #7C3AED;
+    --purple-dark:   #1E0A3C;
+    --purple-light:  #EDE9FF;
+    --purple-lighter:#F5F2FF;
+    --accent:        #FFD44A;
+    --white:         #ffffff;
+    --gray:          #5A5480;
+    --border:        #C4A4FF;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .flyer {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 8mm 10mm 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flyer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 70mm;
+    background: linear-gradient(180deg, var(--purple-light) 0%, rgba(237,233,255,0) 100%);
+    z-index: 0;
+  }
+  .flyer > * { position: relative; z-index: 1; }
+
+  /* ========== Header ========== */
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5mm;
+    height: 10mm;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 3mm; }
+  .logo-k {
+    width: 10mm; height: 10mm;
+    background: var(--purple-dark);
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 14pt;
+  }
+  .logo-text { font-size: 11pt; font-weight: 800; color: var(--purple-dark); letter-spacing: 0.5px; }
+  .tag {
+    background: var(--purple); color: var(--white);
+    padding: 1.5mm 3.5mm;
+    border-radius: 20mm;
+    font-size: 7.5pt; font-weight: 700;
+  }
+
+  /* ========== Hero ========== */
+  .hero {
+    margin: 0 0 4mm;
+    text-align: center;
+  }
+  .hero .quote { color: var(--purple); font-weight: 900; }
+  .hero h1 {
+    font-size: 19pt; font-weight: 900;
+    color: var(--purple-dark); line-height: 1.3;
+  }
+  .hero .divider {
+    width: 12mm; height: 0.8mm;
+    background: var(--accent);
+    margin: 2mm auto 0; border-radius: 1mm;
+  }
+  .hero .sub {
+    font-size: 8.5pt; color: var(--gray); margin-top: 1.5mm; font-weight: 600;
+  }
+
+  /* ========== Section title ========== */
+  .section-title {
+    display: flex; align-items: center;
+    gap: 2.5mm; margin-bottom: 2.5mm;
+  }
+  .section-number {
+    width: 8mm; height: 8mm;
+    background: var(--purple); color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10pt; font-weight: 900; flex-shrink: 0;
+  }
+  .section-text .main {
+    font-size: 11pt; font-weight: 900;
+    color: var(--purple-dark); line-height: 1.2;
+  }
+  .section-text .sub {
+    font-size: 6.5pt; color: var(--gray);
+    font-weight: 600; margin-top: 0.3mm;
+  }
+  .section-hero .section-number { width: 10mm; height: 10mm; font-size: 12pt; }
+  .section-hero .section-text .main { font-size: 13pt; }
+  .section-hero .section-text .sub { font-size: 7.5pt; }
+
+  /* ========== Section ① ヒーロー（全幅） ========== */
+  .feature-hero { margin-bottom: 4mm; }
+  .hero-visual { position: relative; padding: 0 2mm; }
+  .hero-screen {
+    border: 1.5px solid var(--purple);
+    border-radius: 3mm;
+    box-shadow: 0 4px 16px rgba(124,58,237,0.15);
+    overflow: hidden;
+    background: var(--white);
+    height: 58mm;
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  /* ========== Before/After 比較（Section①の中身） ========== */
+  .compare-box {
+    display: grid;
+    grid-template-columns: 1fr 12mm 1fr;
+    width: 100%;
+  }
+  .compare-side {
+    padding: 3.5mm 4mm;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .compare-side.before {
+    background: #f5f5f5;
+  }
+  .compare-side.after {
+    background: var(--purple);
+  }
+  .compare-label {
+    font-size: 7pt; font-weight: 900; text-align: center;
+    padding-bottom: 2mm; margin-bottom: 2mm;
+    letter-spacing: 0.3px;
+  }
+  .compare-side.before .compare-label {
+    color: #999;
+    border-bottom: 1px solid #ddd;
+  }
+  .compare-side.after .compare-label {
+    color: var(--white);
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+  }
+  .compare-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8mm;
+    flex: 1;
+    justify-content: center;
+  }
+  .compare-item {
+    font-size: 6.5pt; font-weight: 700;
+    display: flex; align-items: flex-start; gap: 1.5mm;
+    line-height: 1.35;
+  }
+  .compare-item .ci-icon {
+    flex-shrink: 0; font-size: 7.5pt; margin-top: 0.1mm;
+  }
+  .compare-side.before .compare-item { color: #aaa; }
+  .compare-side.after .compare-item { color: var(--white); }
+  .compare-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--purple-lighter);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    gap: 2mm;
+  }
+  .vs-badge {
+    width: 9mm; height: 9mm;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8pt; font-weight: 900; color: var(--purple-dark);
+  }
+  .vs-arrow {
+    font-size: 14pt; color: var(--purple); font-weight: 900; line-height: 1;
+  }
+
+  /* ========== Section ②③ 2カラム ========== */
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-bottom: 4mm;
+  }
+
+  /* Section ②：縦タイムライン（3フェーズ） */
+  .timeline-wrap {
+    border: 1.5px solid var(--purple);
+    border-radius: 2mm;
+    background: var(--purple-lighter);
+    height: 38mm;
+    padding: 2.5mm 3mm 2.5mm 5mm;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .timeline-line {
+    position: absolute;
+    left: 8mm; top: 6mm; bottom: 6mm;
+    width: 1.5px;
+    background: linear-gradient(180deg, var(--purple) 0%, var(--purple-dark) 100%);
+  }
+  .tl-item {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    position: relative;
+  }
+  .tl-dot {
+    width: 5mm; height: 5mm;
+    border-radius: 50%;
+    background: var(--purple);
+    border: 1.5px solid var(--white);
+    box-shadow: 0 0 0 1px var(--purple);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7.5pt;
+    flex-shrink: 0;
+    margin-left: -1.3mm;
+    z-index: 1;
+  }
+  .tl-item:last-child .tl-dot {
+    background: var(--purple-dark);
+    box-shadow: 0 0 0 1px var(--purple-dark);
+  }
+  .tl-content { flex: 1; }
+  .tl-phase {
+    font-size: 7pt; font-weight: 900; color: var(--purple-dark);
+    line-height: 1.2;
+  }
+  .tl-item:last-child .tl-phase { color: var(--purple); }
+  .tl-desc {
+    font-size: 4.8pt; color: var(--gray); line-height: 1.3; font-weight: 600;
+  }
+
+  /* Section ③：他のAI顧問との違い 3要素カード */
+  .diff-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+    height: 38mm;
+  }
+  .diff-card {
+    background: var(--purple-lighter);
+    border: 0.5mm solid var(--border);
+    border-left: 1.5mm solid var(--accent);
+    border-radius: 1.5mm;
+    padding: 1.5mm 2.5mm;
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    flex: 1;
+  }
+  .diff-icon { font-size: 14pt; flex-shrink: 0; }
+  .diff-title {
+    font-size: 7pt; font-weight: 900;
+    color: var(--purple-dark); margin-bottom: 0.5mm;
+  }
+  .diff-desc {
+    font-size: 4.8pt; color: var(--gray); line-height: 1.35; font-weight: 600;
+  }
+
+  /* ========== 3強みカード ========== */
+  .strengths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5mm;
+    margin-bottom: 4mm;
+  }
+  .strength-card {
+    background: var(--purple-lighter);
+    border-left: 1mm solid var(--accent);
+    border-radius: 1.5mm;
+    padding: 2.5mm 3mm;
+  }
+  .strength-card .num {
+    font-size: 8pt; font-weight: 900;
+    color: var(--accent); letter-spacing: 1.5px;
+  }
+  .strength-card .title {
+    font-size: 10.5pt; font-weight: 900;
+    color: var(--purple-dark); margin: 0.3mm 0 1mm; line-height: 1.2;
+  }
+  .strength-card .desc {
+    font-size: 6pt; color: var(--gray); line-height: 1.4; font-weight: 600;
+  }
+
+  /* ========== 活用事例 + CTA ========== */
+  .bottom-section {
+    margin-top: auto;
+    margin-left: -10mm; margin-right: -10mm;
+  }
+  .usecases-section {
+    background: var(--purple-dark); color: var(--white);
+    padding: 4mm 10mm;
+  }
+  .usecases-section h2 {
+    font-size: 10pt; font-weight: 900;
+    color: var(--white); margin-bottom: 3mm; text-align: center;
+  }
+  .usecases-section h2 .icon-badge {
+    display: inline-block;
+    background: var(--purple); color: var(--white);
+    font-size: 8.5pt; padding: 1mm 3mm;
+    border-radius: 10mm; margin-right: 2mm;
+  }
+  .dept-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.8mm;
+  }
+  .dept-card {
+    background: var(--white); border-radius: 1.5mm; padding: 1.5mm 2.5mm;
+  }
+  .dept-card-name {
+    font-size: 7pt; font-weight: 900; color: var(--purple);
+    padding-bottom: 1mm; margin-bottom: 1mm;
+    border-bottom: 0.5mm solid var(--purple-light);
+    display: flex; align-items: center; gap: 1mm;
+  }
+  .dept-card-items {
+    font-size: 5.5pt; color: #555; line-height: 1.7; font-weight: 600;
+  }
+  .dept-card-items span { display: block; }
+  .dept-card-items span::before { content: "✓ "; color: var(--purple); font-weight: 900; }
+
+  /* ========== CTA ========== */
+  .cta-footer {
+    background: var(--purple);
+    padding: 3.5mm 10mm;
+    display: flex; justify-content: space-between; align-items: center; gap: 4mm;
+  }
+  .cta-main { color: var(--white); font-size: 14pt; font-weight: 900; line-height: 1.2; }
+  .cta-sub { font-size: 7pt; color: rgba(255,255,255,0.85); font-weight: 600; margin-top: 0.5mm; }
+  .cta-right { display: flex; align-items: center; gap: 3mm; }
+  .qr-box {
+    width: 16mm; height: 16mm;
+    background: var(--white); border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6.5pt; color: #888; flex-shrink: 0; font-weight: 700;
+    text-align: center; line-height: 1.4;
+  }
+  .cta-logo {
+    display: flex; align-items: center; gap: 2mm;
+    background: var(--white); padding: 2mm 3mm; border-radius: 1.8mm;
+  }
+  .cta-logo .logo-k-small {
+    width: 7mm; height: 7mm;
+    background: var(--purple-dark); border-radius: 1.2mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 10pt;
+  }
+  .cta-logo .logo-text-small {
+    font-size: 9pt; font-weight: 800; letter-spacing: 0.5px; color: var(--purple-dark);
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- Header -->
+  <header class="top">
+    <div class="logo-wrap">
+      <div class="logo-k">K</div>
+      <div class="logo-text">Kawaru Coach</div>
+    </div>
+    <div class="tag">AI顧問サービス</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1><span class="quote">専属AI顧問</span>が、<br>戦略から実装まで一緒に動く。</h1>
+    <div class="divider"></div>
+    <div class="sub">月額制・マンツーマンで伴走する、貴社専属のAI顧問。経営・事業・組織を横断した視点で、AI活用を確実に前に進めます。</div>
+  </section>
+
+  <!-- Section ① Before/After 比較 -->
+  <div class="feature-hero section-hero">
+    <div class="section-title">
+      <div class="section-number">1</div>
+      <div class="section-text">
+        <div class="main">提案書で終わらせない。実装まで動く専属顧問。</div>
+        <div class="sub">一般的なコンサルとは違う。Kawaru Coachは、計画を実行に変えることにコミットします。</div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-screen">
+        <div class="compare-box">
+
+          <!-- Before：一般的なコンサル -->
+          <div class="compare-side before">
+            <div class="compare-label">一般的なコンサル</div>
+            <div class="compare-items">
+              <div class="compare-item">
+                <span class="ci-icon">✕</span>提案書を出して終わり、実装は自社任せ
+              </div>
+              <div class="compare-item">
+                <span class="ci-icon">✕</span>担当者が変わるたびに関係をやり直し
+              </div>
+              <div class="compare-item">
+                <span class="ci-icon">✕</span>汎用フレームで課題を型にはめる
+              </div>
+              <div class="compare-item">
+                <span class="ci-icon">✕</span>成果が出ない理由は「御社の実行力不足」
+              </div>
+            </div>
+          </div>
+
+          <!-- 中央 VS -->
+          <div class="compare-center">
+            <div class="vs-badge">VS</div>
+            <div class="vs-arrow">→</div>
+          </div>
+
+          <!-- After：Kawaru Coach -->
+          <div class="compare-side after">
+            <div class="compare-label">Kawaru Coach</div>
+            <div class="compare-items">
+              <div class="compare-item">
+                <span class="ci-icon">✓</span>戦略立案から実装まで専属顧問が伴走
+              </div>
+              <div class="compare-item">
+                <span class="ci-icon">✓</span>継続契約で深い関係と文脈を積み上げる
+              </div>
+              <div class="compare-item">
+                <span class="ci-icon">✓</span>御社の経営・業務・組織を起点に設計
+              </div>
+              <div class="compare-item">
+                <span class="ci-icon">✓</span>成果にコミットする実行パートナー
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section ②③ 2カラム -->
+  <div class="feature-row">
+
+    <!-- Section ② 3フェーズの伴走プロセス（縦タイムライン） -->
+    <div>
+      <div class="section-title">
+        <div class="section-number">2</div>
+        <div class="section-text">
+          <div class="main">3フェーズで、確実にAI活用を前に進める</div>
+          <div class="sub">言語化→実装伴走→定着横展開まで一気通貫</div>
+        </div>
+      </div>
+      <div class="timeline-wrap">
+        <div class="timeline-line"></div>
+        <div class="tl-item">
+          <div class="tl-dot">🔍</div>
+          <div class="tl-content">
+            <div class="tl-phase">フェーズ01 — 言語化・設計</div>
+            <div class="tl-desc">経営課題とAI優先施策を明文化。ロードマップを策定</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">⚙️</div>
+          <div class="tl-content">
+            <div class="tl-phase">フェーズ02 — 実装伴走（月額制）</div>
+            <div class="tl-desc">月2〜4回のMTGで進捗管理・壁打ち・実装支援を継続</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🌐</div>
+          <div class="tl-content">
+            <div class="tl-phase">フェーズ03 — 定着・横展開</div>
+            <div class="tl-desc">成功体験をナレッジ化し、組織全体へAI文化を根付かせる</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section ③ 他のAI顧問との違い -->
+    <div>
+      <div class="section-title">
+        <div class="section-number">3</div>
+        <div class="section-text">
+          <div class="main">他のAI顧問と、ここが違う</div>
+          <div class="sub">Kawaru Coachが選ばれる3つの理由</div>
+        </div>
+      </div>
+      <div class="diff-cards">
+        <div class="diff-card">
+          <div class="diff-icon">🎯</div>
+          <div>
+            <div class="diff-title">提案で終わらず、実行まで並走</div>
+            <div class="diff-desc">計画を出すだけでなく、実装が確実に進むよう専任担当が継続的に関与し続けます。</div>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">🧠</div>
+          <div>
+            <div class="diff-title">経営視点×現場理解の両立</div>
+            <div class="diff-desc">事業・組織・ITを横断した視点で、経営者の意図を現場に落とし込む設計が得意です。</div>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">🔐</div>
+          <div>
+            <div class="diff-title">専属担当が継続伴走</div>
+            <div class="diff-desc">担当変更なし。関係が深まるほど、御社に最適化された提案の精度が上がります。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 3強みカード -->
+  <section class="strengths">
+    <div class="strength-card">
+      <div class="num">01</div>
+      <div class="title">マンツーマン専属</div>
+      <div class="desc">専属のAI顧問が1対1で伴走。御社の文脈を深く理解したパートナーが、毎月隣で動きます。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">02</div>
+      <div class="title">実行まで動く</div>
+      <div class="desc">戦略立案から実装推進まで、AI活用の「言語化→実行→定着」を一気通貫でサポートします。</div>
+    </div>
+    <div class="strength-card">
+      <div class="num">03</div>
+      <div class="title">月額制で継続支援</div>
+      <div class="desc">単発コンサルではなく月額制で継続関与。成果が出るまで、ずっと伴走し続けます。</div>
+    </div>
+  </section>
+
+  <!-- 活用事例 + CTA -->
+  <div class="bottom-section">
+    <section class="usecases-section">
+      <h2><span class="icon-badge">こんな方に選ばれています</span>AI活用の伴走パートナーとして</h2>
+      <div class="dept-grid">
+        <div class="dept-card">
+          <div class="dept-card-name">👔 経営者・CxO層</div>
+          <div class="dept-card-items">
+            <span>AI戦略の言語化・ロードマップ策定</span>
+            <span>経営判断に必要な情報整理</span>
+            <span>組織全体のAI推進体制づくり</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-card-name">📊 事業部長・部門責任者</div>
+          <div class="dept-card-items">
+            <span>部門別AI活用計画の立案</span>
+            <span>業務課題へのAI実装サポート</span>
+            <span>チームへの横展開・定着支援</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-card-name">🚀 スタートアップ創業者</div>
+          <div class="dept-card-items">
+            <span>プロダクト開発へのAI活用設計</span>
+            <span>少人数チームでの効率化戦略</span>
+            <span>競合優位性につながるAI施策</span>
+          </div>
+        </div>
+        <div class="dept-card">
+          <div class="dept-card-name">🏢 AI推進担当者</div>
+          <div class="dept-card-items">
+            <span>社内AI推進の壁打ち相手</span>
+            <span>経営層への報告資料設計</span>
+            <span>外部知見の取り込みと内製化</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="cta-footer">
+      <div>
+        <div class="cta-main">まず顧問の話を聞いてみる</div>
+        <div class="cta-sub">30分で、貴社のAI活用の現状と次の一手を整理します</div>
+      </div>
+      <div class="cta-right">
+        <div class="qr-box">QR<br>CODE</div>
+        <div class="cta-logo">
+          <div class="logo-k-small">K</div>
+          <div class="logo-text-small">Kawaru Coach</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</div>
+</body>
+</html>
