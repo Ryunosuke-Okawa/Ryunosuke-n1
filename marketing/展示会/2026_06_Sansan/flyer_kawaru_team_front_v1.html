@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team フライヤー表面 v1</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange:       #FF6600;
+    --orange-mid:   #E85500;
+    --orange-dark:  #0F3057;
+    --white:        #ffffff;
+    --yellow:       #FFD44A;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .flyer {
+    width: 210mm;
+    height: 297mm;
+    background: linear-gradient(160deg, #FF6600 0%, #FF4400 40%, #CC2200 100%);
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    padding: 10mm 12mm;
+    overflow: hidden;
+  }
+
+  /* 背景テクスチャ的な装飾 */
+  .flyer::before {
+    content: "";
+    position: absolute;
+    top: -30mm; right: -20mm;
+    width: 100mm; height: 100mm;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    z-index: 0;
+  }
+  .flyer::after {
+    content: "";
+    position: absolute;
+    bottom: -20mm; left: -15mm;
+    width: 80mm; height: 80mm;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    z-index: 0;
+  }
+  .flyer > * { position: relative; z-index: 1; }
+
+  /* ========== Header ========== */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    margin-bottom: auto;
+  }
+  .logo-k {
+    width: 11mm; height: 11mm;
+    background: var(--white);
+    border-radius: 2mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange); font-weight: 900; font-size: 15pt;
+  }
+  .logo-text {
+    font-size: 13pt;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .tag {
+    margin-left: auto;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: var(--white);
+    padding: 1.5mm 3.5mm;
+    border-radius: 20mm;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* ========== Main copy ========== */
+  .main-copy {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8mm 0;
+  }
+
+  .eyebrow {
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--yellow);
+    letter-spacing: 2px;
+    margin-bottom: 4mm;
+    text-transform: uppercase;
+  }
+
+  .catch-main {
+    font-size: 26pt;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    margin-bottom: 5mm;
+  }
+  .catch-main .deco {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--orange-dark);
+    padding: 0 1.5mm;
+    border-radius: 1mm;
+    font-size: 24pt;
+  }
+  .catch-main .em {
+    border-bottom: 2px solid var(--yellow);
+  }
+
+  .catch-sub {
+    font-size: 11pt;
+    font-weight: 800;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+    margin-bottom: 6mm;
+  }
+
+  .service-desc {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 2mm;
+    padding: 2.5mm 4mm;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  /* ========== Footer ========== */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 6mm;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+  .company {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
+  }
+  .company .co-name {
+    font-size: 9pt;
+    font-weight: 800;
+    color: var(--white);
+  }
+  .lead-to-back {
+    font-size: 9pt;
+    font-weight: 800;
+    color: var(--yellow);
+    display: flex;
+    align-items: center;
+    gap: 1.5mm;
+  }
+  .lead-to-back .arrow {
+    font-size: 12pt;
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-k">K</div>
+    <div class="logo-text">Kawaru Team</div>
+    <div class="tag">AI Research Program</div>
+  </div>
+
+  <!-- Main copy -->
+  <div class="main-copy">
+    <div class="eyebrow">AI Research &amp; Training</div>
+
+    <!-- キャッチコピー（案A-1） -->
+    <h1 class="catch-main">
+      <span class="deco">「AIはそのうちやる」</span><br>
+      ——その<span class="em">"そのうち"</span>は、<br>
+      いつですか？
+    </h1>
+
+    <!-- 案A-2 候補（コメントアウト）:
+    <h1 class="catch-main">
+      AI時代に<span class="em">「様子見」</span>という<br>
+      選択肢は、もうありません。
+    </h1>
+    -->
+
+    <!-- 案B-1 候補:
+    <h1 class="catch-main">
+      御社の社員、AIを<span class="em">「知っている」</span>で<br>
+      止まっていませんか？
+    </h1>
+    -->
+
+    <p class="catch-sub">
+      AIを「知っている」と「使える」の差が、<br>
+      そのまま組織の競争力の差になる。
+    </p>
+
+    <div class="service-desc">
+      貴社の業務・課題に完全フルカスタマイズ。<br>
+      本質を捉えた<strong>組織開発型AI研修</strong>で、現場が変わる。
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="company">
+      <div class="co-name">株式会社エヌイチ</div>
+      <div>Kawaru事業部</div>
+    </div>
+    <div class="lead-to-back">
+      気になる方は裏面へ <span class="arrow">▼</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

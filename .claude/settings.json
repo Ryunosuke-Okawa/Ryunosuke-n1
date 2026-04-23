@@ -40,7 +40,9 @@
       "WebFetch(domain:youtu.be)",
       "Skill(update-config)",
       "Skill(update-config:*)",
-      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v1.html)"
+      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v1.html)",
+      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v1.html)",
+      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v2.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
