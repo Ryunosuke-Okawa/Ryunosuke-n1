@@ -44,6 +44,10 @@
             --term-blue:   #82ACDE;
             --term-yellow: #E0B55F;
 
+            /* LINE brand */
+            --line-green:      #06C755;
+            --line-green-dark: #05A948;
+
             --radius-sm: 10px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -290,6 +294,41 @@
             border-color: var(--ink-900);
             transform: translateY(-2px);
         }
+        .btn--line {
+            background: var(--line-green);
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(6,199,85,.25);
+        }
+        .btn--line:hover {
+            background: var(--line-green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px rgba(6,199,85,.32);
+        }
+        .btn--outline-line {
+            background: #fff;
+            color: var(--line-green-dark);
+            border: 1px solid var(--line-green);
+        }
+        .btn--outline-line:hover {
+            background: var(--line-green);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .btn svg.icon-lead { width: 16px; height: 16px; margin-right: 2px; }
+
+        .hero__tertiary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--ink-500);
+            text-decoration: none;
+            margin-top: 4px;
+            transition: color .2s ease;
+        }
+        .hero__tertiary:hover { color: var(--coral-700); }
+        .hero__tertiary svg { width: 14px; height: 14px; transition: transform .2s ease; }
+        .hero__tertiary:hover svg { transform: translateY(2px); }
 
         /* ---------------- Terminal mock ---------------- */
         .terminal {
@@ -822,13 +861,92 @@
             color: var(--coral-300);
         }
         .cta .eyebrow::before { background: var(--coral-400); box-shadow: 0 0 0 3px rgba(217,119,87,.3); }
-        .cta .btn--primary {
+        .cta__note { color: rgba(255,255,255,.5); font-size: 13px; }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 860px;
+            margin: 4px auto 0;
+        }
+        .contact-card {
+            position: relative;
+            background: rgba(255,255,255,.04);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform .25s ease, border-color .25s ease, background .25s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255,255,255,.07);
+            border-color: rgba(255,255,255,.2);
+        }
+        .contact-card__icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            display: grid; place-items: center;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .contact-card--timerex .contact-card__icon {
+            background: linear-gradient(135deg, var(--coral-500), var(--coral-700));
+            box-shadow: var(--shadow-coral);
+        }
+        .contact-card--line .contact-card__icon {
+            background: var(--line-green);
+            box-shadow: 0 10px 24px rgba(6,199,85,.3);
+        }
+        .contact-card__icon svg { width: 22px; height: 22px; }
+        .contact-card__label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.55);
+        }
+        .contact-card h3 {
+            color: #fff;
+            font-size: 19px;
+            font-weight: 800;
+            line-height: 1.45;
+        }
+        .contact-card p {
+            color: rgba(255,255,255,.72);
+            font-size: 14px;
+            line-height: 1.85;
+            flex-grow: 1;
+        }
+        .contact-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+        .contact-card--timerex .btn {
             background: #fff;
             color: var(--coral-800);
-            box-shadow: 0 20px 40px rgba(0,0,0,.3);
         }
-        .cta .btn--primary:hover { background: var(--coral-100); color: var(--coral-800); }
-        .cta__note { color: rgba(255,255,255,.5); font-size: 13px; }
+        .contact-card--timerex .btn:hover {
+            background: var(--coral-100);
+            color: var(--coral-800);
+        }
+        .contact-card--line .btn {
+            background: var(--line-green);
+            color: #fff;
+        }
+        .contact-card--line .btn:hover {
+            background: var(--line-green-dark);
+            color: #fff;
+            box-shadow: 0 18px 40px rgba(6,199,85,.32);
+        }
 
         /* ---------------- Footer ---------------- */
         .footer {
@@ -879,7 +997,7 @@
             .hero__inner { grid-template-columns: 1fr; gap: 48px; }
             .terminal { transform: none; }
             .terminal__float { right: 12px; bottom: -16px; }
-            .challenges__grid, .programs__grid { grid-template-columns: 1fr; }
+            .challenges__grid, .programs__grid, .contact-cards { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
             .hero__cta { flex-direction: column; align-items: stretch; }
@@ -936,15 +1054,21 @@
                         AI駆動の働き方を組織の当たり前へ。
                     </p>
                     <div class="hero__cta reveal">
-                        <a class="btn btn--primary" href="#contact">
-                            無料相談・資料請求
+                        <a class="btn btn--primary" href="https://timerex.net/s/r.okawa_54e9_ded1/a9ae1912" target="_blank" rel="noopener">
+                            <svg class="icon-lead" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                            無料相談を予約する
                             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </a>
-                        <a class="btn btn--ghost" href="#program">
-                            支援内容を見る
+                        <!-- TODO: LINE公式アカウントのURLが確定したら href を差し替え -->
+                        <a class="btn btn--outline-line" href="#" data-line-placeholder="true" target="_blank" rel="noopener">
+                            <svg class="icon-lead" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5c0 4.14-4.03 7.5-9 7.5-.9 0-1.77-.11-2.59-.31L5 21l1.28-3.6C4.86 16.03 4 13.88 4 11.5 4 7.36 8.03 4 13 4s8 3.36 8 7.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                            LINEで質問する
                         </a>
                     </div>
-                    <span class="hero__note reveal">ご相談は無料／しつこい営業はいたしません</span>
+                    <a class="hero__tertiary reveal" href="#program">
+                        まずは支援内容を見る
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
                 </div>
 
                 <div class="hero__visual reveal">
@@ -1236,16 +1360,41 @@
         <div class="wrap">
             <div class="cta__inner">
                 <span class="eyebrow reveal">Contact</span>
-                <h2 class="reveal">まずは、話を聞いてみませんか。</h2>
-                <p class="reveal">貴社の状況に合わせた最適な進め方を、無料でご提案します。<br>以下のフォームから、お気軽にお問い合わせください。</p>
-                <div class="hero__cta reveal" style="margin-top: 8px;">
-                    <!-- TODO: GoogleフォームのURLが確定したら href を差し替え -->
-                    <a class="btn btn--primary" href="#" data-form-placeholder="true" target="_blank" rel="noopener">
-                        お問い合わせフォームへ
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
+                <h2 class="reveal">2つの方法で、<br>お気軽にご相談ください。</h2>
+                <p class="reveal">じっくり話したい方も、気軽に質問したい方も。<br>ご自身の温度感に合わせて、お選びいただけます。</p>
+
+                <div class="contact-cards reveal">
+
+                    <article class="contact-card contact-card--timerex">
+                        <div class="contact-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </div>
+                        <span class="contact-card__label">Book a call</span>
+                        <h3>じっくり相談したい方へ<br>無料相談を予約</h3>
+                        <p>30分のオンライン打ち合わせで、貴社の状況をお伺いし、最適なプランをご提案します。日程表からお好きな時間をお選びください。</p>
+                        <a class="btn" href="https://timerex.net/s/r.okawa_54e9_ded1/a9ae1912" target="_blank" rel="noopener">
+                            日程を予約する
+                            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </article>
+
+                    <article class="contact-card contact-card--line">
+                        <div class="contact-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5c0 4.14-4.03 7.5-9 7.5-.9 0-1.77-.11-2.59-.31L5 21l1.28-3.6C4.86 16.03 4 13.88 4 11.5 4 7.36 8.03 4 13 4s8 3.36 8 7.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                        </div>
+                        <span class="contact-card__label">Chat on LINE</span>
+                        <h3>気軽に質問したい方へ<br>LINEで相談</h3>
+                        <p>公式LINEから、チャットで直接ご質問いただけます。「こういう研修できる？」「費用感だけ知りたい」など、軽いご相談にどうぞ。</p>
+                        <!-- TODO: LINE公式アカウントのURLが確定したら href を差し替え -->
+                        <a class="btn" href="#" data-line-placeholder="true" target="_blank" rel="noopener">
+                            LINEで相談する
+                            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </article>
+
                 </div>
-                <span class="cta__note reveal">1〜2営業日以内にご返信いたします</span>
+
+                <span class="cta__note reveal">ご相談は無料です／しつこい営業はいたしません</span>
             </div>
         </div>
     </section>
