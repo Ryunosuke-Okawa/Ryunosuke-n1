@@ -315,8 +315,8 @@
         }
         .problem p { margin-top: 10px; font-size: 14px; line-height: 1.8; }
 
-        /* Values */
-        .values {
+        /* Programs */
+        .programs {
             background: linear-gradient(180deg, var(--ink-50) 0%, #fff 100%);
         }
         .section-head {
@@ -329,59 +329,143 @@
         }
         .section-head p { font-size: 16px; line-height: 1.9; }
 
-        .values__grid {
+        .programs__grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
         }
-        .value-card {
+        .program-card {
             background: #fff;
             border: 1px solid var(--ink-100);
             border-radius: var(--radius-lg);
-            padding: 36px 28px;
+            padding: 40px 36px;
             position: relative;
             overflow: hidden;
-            transition: transform .25s ease, box-shadow .25s ease;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
-        .value-card::before {
+        .program-card::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(31,111,235,.06), transparent 40%);
+            background: linear-gradient(180deg, rgba(31,111,235,.05), transparent 45%);
             opacity: 0;
             transition: opacity .3s ease;
+            pointer-events: none;
         }
-        .value-card:hover {
+        .program-card:hover {
             transform: translateY(-6px);
             box-shadow: var(--shadow-lg);
+            border-color: var(--brand-100);
         }
-        .value-card:hover::before { opacity: 1; }
-        .value-card__icon {
+        .program-card:hover::before { opacity: 1; }
+        .program-card__head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .program-card__icon {
             width: 48px; height: 48px;
             border-radius: 12px;
             background: linear-gradient(135deg, var(--brand-500), var(--cyan-500));
             display: grid;
             place-items: center;
             color: #fff;
-            margin-bottom: 20px;
+            flex-shrink: 0;
             box-shadow: 0 10px 24px rgba(31,111,235,.28);
         }
-        .value-card__icon svg { width: 22px; height: 22px; }
-        .value-card h3 {
-            font-size: 19px;
-            font-weight: 700;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-        .value-card p { font-size: 14.5px; line-height: 1.9; }
-        .value-card__no {
-            position: absolute;
-            top: 24px; right: 24px;
+        .program-card__icon svg { width: 22px; height: 22px; }
+        .program-card__label {
             font-size: 12px;
-            font-weight: 600;
-            color: var(--ink-300);
-            letter-spacing: 0.1em;
+            font-weight: 700;
+            color: var(--brand-500);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
         }
+        .program-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.4;
+            color: var(--ink-900);
+            margin: 0;
+        }
+        .program-card__lead {
+            font-size: 15px;
+            line-height: 1.9;
+            color: var(--ink-500);
+        }
+        .program-card__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--ink-100);
+        }
+        .program-card__list li {
+            display: grid;
+            grid-template-columns: 18px 1fr;
+            gap: 10px;
+            align-items: start;
+            font-size: 14px;
+            color: var(--ink-700);
+            line-height: 1.75;
+            padding-top: 10px;
+        }
+        .program-card__list li::before {
+            content: "";
+            width: 16px; height: 16px;
+            margin-top: 4px;
+            border-radius: 999px;
+            background:
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'><path d='M4 8.5l2.5 2.5L12 5.5' stroke='%231F6FEB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/14px no-repeat,
+                var(--brand-50);
+        }
+
+        .combo {
+            margin-top: 16px;
+            background: #fff;
+            border: 1px dashed var(--brand-300);
+            border-radius: var(--radius-md);
+            padding: 22px 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .combo__label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand-500);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .combo__label::before {
+            content: "＋";
+            width: 22px; height: 22px;
+            display: grid; place-items: center;
+            border-radius: 999px;
+            background: var(--brand-50);
+            color: var(--brand-500);
+            font-weight: 800;
+            font-size: 13px;
+        }
+        .combo__text {
+            flex: 1;
+            min-width: 240px;
+            font-size: 14.5px;
+            line-height: 1.8;
+            color: var(--ink-700);
+        }
+        .combo__text strong { color: var(--ink-900); font-weight: 700; }
 
         /* Flow */
         .flow { background: #fff; }
@@ -574,8 +658,9 @@
 
         /* Responsive */
         @media (max-width: 880px) {
-            .problems, .values__grid { grid-template-columns: 1fr; }
+            .problems, .programs__grid { grid-template-columns: 1fr; }
             .flow__list::before { left: 31px; }
+            .program-card { padding: 32px 26px; }
         }
         @media (max-width: 560px) {
             .hero__cta { flex-direction: column; align-items: stretch; }
@@ -668,41 +753,63 @@
         </div>
     </section>
 
-    <section class="values" id="program">
+    <section class="programs" id="program">
         <div class="wrap">
             <div class="section-head">
-                <span class="eyebrow reveal">Our Approach</span>
-                <h2 class="reveal">研修だけでは終わらない、<br>伴走型の支援。</h2>
+                <span class="eyebrow reveal">Programs</span>
+                <h2 class="reveal">2つのプログラムで、<br>Claude Codeを組織の力に変える。</h2>
                 <p class="reveal">
-                    Claude Codeの使い方を教えるだけではありません。<br>
-                    導入戦略の設計・人材育成・運用定着を、ひとつながりのコンサルティングとしてご提供します。
+                    「まずは使えるようにする」のか、「経営の武器として組織に実装していく」のか。<br>
+                    目的に合わせて、研修とコンサルティングを単独でも、両方を組み合わせても選べます。
                 </p>
             </div>
-            <div class="values__grid">
-                <article class="value-card reveal">
-                    <span class="value-card__no">01</span>
-                    <div class="value-card__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2"/></svg>
+            <div class="programs__grid">
+                <article class="program-card reveal">
+                    <div class="program-card__head">
+                        <div class="program-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 12l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div>
+                            <div class="program-card__label">Training</div>
+                            <h3>Claude Code 研修</h3>
+                        </div>
                     </div>
-                    <h3>導入戦略の設計・顧問支援</h3>
-                    <p>「どこから手をつけるか」「どこまで内製化するか」を一緒に描き、経営層との目線合わせから現場の推進体制まで、伴走型の顧問として支援します。</p>
+                    <p class="program-card__lead">
+                        Claude Codeを現場で使いこなせる状態を、短期集中で作ります。役割と習熟度に合わせてカリキュラムをカスタマイズし、貴社の業務・コードベースを題材にした実践的な研修を提供します。
+                    </p>
+                    <ul class="program-card__list">
+                        <li>対象者別のカスタマイズカリキュラム（エンジニア／非エンジニア）</li>
+                        <li>貴社の題材を用いたハンズオン中心の進行</li>
+                        <li>集合・オンライン・ハイブリッドの各形式に対応</li>
+                        <li>半日ワークショップ〜複数回シリーズまで設計可能</li>
+                    </ul>
                 </article>
-                <article class="value-card reveal">
-                    <span class="value-card__no">02</span>
-                    <div class="value-card__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 12l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+
+                <article class="program-card reveal">
+                    <div class="program-card__head">
+                        <div class="program-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div>
+                            <div class="program-card__label">Consulting</div>
+                            <h3>Claude Code コンサルティング</h3>
+                        </div>
                     </div>
-                    <h3>役割別のカスタマイズ研修</h3>
-                    <p>エンジニアから非エンジニアまで、役割と習熟度に合わせたカリキュラムを設計。貴社のコードベース・業務を題材にした、翌日から使える実践的な研修を提供します。</p>
+                    <p class="program-card__lead">
+                        導入戦略の設計から現場運用までを継続的に支援する、伴走型のコンサルティング／顧問サービスです。経営層との目線合わせから推進体制づくり、ガイドライン整備まで、組織に根づかせるまで一緒に走ります。
+                    </p>
+                    <ul class="program-card__list">
+                        <li>AI活用戦略・ロードマップの設計</li>
+                        <li>推進体制・運用ルール・社内ガイドラインの整備</li>
+                        <li>定例ミーティングでの継続伴走（月次／隔週）</li>
+                        <li>経営層向けブリーフィング・社内啓発の支援</li>
+                    </ul>
                 </article>
-                <article class="value-card reveal">
-                    <span class="value-card__no">03</span>
-                    <div class="value-card__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 20v-6M12 14l-4 4m4-4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/></svg>
-                    </div>
-                    <h3>運用定着までのフォローアップ</h3>
-                    <p>ガイドライン整備、社内コミュニティの立ち上げ、定例レビューまで。学びが組織の文化に変わるまで、継続的に伴走します。</p>
-                </article>
+            </div>
+
+            <div class="combo reveal">
+                <span class="combo__label">Plus&nbsp;Option</span>
+                <p class="combo__text"><strong>研修 × コンサルティング、両方をセットで。</strong>短期の研修で全体のリテラシーを引き上げつつ、コンサルティングで戦略と運用を並走させる組み合わせも可能です。</p>
             </div>
         </div>
     </section>
@@ -754,6 +861,12 @@
                 <h2 class="reveal">よくあるご質問</h2>
             </div>
             <div class="faq__list">
+                <details class="faq-item reveal">
+                    <summary>研修とコンサルティング、どちらを選べばよいですか？</summary>
+                    <div class="faq-item__body">
+                        まずはリテラシーを引き上げたい段階であれば研修、すでに使い始めているが組織定着・戦略設計まで踏み込みたい段階であればコンサルティングがおすすめです。お話を伺ったうえで、どちらが合うか、あるいは両方を組み合わせるかをご提案します。
+                    </div>
+                </details>
                 <details class="faq-item reveal">
                     <summary>非エンジニアも対象にできますか？</summary>
                     <div class="faq-item__body">
