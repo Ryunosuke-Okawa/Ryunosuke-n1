@@ -55,7 +55,16 @@ claudecode.n1-inc.co.jp/
 3. XServerファイルマネージャで `claudecode.n1-inc.co.jp/` に上書きアップロード
 4. ブラウザで Cmd+Shift+R ハード再読み込み
 
+## CTA設計（2026-04-24 更新）
+GoogleフォームはやめてCTAを2パスに変更：
+1. **TimeRex予約**：即商談に持ち込む導線
+   - URL：https://timerex.net/s/r.okawa_54e9_ded1/a9ae1912
+   - 配置：ヒーロー Primaryボタン、#contact 左カード
+2. **LINE流入**：気軽な質問→チャット対応
+   - URL：https://liff.line.me/2007309014-D4N3WV34/landing?follow=%40172ilyxr&lp=WevSoA&liff_id=2007309014-D4N3WV34
+   - 配置：ヒーロー Secondaryボタン（LINE緑アウトライン）、#contact 右カード（LINE緑）
+
 ## 残タスク
-- [ ] Googleフォーム完成後、CTAボタンの `href="#"`（`data-form-placeholder="true"` の箇所）をフォームURLに差し替え
 - [ ] （任意）ターミナルのダミー題材を実研修題材に差し替え
 - [ ] （任意）`default_page.png` の削除（XServer初期ファイル、表示には影響なし）
+- [ ] （運用）TimeRex予約数・LINE追加数のトラッキング方法を検討
