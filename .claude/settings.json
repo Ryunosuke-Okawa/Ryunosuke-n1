@@ -56,7 +56,8 @@
       "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v1.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v1.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v5.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_back_mockup_v11.html)",
       "Bash(awk -F': ' '{print $2}')",
       "Bash(open -a \"Claude\")",
-      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v3.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v5.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_front_v1.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v1.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v1.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v1.html)"
+      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v3.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v5.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_front_v1.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v1.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v1.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v1.html)",
+      "WebFetch(domain:claudecode.digirise.ai)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
