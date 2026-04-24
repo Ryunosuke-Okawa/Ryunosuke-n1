@@ -60,11 +60,14 @@
       "WebFetch(domain:claudecode.digirise.ai)",
       "mcp__google-workspace__createForm",
       "mcp__google-workspace__addFormQuestion",
-      "Bash(open /Users/kyouyuu/claude/marketing/claudecode_training_lp.html)"
+      "Bash(open /Users/kyouyuu/claude/marketing/claudecode_training_lp.html)",
+      "Bash(mkdir -p /Users/kyouyuu/claude/marketing/assets)",
+      "Bash(cp /Users/kyouyuu/Downloads/yokologo.png /Users/kyouyuu/claude/marketing/assets/n1-logo.png)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
-      "/Users/kyouyuu/claude/marketing"
+      "/Users/kyouyuu/claude/marketing",
+      "/Users/kyouyuu/Downloads"
     ]
   }
 }
