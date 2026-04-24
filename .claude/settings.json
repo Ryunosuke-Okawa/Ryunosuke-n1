@@ -62,7 +62,8 @@
       "mcp__google-workspace__addFormQuestion",
       "Bash(open /Users/kyouyuu/claude/marketing/claudecode_training_lp.html)",
       "Bash(mkdir -p /Users/kyouyuu/claude/marketing/assets)",
-      "Bash(cp /Users/kyouyuu/Downloads/yokologo.png /Users/kyouyuu/claude/marketing/assets/n1-logo.png)"
+      "Bash(cp /Users/kyouyuu/Downloads/yokologo.png /Users/kyouyuu/claude/marketing/assets/n1-logo.png)",
+      "Bash(zip -r /Users/kyouyuu/Desktop/claudecode_lp_deploy.zip index.html assets -x \"*.DS_Store\")"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
