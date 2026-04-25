@@ -499,25 +499,31 @@
             box-shadow: var(--shadow-lg);
             border-color: var(--coral-100);
         }
-        .challenge__visual {
-            background: linear-gradient(135deg, var(--cream-deep) 0%, var(--cream) 100%);
-            padding: 22px 22px 20px;
-            border-bottom: 1px solid var(--ink-100);
-            height: 290px;
+        .challenge__body {
+            padding: 28px 28px 22px;
             display: flex;
-            align-items: stretch;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .challenge__visual {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-deep) 100%);
+            padding: 26px 22px;
+            border-top: 1px solid var(--ink-100);
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
             transition: background .3s ease;
+            margin-top: auto;
         }
         .challenge:hover .challenge__visual {
             background: linear-gradient(135deg, var(--coral-50) 0%, var(--cream) 100%);
         }
-        .challenge__body {
-            padding: 22px 26px 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            flex-grow: 1;
+        .challenge__visual svg {
+            width: 100%;
+            height: 100%;
+            max-height: 200px;
         }
         .challenge__tag {
             display: inline-flex;
@@ -1670,133 +1676,161 @@
             <div class="challenges__grid">
                 <!-- Card 01: 設定・インストールで詰まる -->
                 <article class="challenge reveal">
-                    <div class="challenge__visual" aria-hidden="true">
-                        <div class="mock">
-                            <div class="mock__head">
-                                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8l2.8-2.8M17 7l2.8-2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                                <strong>初期セットアップ進捗</strong>
-                            </div>
-                            <div class="mock__body">
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">Node.js のインストール</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">詰まり中</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">ターミナルの操作</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">分からない</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">APIキーの取得・設定</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">未着手</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">初回起動</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">未達</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">最初のコマンド入力</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">未達</span>
-                                </div>
-                            </div>
-                            <div class="mock__footer">
-                                <span>セットアップ完了</span>
-                                <span class="mock__footer-value mock__footer-value--alert">0 / 5</span>
-                            </div>
-                        </div>
-                    </div>
                     <div class="challenge__body">
                         <span class="challenge__tag">SETUP STUCK</span>
                         <span class="challenge__no">CASE 01</span>
                         <h3>「そもそも、インストールや設定で詰まる」</h3>
                         <p>「ターミナルって？Node.jsって？」「公式手順を見ても、最初の30分で挫折」——使い始める前の壁が、思った以上に高い。</p>
                     </div>
+                    <div class="challenge__visual" aria-hidden="true">
+                        <svg viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Floating tech tags -->
+                            <g transform="translate(8, 18)">
+                                <rect width="62" height="22" rx="11" fill="#fff" stroke="#D6CFC5" stroke-width="1.5"/>
+                                <text x="31" y="15" text-anchor="middle" font-size="10" font-weight="600" fill="#6B625A" font-family="Inter">Node.js</text>
+                            </g>
+                            <g transform="translate(208, 24)">
+                                <rect width="64" height="22" rx="11" fill="#fff" stroke="#D6CFC5" stroke-width="1.5"/>
+                                <text x="32" y="15" text-anchor="middle" font-size="10" font-weight="600" fill="#6B625A" font-family="Inter">ターミナル</text>
+                            </g>
+                            <g transform="translate(8, 162)">
+                                <rect width="58" height="22" rx="11" fill="#fff" stroke="#D6CFC5" stroke-width="1.5"/>
+                                <text x="29" y="15" text-anchor="middle" font-size="10" font-weight="600" fill="#6B625A" font-family="Inter">APIキー</text>
+                            </g>
+                            <g transform="translate(214, 156)">
+                                <rect width="60" height="22" rx="11" fill="#fff" stroke="#D6CFC5" stroke-width="1.5"/>
+                                <text x="30" y="15" text-anchor="middle" font-size="10" font-weight="600" fill="#6B625A" font-family="Inter">npm i ...</text>
+                            </g>
+
+                            <!-- Big padlock in center -->
+                            <g transform="translate(98, 50)">
+                                <!-- Lock arch -->
+                                <path d="M16 50 V32 a26 26 0 0 1 52 0 V50" stroke="#D97757" stroke-width="6" fill="none" stroke-linecap="round"/>
+                                <!-- Lock body -->
+                                <rect x="0" y="48" width="84" height="78" rx="10" fill="#FBEAE1" stroke="#D97757" stroke-width="3"/>
+                                <!-- Keyhole -->
+                                <circle cx="42" cy="80" r="7" fill="#D97757"/>
+                                <rect x="38" y="80" width="8" height="20" rx="2" fill="#D97757"/>
+                            </g>
+
+                            <!-- Question marks -->
+                            <text x="64" y="100" font-size="22" font-weight="800" fill="#D97757" font-family="Inter">?</text>
+                            <text x="208" y="110" font-size="26" font-weight="800" fill="#D97757" font-family="Inter">?</text>
+                        </svg>
+                    </div>
                 </article>
 
                 <!-- Card 02: 専門用語の壁 -->
                 <article class="challenge reveal">
-                    <div class="challenge__visual" aria-hidden="true">
-                        <div class="mock">
-                            <div class="mock__head">
-                                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M9 9c.5-1.5 2-3 3-3s2.5 1.5 3 3-1 2.5-3 3v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg>
-                                <strong>用語・概念の理解度</strong>
-                            </div>
-                            <div class="mock__body">
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">CLI / コマンドライン</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">分からない</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">npm / Node.js</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">分からない</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">git / リポジトリ</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">分からない</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">MCP / フック</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">初耳</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">API / トークン</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">概念が曖昧</span>
-                                </div>
-                            </div>
-                            <div class="mock__footer">
-                                <span>学習コスト</span>
-                                <span class="mock-metric__badge mock-metric__badge--risk">HIGH</span>
-                            </div>
-                        </div>
-                    </div>
                     <div class="challenge__body">
                         <span class="challenge__tag">JARGON OVERLOAD</span>
                         <span class="challenge__no">CASE 02</span>
                         <h3>「専門用語ばかりで、何が何だか分からない」</h3>
                         <p>「公式ドキュメントは前提知識ありき」「YouTubeも分かる人向け」——一つの用語を調べるとさらに3つの新しい用語が出てくる、終わらない辞書引き状態。</p>
                     </div>
+                    <div class="challenge__visual" aria-hidden="true">
+                        <svg viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Confused face in center -->
+                            <g transform="translate(110, 60)">
+                                <circle cx="30" cy="30" r="36" fill="#FBEAE1" stroke="#D97757" stroke-width="3"/>
+                                <!-- Eyes (dotted, confused look) -->
+                                <line x1="18" y1="22" x2="22" y2="26" stroke="#D97757" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="22" y1="22" x2="18" y2="26" stroke="#D97757" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="38" y1="22" x2="42" y2="26" stroke="#D97757" stroke-width="2.5" stroke-linecap="round"/>
+                                <line x1="42" y1="22" x2="38" y2="26" stroke="#D97757" stroke-width="2.5" stroke-linecap="round"/>
+                                <!-- Wavy mouth (confused) -->
+                                <path d="M18 42 Q24 38 30 42 T 42 42" stroke="#D97757" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Floating jargon tags around the face -->
+                            <g transform="translate(8, 22)">
+                                <rect width="46" height="22" rx="11" fill="#D97757"/>
+                                <text x="23" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="Inter">CLI</text>
+                            </g>
+                            <g transform="translate(72, 12) rotate(-6)">
+                                <rect width="50" height="22" rx="11" fill="#fff" stroke="#D97757" stroke-width="1.5"/>
+                                <text x="25" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#D97757" font-family="Inter">npm</text>
+                            </g>
+                            <g transform="translate(218, 18) rotate(8)">
+                                <rect width="50" height="22" rx="11" fill="#D97757"/>
+                                <text x="25" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="Inter">MCP</text>
+                            </g>
+                            <g transform="translate(2, 88) rotate(-8)">
+                                <rect width="50" height="22" rx="11" fill="#fff" stroke="#D97757" stroke-width="1.5"/>
+                                <text x="25" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#D97757" font-family="Inter">git</text>
+                            </g>
+                            <g transform="translate(228, 92) rotate(-4)">
+                                <rect width="48" height="22" rx="11" fill="#fff" stroke="#D97757" stroke-width="1.5"/>
+                                <text x="24" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#D97757" font-family="Inter">API</text>
+                            </g>
+                            <g transform="translate(20, 156)">
+                                <rect width="62" height="22" rx="11" fill="#D97757"/>
+                                <text x="31" y="15" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff" font-family="Inter">トークン</text>
+                            </g>
+                            <g transform="translate(96, 168) rotate(-2)">
+                                <rect width="58" height="22" rx="11" fill="#fff" stroke="#D97757" stroke-width="1.5"/>
+                                <text x="29" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#D97757" font-family="Inter">フック</text>
+                            </g>
+                            <g transform="translate(190, 162) rotate(6)">
+                                <rect width="68" height="22" rx="11" fill="#fff" stroke="#D97757" stroke-width="1.5"/>
+                                <text x="34" y="15" text-anchor="middle" font-size="9.5" font-weight="700" fill="#D97757" font-family="Inter">リポジトリ</text>
+                            </g>
+
+                            <!-- Question marks scattered -->
+                            <text x="62" y="50" font-size="18" font-weight="800" fill="#D97757" font-family="Inter">?</text>
+                            <text x="220" y="60" font-size="22" font-weight="800" fill="#D97757" font-family="Inter">?</text>
+                            <text x="68" y="142" font-size="16" font-weight="800" fill="#D97757" font-family="Inter">?</text>
+                        </svg>
+                    </div>
                 </article>
 
                 <!-- Card 03: 業務適用がわからない -->
                 <article class="challenge reveal">
-                    <div class="challenge__visual" aria-hidden="true">
-                        <div class="mock">
-                            <div class="mock__head">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9l-6-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v6h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                <strong>業務への落とし込み状況</strong>
-                            </div>
-                            <div class="mock__body">
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">自分の業務の棚卸し</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">未着手</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">AI活用シナリオの言語化</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">未着手</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">試したユースケース</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">0 件</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">業務に定着した活用法</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">0 件</span>
-                                </div>
-                                <div class="mock-metric__row">
-                                    <span class="mock-metric__label">部門への共有</span>
-                                    <span class="mock-metric__value mock-metric__value--missing">未着手</span>
-                                </div>
-                            </div>
-                            <div class="mock__footer">
-                                <span>業務インパクト</span>
-                                <span class="mock-metric__badge mock-metric__badge--risk">不明</span>
-                            </div>
-                        </div>
-                    </div>
                     <div class="challenge__body">
                         <span class="challenge__tag">NO USE-CASE</span>
                         <span class="challenge__no">CASE 03</span>
-                        <h3>「動かせるけど、自分の仕事で何に使えばいいか分からない」</h3>
+                        <h3>「動かせるけど、仕事で何に使えばいいか分からない」</h3>
                         <p>「事例が技術寄りで、自分の業務に当てはめられない」「ハロー・ワールドはできた、でもその先がない」——「使える」と「業務で活きる」の間に、深い溝がある。</p>
+                    </div>
+                    <div class="challenge__visual" aria-hidden="true">
+                        <svg viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- LEFT: Claude Code terminal icon -->
+                            <g transform="translate(20, 56)">
+                                <rect x="0" y="0" width="92" height="68" rx="8" fill="#FBEAE1" stroke="#D97757" stroke-width="2.5"/>
+                                <rect x="0" y="0" width="92" height="16" rx="8" fill="#D97757"/>
+                                <rect x="0" y="8" width="92" height="8" fill="#D97757"/>
+                                <circle cx="9" cy="8" r="2" fill="#fff"/>
+                                <circle cx="17" cy="8" r="2" fill="#fff"/>
+                                <circle cx="25" cy="8" r="2" fill="#fff"/>
+                                <text x="10" y="36" font-size="10" font-weight="700" fill="#D97757" font-family="JetBrains Mono">&gt; claude</text>
+                                <text x="10" y="52" font-size="9" fill="#A89F94" font-family="JetBrains Mono">● ready</text>
+                                <rect x="60" y="46" width="6" height="10" fill="#D97757"/>
+                            </g>
+                            <text x="66" y="148" text-anchor="middle" font-size="10.5" font-weight="700" fill="#3D362E" font-family="Inter">Claude Code</text>
+                            <text x="66" y="164" text-anchor="middle" font-size="9" fill="#8A8078" font-family="Inter">(動かせる)</text>
+
+                            <!-- MIDDLE: gap with question marks -->
+                            <line x1="115" y1="92" x2="172" y2="92" stroke="#A89F94" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+                            <text x="142" y="78" text-anchor="middle" font-size="32" font-weight="800" fill="#D97757" font-family="Inter">?</text>
+                            <text x="142" y="118" text-anchor="middle" font-size="10" font-weight="600" fill="#9F4A30" font-family="Inter" letter-spacing="0.5">深い溝</text>
+
+                            <!-- RIGHT: Business/work icon (briefcase + document) -->
+                            <g transform="translate(178, 50)">
+                                <!-- Document -->
+                                <rect x="0" y="14" width="58" height="60" rx="4" fill="#fff" stroke="#6B625A" stroke-width="2.5"/>
+                                <line x1="10" y1="28" x2="48" y2="28" stroke="#6B625A" stroke-width="1.5" stroke-linecap="round"/>
+                                <line x1="10" y1="38" x2="48" y2="38" stroke="#6B625A" stroke-width="1.5" stroke-linecap="round"/>
+                                <line x1="10" y1="48" x2="40" y2="48" stroke="#6B625A" stroke-width="1.5" stroke-linecap="round"/>
+                                <line x1="10" y1="58" x2="44" y2="58" stroke="#6B625A" stroke-width="1.5" stroke-linecap="round"/>
+                                <!-- Folded corner -->
+                                <path d="M48 14 L58 14 L58 24 Z" fill="#EBE6DD" stroke="#6B625A" stroke-width="1.5"/>
+                                <!-- Briefcase below -->
+                                <rect x="6" y="80" width="46" height="32" rx="3" fill="#EBE6DD" stroke="#6B625A" stroke-width="2"/>
+                                <rect x="22" y="74" width="14" height="6" rx="2" fill="none" stroke="#6B625A" stroke-width="2"/>
+                            </g>
+                            <text x="207" y="148" text-anchor="middle" font-size="10.5" font-weight="700" fill="#3D362E" font-family="Inter">業務</text>
+                            <text x="207" y="164" text-anchor="middle" font-size="9" fill="#8A8078" font-family="Inter">(活きていない)</text>
+                        </svg>
                     </div>
                 </article>
             </div>
