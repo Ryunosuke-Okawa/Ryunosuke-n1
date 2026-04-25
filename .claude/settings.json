@@ -65,7 +65,8 @@
       "Bash(cp /Users/kyouyuu/Downloads/yokologo.png /Users/kyouyuu/claude/marketing/assets/n1-logo.png)",
       "Bash(zip -r /Users/kyouyuu/Desktop/claudecode_lp_deploy.zip index.html assets -x \"*.DS_Store\")",
       "WebFetch(domain:claudecode.n1-inc.co.jp)",
-      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v4.html)"
+      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v4.html)",
+      "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v4.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v5.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
