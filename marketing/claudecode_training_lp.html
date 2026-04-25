@@ -873,6 +873,103 @@
         }
         .combo__text strong { color: var(--ink-900); font-weight: 700; }
 
+        /* ---------------- Advisory Card (Consulting visual) ---------------- */
+        .advisory {
+            background: linear-gradient(135deg, #fff 0%, var(--cream) 100%);
+            border: 1px solid var(--ink-100);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            font-size: 12.5px;
+            line-height: 1.7;
+            box-shadow: var(--shadow-sm);
+        }
+        .advisory__head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed var(--ink-100);
+        }
+        .advisory__avatar {
+            width: 38px; height: 38px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--coral-500), var(--coral-700));
+            color: #fff;
+            display: grid; place-items: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-coral);
+        }
+        .advisory__avatar svg { width: 18px; height: 18px; }
+        .advisory__name {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--ink-900);
+            line-height: 1.3;
+        }
+        .advisory__role {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            color: var(--coral-700);
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+        .advisory__msg p {
+            margin: 0 0 8px;
+            color: var(--ink-700);
+            font-size: 12.5px;
+        }
+        .advisory__msg p strong {
+            color: var(--ink-900);
+            font-weight: 700;
+        }
+        .advisory__phases {
+            margin: 8px 0;
+            display: grid;
+            gap: 6px;
+        }
+        .advisory__phase {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 10px;
+            padding: 8px 10px;
+            background: rgba(255,255,255,.6);
+            border-radius: 6px;
+            border: 1px solid var(--ink-100);
+            font-size: 11.5px;
+        }
+        .advisory__phase-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--coral-700);
+            letter-spacing: 0.1em;
+            line-height: 1.5;
+            padding-top: 1px;
+        }
+        .advisory__phase-text {
+            color: var(--ink-700);
+            line-height: 1.55;
+        }
+        .advisory__followup {
+            margin-top: 10px;
+            color: var(--coral-700) !important;
+            font-size: 11.5px !important;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .advisory__followup::before {
+            content: "";
+            width: 6px; height: 6px;
+            border-radius: 999px;
+            background: var(--coral-500);
+            box-shadow: 0 0 0 3px rgba(217,119,87,.18);
+            flex-shrink: 0;
+        }
+
         /* ---------------- Process ---------------- */
         .flow { background: #fff; }
         .flow__list {
@@ -893,14 +990,29 @@
         .step {
             position: relative;
             display: grid;
-            grid-template-columns: 64px 1fr;
+            grid-template-columns: 64px 1fr 56px;
             gap: 24px;
-            align-items: start;
+            align-items: center;
             padding: 22px 26px;
             background: #fff;
             border: 1px solid var(--ink-100);
             border-radius: var(--radius-md);
             transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+        .step__icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: var(--cream);
+            color: var(--coral-700);
+            display: grid; place-items: center;
+            transition: background .25s ease, color .25s ease, transform .25s ease;
+            flex-shrink: 0;
+        }
+        .step__icon svg { width: 22px; height: 22px; }
+        .step:hover .step__icon {
+            background: var(--coral-500);
+            color: #fff;
+            transform: rotate(-4deg) scale(1.05);
         }
         .step:hover {
             transform: translateX(6px);
@@ -1160,8 +1272,9 @@
             .hero__cta .btn { justify-content: center; }
             .header__cta { padding: 9px 14px; font-size: 12.5px; }
             .brand__sub, .brand__divider { display: none; }
-            .step { grid-template-columns: 44px 1fr; gap: 16px; padding: 18px; }
+            .step { grid-template-columns: 44px 1fr; gap: 14px; padding: 18px; }
             .step__num { width: 40px; height: 40px; border-radius: 12px; font-size: 13px; }
+            .step__icon { display: none; }
             .flow__list::before { left: 27px; }
             .program { padding: 32px 24px; }
             .terminal__body { padding: 18px 16px 20px; font-size: 12.5px; }
@@ -1353,6 +1466,20 @@
                     <span class="program__chip">完全フルカスタマイズ × ハンズオン中心</span>
                     <p class="program__lead">市販の研修パッケージは、ひとつも持ちません。貴社の業務・コードベース・組織の現状をゼロから題材に組み込み、3つのステップで「翌日から使える」状態を作ります。</p>
 
+                    <div class="program__visual" aria-hidden="true">
+                        <div class="terminal__chrome">
+                            <span class="terminal__dots"><span></span><span></span><span></span></span>
+                            <span class="terminal__title"><strong>Workshop</strong> ~ hands-on</span>
+                        </div>
+                        <div class="terminal__body">
+                            <span class="term-line"><span class="term-prompt">&gt;</span><span class="term-user">このAPIのテストを書いてみよう</span></span>
+                            <span class="term-line"><span class="term-coral">●</span> <span class="term-muted">既存のテストパターンを確認…</span></span>
+                            <span class="term-line"><span class="term-green">✓</span> <span class="term-muted">5パターンの境界値を検出</span></span>
+                            <span class="term-line"><span class="term-green">✓</span> <span class="term-muted">jest形式で4件のテストを作成</span></span>
+                            <span class="term-line"><span class="term-coral">●</span> <span class="term-user">src/api.test.ts に保存しました</span><span class="term-cursor"></span></span>
+                        </div>
+                    </div>
+
                     <div class="program__steps">
                         <div class="program-step">
                             <span class="program-step__num">STEP 01</span>
@@ -1398,6 +1525,36 @@
                     </div>
                     <span class="program__chip">マンツーマン × 経営・事業・組織の3視点</span>
                     <p class="program__lead">4,000名超のAIプロ人材から、貴社専属の顧問をアサイン。技術支援にとどまらず、経営・事業・組織の3視点で、戦略の言語化から実装・定着まで一気通貫で伴走します。</p>
+
+                    <div class="advisory" aria-hidden="true">
+                        <div class="advisory__head">
+                            <div class="advisory__avatar">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z" stroke="currentColor" stroke-width="2"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                            </div>
+                            <div>
+                                <span class="advisory__name">専属AI顧問</span>
+                                <span class="advisory__role">YOUR COACH</span>
+                            </div>
+                        </div>
+                        <div class="advisory__msg">
+                            <p><strong>3ヶ月のロードマップをご提案します。</strong></p>
+                            <div class="advisory__phases">
+                                <div class="advisory__phase">
+                                    <span class="advisory__phase-label">M 1</span>
+                                    <span class="advisory__phase-text">開発5名で試験導入・評価指標を設計</span>
+                                </div>
+                                <div class="advisory__phase">
+                                    <span class="advisory__phase-label">M 2-3</span>
+                                    <span class="advisory__phase-text">30名規模に展開・ガイドライン整備</span>
+                                </div>
+                                <div class="advisory__phase">
+                                    <span class="advisory__phase-label">M 4+</span>
+                                    <span class="advisory__phase-text">全社横展開・社内AI推進担当の育成</span>
+                                </div>
+                            </div>
+                            <p class="advisory__followup">経営会議向けの資料も準備します</p>
+                        </div>
+                    </div>
 
                     <div class="program__steps">
                         <div class="program-step">
@@ -1512,12 +1669,18 @@
                         <h3>お問い合わせ・ヒアリング</h3>
                         <p>現在の開発体制、AI活用の状況、目指したい状態をお伺いします。オンラインで60分ほどのお打ち合わせです。</p>
                     </div>
+                    <div class="step__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M21 12a8 8 0 01-9.5 7.9L7 22l1.3-4A8 8 0 1121 12z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="13" cy="12" r="1" fill="currentColor"/><circle cx="17" cy="12" r="1" fill="currentColor"/></svg>
+                    </div>
                 </li>
                 <li class="step reveal">
                     <div class="step__num">02</div>
                     <div class="step__body">
                         <h3>プログラム設計・ご提案</h3>
                         <p>対象者・規模・業務内容に合わせて、研修／コンサルティング／セットの最適なプランをご提案します。</p>
+                    </div>
+                    <div class="step__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9l-6-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v6h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                 </li>
                 <li class="step reveal">
@@ -1526,12 +1689,18 @@
                         <h3>実施</h3>
                         <p>集合型・オンライン・ハイブリッド、いずれの形式にも対応。貴社のコードベースや業務題材を用いた実践的な内容で進めます。</p>
                     </div>
+                    <div class="step__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M2 20h20M9 12l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
                 </li>
                 <li class="step reveal">
                     <div class="step__num">04</div>
                     <div class="step__body">
                         <h3>定着支援・フォローアップ</h3>
                         <p>運用ルールの整備、社内Q&Aの設計、定例レビューなど、研修後の定着を支える取り組みまで伴走します。</p>
+                    </div>
+                    <div class="step__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 0114.5-7M21 12a9 9 0 01-14.5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 3v5h-5M7 21v-5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                 </li>
             </ol>
