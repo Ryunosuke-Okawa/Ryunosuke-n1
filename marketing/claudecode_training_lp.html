@@ -528,6 +528,140 @@
         }
         .challenge p { font-size: 13.5px; line-height: 1.85; }
 
+        /* ---------------- Why エヌイチ ---------------- */
+        .why { background: var(--cream-deep); }
+        .why__head {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 56px;
+            display: grid;
+            gap: 18px;
+            justify-items: center;
+        }
+        .why__quote {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            font-size: clamp(15px, 1.7vw, 17px);
+            line-height: 1.85;
+            color: var(--ink-700);
+            font-weight: 500;
+            position: relative;
+            padding: 8px 18px;
+            border-left: 3px solid var(--coral-500);
+            background: rgba(255,255,255,.5);
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+        }
+        .why__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .why-card {
+            position: relative;
+            padding: 32px 30px;
+            background: #fff;
+            border: 1px solid var(--ink-100);
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+            overflow: hidden;
+        }
+        .why-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(180deg, var(--coral-500), var(--coral-300));
+            transform-origin: top;
+            transform: scaleY(0);
+            transition: transform .35s cubic-bezier(.2,.7,.2,1);
+        }
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--coral-100);
+        }
+        .why-card:hover::before { transform: scaleY(1); }
+        .why-card__head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .why-card__icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--coral-500), var(--coral-700));
+            color: #fff;
+            display: grid;
+            place-items: center;
+            box-shadow: var(--shadow-coral);
+            flex-shrink: 0;
+        }
+        .why-card__icon svg { width: 20px; height: 20px; }
+        .why-card__num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--coral-700);
+            letter-spacing: 0.14em;
+        }
+        .why-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--ink-900);
+            line-height: 1.5;
+        }
+        .why-card p {
+            font-size: 13.5px;
+            line-height: 1.85;
+            color: var(--ink-500);
+        }
+
+        /* ---------------- Program Steps ---------------- */
+        .program__steps {
+            display: grid;
+            gap: 12px;
+        }
+        .program-step {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--cream);
+            border-radius: 10px;
+            border: 1px solid var(--ink-100);
+            transition: border-color .2s ease, background .2s ease;
+        }
+        .program:hover .program-step {
+            border-color: var(--coral-100);
+        }
+        .program-step__num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: var(--coral-700);
+            letter-spacing: 0.14em;
+            line-height: 1.45;
+            padding-top: 3px;
+        }
+        .program-step__body h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink-900);
+            line-height: 1.5;
+            margin: 0 0 4px;
+        }
+        .program-step__body p {
+            font-size: 12.5px;
+            color: var(--ink-500);
+            line-height: 1.75;
+            margin: 0;
+        }
+
         /* ---------------- Programs ---------------- */
         .programs { background: linear-gradient(180deg, var(--cream) 0%, #fff 100%); }
         .section-head {
@@ -997,7 +1131,7 @@
             .hero__inner { grid-template-columns: 1fr; gap: 48px; }
             .terminal { transform: none; }
             .terminal__float { right: 12px; bottom: -16px; }
-            .challenges__grid, .programs__grid, .contact-cards { grid-template-columns: 1fr; }
+            .challenges__grid, .programs__grid, .contact-cards, .why__grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 560px) {
             .hero__cta { flex-direction: column; align-items: stretch; }
@@ -1137,7 +1271,7 @@
             <div class="challenges__head">
                 <span class="eyebrow reveal">Challenges</span>
                 <h2 class="reveal">導入しただけでは、<br>現場は動かない。</h2>
-                <p class="reveal">Claude Codeは強力ですが、ツールを配っただけで成果が出るわけではありません。多くの企業が、次のような壁にぶつかっています。</p>
+                <p class="reveal">Claude Codeは強力ですが、ツールを配っただけで成果が出るわけではありません。多くの企業が、次のような課題にぶつかっています。</p>
             </div>
             <div class="challenges__grid">
                 <article class="challenge reveal">
@@ -1168,14 +1302,72 @@
         </div>
     </section>
 
+    <!-- ============ WHY エヌイチ ============ -->
+    <section class="why">
+        <div class="wrap">
+            <div class="why__head">
+                <span class="eyebrow reveal">Why エヌイチ</span>
+                <h2 class="reveal">なぜ、エヌイチなのか。</h2>
+                <p class="why__quote reveal">Claude Codeを扱える会社は、他にもある。<br>でも、組織に根づかせられる会社は、限られる。</p>
+            </div>
+            <div class="why__grid">
+                <article class="why-card reveal">
+                    <div class="why-card__head">
+                        <div class="why-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-6 8 6v12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 21v-7h6v7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                        </div>
+                        <span class="why-card__num">01</span>
+                    </div>
+                    <h3>パッケージは、ひとつもない</h3>
+                    <p>業種・組織規模・ITリテラシーが同じ会社は存在しない。だから貴社専用にゼロから設計します。</p>
+                </article>
+
+                <article class="why-card reveal">
+                    <div class="why-card__head">
+                        <div class="why-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="9" r="2" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 17c0-2.2-1.8-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </div>
+                        <span class="why-card__num">02</span>
+                    </div>
+                    <h3>4,000名超のAIプロ人材プール</h3>
+                    <p>AIスクール事業で育成した4,000名超のAIコンサルタントから、貴社の業種・課題に最適な担当者をアサインします。</p>
+                </article>
+
+                <article class="why-card reveal">
+                    <div class="why-card__head">
+                        <div class="why-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                        <span class="why-card__num">03</span>
+                    </div>
+                    <h3>経営・事業・組織の3視点で支援</h3>
+                    <p>Claude Codeの使い方を教えるだけではない。事業目標と組織への実装視点まで踏み込んで伴走します。</p>
+                </article>
+
+                <article class="why-card reveal">
+                    <div class="why-card__head">
+                        <div class="why-card__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h6l3 8 6-16 3 8h0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <span class="why-card__num">04</span>
+                    </div>
+                    <h3>「終わったら終わり」にしない</h3>
+                    <p>研修もコンサルティングも、組織にAI活用が文化として根づくまで、内製化を継続的に支援します。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- ============ PROGRAMS ============ -->
     <section class="programs" id="program">
         <div class="wrap">
             <div class="section-head">
                 <span class="eyebrow reveal">Programs</span>
-                <h2 class="reveal">2つのプログラムで、<br>Claude Codeを組織の力に。</h2>
+                <h2 class="reveal">2つのアプローチ。<br>どちらでも、組み合わせても。</h2>
                 <p class="reveal">
-                    まずリテラシーを引き上げる<strong style="color:var(--ink-900); font-weight:700;">研修</strong>と、<br>戦略から運用定着まで伴走する<strong style="color:var(--ink-900); font-weight:700;">コンサルティング</strong>。<br>単独でも、組み合わせても選べます。
+                    「現場のリテラシーを引き上げたい」なら <strong style="color:var(--ink-900); font-weight:700;">Training</strong>。<br>
+                    「戦略から運用定着まで伴走してほしい」なら <strong style="color:var(--ink-900); font-weight:700;">Consulting</strong>。<br>
+                    ご状況に合わせて、どちらか選んでも、組み合わせても選べます。
                 </p>
             </div>
 
@@ -1192,26 +1384,36 @@
                             <h3>Claude Code 研修</h3>
                         </div>
                     </div>
-                    <p class="program__lead">Claude Codeを現場で使いこなせる状態を、短期集中で作ります。役割と習熟度に合わせてカリキュラムをカスタマイズし、貴社の業務・コードを題材にしたハンズオン中心の研修を提供します。</p>
+                    <p class="program__lead">Claude Codeを現場で使いこなせる状態を、短期集中で作ります。貴社の業務とコードベースに完全カスタマイズした研修を、3つのステップで提供します。</p>
 
-                    <div class="program__visual" aria-hidden="true">
-                        <div class="terminal__chrome">
-                            <span class="terminal__dots"><span></span><span></span><span></span></span>
-                            <span class="terminal__title"><strong>Workshop</strong> ~ hands-on.ts</span>
+                    <div class="program__steps">
+                        <div class="program-step">
+                            <span class="program-step__num">STEP 01</span>
+                            <div class="program-step__body">
+                                <h4>Claude Codeを「自分ごと」で理解する</h4>
+                                <p>業務題材に置き換えた講義設計。「ツールの使い方」ではなく「あなたの仕事がどう変わるか」にフォーカス。</p>
+                            </div>
                         </div>
-                        <div class="terminal__body">
-                            <span class="term-line"><span class="term-prompt">&gt;</span><span class="term-user">この関数にバリデーションを追加</span></span>
-                            <span class="term-line"><span class="term-coral">●</span> <span class="term-muted">差分を提示します…</span></span>
-                            <span class="term-line"><span class="term-green">+</span> <span class="term-muted">if (!order.items.length) throw new Error(...)</span></span>
-                            <span class="term-line"><span class="term-green">+</span> <span class="term-muted">if (order.total &lt; 0) throw new Error(...)</span></span>
-                            <span class="term-line"><span class="term-muted">適用しますか? [y/N]</span><span class="term-cursor"></span></span>
+                        <div class="program-step">
+                            <span class="program-step__num">STEP 02</span>
+                            <div class="program-step__body">
+                                <h4>実務でClaude Codeを動かす</h4>
+                                <p>貴社のコードベース・業務題材を使ったハンズオン。半日で「翌日から使える」状態に。</p>
+                            </div>
+                        </div>
+                        <div class="program-step">
+                            <span class="program-step__num">STEP 03</span>
+                            <div class="program-step__body">
+                                <h4>チームで成果を出すワークショップ</h4>
+                                <p>実務課題をテーマに、参加者がClaude Codeで成果物を作る。研修終了時点で「使える成果物」が残る完全実践型。</p>
+                            </div>
                         </div>
                     </div>
 
                     <ul class="program__list">
-                        <li>対象者別のカスタマイズカリキュラム（エンジニア／非エンジニア）</li>
-                        <li>貴社の題材を用いた、翌日から使えるハンズオン</li>
-                        <li>集合・オンライン・ハイブリッドの各形式に対応</li>
+                        <li>パッケージプランは持たない（フルカスタマイズ）</li>
+                        <li>エンジニア／非エンジニア別のカリキュラム対応</li>
+                        <li>集合・オンライン・ハイブリッド対応</li>
                         <li>半日ワークショップ〜複数回シリーズまで設計可能</li>
                     </ul>
                 </article>
@@ -1227,31 +1429,37 @@
                             <h3>Claude Code コンサルティング</h3>
                         </div>
                     </div>
-                    <p class="program__lead">導入戦略の設計から現場運用までを継続的に支援する、伴走型のコンサルティング／顧問サービスです。経営層との目線合わせ、推進体制づくり、ガイドライン整備まで、組織に根づかせるところまで一緒に走ります。</p>
+                    <p class="program__lead">マンツーマンで伴走する、貴社専属のAI顧問サービスです。戦略の言語化から現場への実装、社内への横展開まで、3つのフェーズで一気通貫でサポートします。</p>
 
-                    <div class="program__strategy" aria-hidden="true">
-                        <div class="strategy-row">
-                            <span class="strategy-row__label">PHASE 01</span>
-                            <span class="strategy-row__title">戦略設計・ロードマップ</span>
-                            <span class="strategy-row__meta">Month 1</span>
+                    <div class="program__steps">
+                        <div class="program-step">
+                            <span class="program-step__num">PHASE 01</span>
+                            <div class="program-step__body">
+                                <h4>「何をすべきか」を言語化する</h4>
+                                <p>経営目標・組織体制から、Claude Codeで取り組むべき優先課題を明文化。納得しなければ次に進まない。</p>
+                            </div>
                         </div>
-                        <div class="strategy-row">
-                            <span class="strategy-row__label">PHASE 02</span>
-                            <span class="strategy-row__title">推進体制・ガイドライン</span>
-                            <span class="strategy-row__meta">Month 2-3</span>
+                        <div class="program-step">
+                            <span class="program-step__num">PHASE 02</span>
+                            <div class="program-step__body">
+                                <h4>AI顧問が隣で動き、実装を前に進める</h4>
+                                <p>月2〜4回のMTGでClaude Code導入支援・進捗管理・壁打ちを継続。「計画が止まる」を起こさない体制をつくる。</p>
+                            </div>
                         </div>
-                        <div class="strategy-row">
-                            <span class="strategy-row__label">PHASE 03</span>
-                            <span class="strategy-row__title">運用定着・継続伴走</span>
-                            <span class="strategy-row__meta">Month 4+</span>
+                        <div class="program-step">
+                            <span class="program-step__num">PHASE 03</span>
+                            <div class="program-step__body">
+                                <h4>成功体験を組織全体に広げる</h4>
+                                <p>個別の改善成果を社内の横展開・ナレッジ化・AI人材育成へ。外部依存から脱却し、文化として根づく状態へ。</p>
+                            </div>
                         </div>
                     </div>
 
                     <ul class="program__list">
-                        <li>AI活用戦略・ロードマップの設計</li>
-                        <li>推進体制・運用ルール・社内ガイドラインの整備</li>
-                        <li>定例ミーティングでの継続伴走（月次／隔週）</li>
-                        <li>経営層向けブリーフィング・社内啓発の支援</li>
+                        <li>4,000名超のAIプロ人材から最適な担当をアサイン</li>
+                        <li>経営・事業・組織の3視点で伴走</li>
+                        <li>月次／隔週MTGで継続支援</li>
+                        <li>MTG外でもSlack・メールで相談対応</li>
                     </ul>
                 </article>
 
@@ -1359,8 +1567,8 @@
         <div class="wrap">
             <div class="cta__inner">
                 <span class="eyebrow reveal">Contact</span>
-                <h2 class="reveal">2つの方法で、<br>お気軽にご相談ください。</h2>
-                <p class="reveal">じっくり話したい方も、気軽に質問したい方も。<br>ご自身の温度感に合わせて、お選びいただけます。</p>
+                <h2 class="reveal">ご興味があれば、<br>お気軽にご相談ください。</h2>
+                <p class="reveal">2つのアプローチのどちらが合いそうか、両方を組み合わせるのが良いか。<br>貴社の状況に合わせた進め方を、無料でご提案します。</p>
 
                 <div class="contact-cards reveal">
 
@@ -1411,7 +1619,7 @@
             </div>
         </div>
         <div class="footer__meta">
-            &copy; n1, Inc. All rights reserved.
+            &copy; 株式会社エヌイチ All rights reserved.
         </div>
     </div>
 </footer>
