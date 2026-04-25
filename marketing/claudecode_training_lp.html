@@ -485,34 +485,44 @@
             gap: 18px;
         }
         .challenge {
-            padding: 32px 26px;
+            padding: 0 0 26px;
             border-radius: var(--radius-md);
-            background: var(--cream);
+            background: #fff;
             border: 1px solid var(--ink-100);
-            transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
             display: flex;
             flex-direction: column;
             gap: 14px;
+            overflow: hidden;
         }
         .challenge:hover {
-            transform: translateY(-4px);
-            background: #fff;
+            transform: translateY(-6px);
             box-shadow: var(--shadow-md);
             border-color: var(--coral-100);
         }
-        .challenge__icon {
-            width: 44px; height: 44px;
-            border-radius: 12px;
-            display: grid; place-items: center;
-            background: #fff;
-            border: 1px solid var(--ink-100);
-            color: var(--coral-700);
+        .challenge__visual {
+            background: linear-gradient(135deg, var(--coral-50) 0%, #fff 100%);
+            height: 140px;
+            display: grid;
+            place-items: center;
+            border-bottom: 1px solid var(--coral-100);
+            transition: background .3s ease;
+            padding: 16px;
         }
-        .challenge:hover .challenge__icon {
-            background: var(--coral-50);
-            border-color: var(--coral-100);
+        .challenge:hover .challenge__visual {
+            background: linear-gradient(135deg, var(--coral-100) 0%, var(--cream) 100%);
         }
-        .challenge__icon svg { width: 20px; height: 20px; }
+        .challenge__visual svg {
+            width: 100%;
+            max-width: 230px;
+            height: auto;
+            max-height: 110px;
+        }
+        .challenge__no, .challenge h3, .challenge p {
+            margin-left: 26px;
+            margin-right: 26px;
+        }
+        .challenge__no { margin-top: 4px; }
         .challenge__no {
             font-family: 'JetBrains Mono', monospace;
             font-size: 11.5px;
@@ -1409,25 +1419,115 @@
                 <p class="reveal">Claude Codeは強力ですが、ツールを配っただけで成果が出るわけではありません。多くの企業が、次のような課題にぶつかっています。</p>
             </div>
             <div class="challenges__grid">
+                <!-- Card 01: 属人化 -->
                 <article class="challenge reveal">
-                    <div class="challenge__icon">
-                        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="9" r="2" stroke="currentColor" stroke-width="2"/><path d="M21 17c0-2.2-1.8-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <div class="challenge__visual" aria-hidden="true">
+                        <svg viewBox="0 0 240 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Connection lines (broken/dashed) -->
+                            <line x1="58" y1="55" x2="82" y2="55" stroke="#A89F94" stroke-width="2" stroke-dasharray="3 4"/>
+                            <line x1="98" y1="55" x2="122" y2="55" stroke="#A89F94" stroke-width="2" stroke-dasharray="3 4"/>
+                            <line x1="138" y1="55" x2="162" y2="55" stroke="#A89F94" stroke-width="2" stroke-dasharray="3 4"/>
+                            <line x1="178" y1="55" x2="202" y2="55" stroke="#A89F94" stroke-width="2" stroke-dasharray="3 4"/>
+
+                            <!-- User 1: ACTIVE (coral) -->
+                            <circle cx="40" cy="55" r="18" fill="#FBEAE1" stroke="#D97757" stroke-width="2.5"/>
+                            <circle cx="40" cy="50" r="6" fill="#D97757"/>
+                            <path d="M28 67 c 0-6 6-9 12-9 c 6 0 12 3 12 9" fill="#D97757"/>
+                            <circle cx="55" cy="40" r="5" fill="#D97757"/>
+                            <text x="55" y="44" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Inter">✓</text>
+
+                            <!-- User 2: inactive -->
+                            <circle cx="90" cy="55" r="14" fill="#F5F1EB" stroke="#D6CFC5" stroke-width="2"/>
+                            <circle cx="90" cy="51" r="4.5" fill="#D6CFC5"/>
+                            <path d="M81 62 c 0-4 4-6 9-6 c 5 0 9 2 9 6" fill="#D6CFC5"/>
+
+                            <!-- User 3: inactive -->
+                            <circle cx="130" cy="55" r="14" fill="#F5F1EB" stroke="#D6CFC5" stroke-width="2"/>
+                            <circle cx="130" cy="51" r="4.5" fill="#D6CFC5"/>
+                            <path d="M121 62 c 0-4 4-6 9-6 c 5 0 9 2 9 6" fill="#D6CFC5"/>
+
+                            <!-- User 4: inactive -->
+                            <circle cx="170" cy="55" r="14" fill="#F5F1EB" stroke="#D6CFC5" stroke-width="2"/>
+                            <circle cx="170" cy="51" r="4.5" fill="#D6CFC5"/>
+                            <path d="M161 62 c 0-4 4-6 9-6 c 5 0 9 2 9 6" fill="#D6CFC5"/>
+
+                            <!-- User 5: ACTIVE (coral) -->
+                            <circle cx="210" cy="55" r="18" fill="#FBEAE1" stroke="#D97757" stroke-width="2.5"/>
+                            <circle cx="210" cy="50" r="6" fill="#D97757"/>
+                            <path d="M198 67 c 0-6 6-9 12-9 c 6 0 12 3 12 9" fill="#D97757"/>
+                            <circle cx="225" cy="40" r="5" fill="#D97757"/>
+                            <text x="225" y="44" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Inter">✓</text>
+
+                            <!-- Subtle label -->
+                            <text x="120" y="100" text-anchor="middle" font-size="9" fill="#8A8078" font-family="Inter" letter-spacing="0.8">SILOED USAGE</text>
+                        </svg>
                     </div>
                     <span class="challenge__no">01</span>
                     <h3>一部のエンジニアしか使えず、組織全体の成果に繋がらない</h3>
                     <p>先行者の個人スキルに依存し、チーム・部門横断での標準化が進まない。</p>
                 </article>
+
+                <!-- Card 02: 学習停止 -->
                 <article class="challenge reveal">
-                    <div class="challenge__icon">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M4 7V5a2 2 0 012-2h12a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 9l-4 3 4 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <div class="challenge__visual" aria-hidden="true">
+                        <svg viewBox="0 0 240 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Ground line -->
+                            <line x1="20" y1="92" x2="220" y2="92" stroke="#D6CFC5" stroke-width="1.2" stroke-dasharray="2 4"/>
+
+                            <!-- Starting point flag -->
+                            <line x1="30" y1="80" x2="30" y2="55" stroke="#D97757" stroke-width="2"/>
+                            <path d="M30 55 L46 60 L30 65 Z" fill="#D97757"/>
+
+                            <!-- Learning path going up (solid coral) -->
+                            <path d="M30 80 L66 80 L66 65 L102 65 L102 50 L138 50" stroke="#D97757" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+                            <!-- Step markers -->
+                            <circle cx="30" cy="80" r="5" fill="#D97757"/>
+                            <circle cx="66" cy="65" r="5" fill="#D97757"/>
+                            <circle cx="102" cy="50" r="5" fill="#D97757"/>
+
+                            <!-- Path becomes uncertain (dashed grey) -->
+                            <path d="M138 50 L160 40" stroke="#A89F94" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 4"/>
+
+                            <!-- Question mark balloon -->
+                            <circle cx="190" cy="38" r="22" fill="#FBEAE1" stroke="#D97757" stroke-width="2.5"/>
+                            <text x="190" y="48" text-anchor="middle" font-size="26" font-weight="800" fill="#D97757" font-family="Inter">?</text>
+
+                            <!-- Subtle label -->
+                            <text x="120" y="105" text-anchor="middle" font-size="9" fill="#8A8078" font-family="Inter" letter-spacing="0.8">LEARNING STALLED</text>
+                        </svg>
                     </div>
                     <span class="challenge__no">02</span>
                     <h3>何から学べばいいかわからず、学習が途中で止まってしまう</h3>
                     <p>公式ドキュメントだけでは業務への橋渡しが難しく、最初の一歩が踏み出せない。</p>
                 </article>
+
+                <!-- Card 03: 形骸化 -->
                 <article class="challenge reveal">
-                    <div class="challenge__icon">
-                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
+                    <div class="challenge__visual" aria-hidden="true">
+                        <svg viewBox="0 0 240 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Baseline -->
+                            <line x1="20" y1="92" x2="220" y2="92" stroke="#D6CFC5" stroke-width="1.5"/>
+
+                            <!-- Bars decreasing -->
+                            <rect x="35" y="22" width="22" height="70" rx="3" fill="#D97757"/>
+                            <rect x="65" y="32" width="22" height="60" rx="3" fill="#E28D6E"/>
+                            <rect x="95" y="46" width="22" height="46" rx="3" fill="#EFB29C"/>
+                            <rect x="125" y="62" width="22" height="30" rx="3" fill="#FBEAE1" stroke="#EFB29C" stroke-width="1"/>
+                            <rect x="155" y="78" width="22" height="14" rx="3" fill="#F5F1EB" stroke="#D6CFC5" stroke-width="1"/>
+                            <rect x="185" y="88" width="22" height="4" rx="2" fill="#D6CFC5"/>
+
+                            <!-- Decline arrow -->
+                            <path d="M48 25 Q125 50 198 80" stroke="#9F4A30" stroke-width="2" stroke-dasharray="3 4" fill="none" stroke-linecap="round"/>
+                            <path d="M198 80 L191 76 M198 80 L194 86" stroke="#9F4A30" stroke-width="2" stroke-linecap="round"/>
+
+                            <!-- Time labels -->
+                            <text x="46" y="105" text-anchor="middle" font-size="8" fill="#8A8078" font-family="Inter">M1</text>
+                            <text x="196" y="105" text-anchor="middle" font-size="8" fill="#8A8078" font-family="Inter">M6</text>
+
+                            <!-- Subtle label -->
+                            <text x="120" y="105" text-anchor="middle" font-size="9" font-weight="600" fill="#8A8078" font-family="Inter" letter-spacing="0.8">USAGE FADING</text>
+                        </svg>
                     </div>
                     <span class="challenge__no">03</span>
                     <h3>導入後の運用設計が甘く、使われないまま立ち消えに</h3>
