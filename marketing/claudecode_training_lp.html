@@ -1668,120 +1668,135 @@
                 <p class="reveal">Claude Codeは強力ですが、ツールを配っただけで成果が出るわけではありません。多くの企業が、次のような課題にぶつかっています。</p>
             </div>
             <div class="challenges__grid">
-                <!-- Card 01: 属人化 - チーム利用状況パネル -->
+                <!-- Card 01: 部門間の温度差・PoC止まり -->
                 <article class="challenge reveal">
                     <div class="challenge__visual" aria-hidden="true">
                         <div class="mock">
                             <div class="mock__head">
-                                <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="9" r="2" stroke="currentColor" stroke-width="2"/></svg>
-                                <strong>Team AI Usage</strong>
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M3 21V8l9-5 9 5v13" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 21V12h6v9" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                                <strong>部門別 AI 導入状況</strong>
                             </div>
-                            <div class="mock-team__row">
-                                <span class="mock-team__user"><span class="mock-team__avatar mock-team__avatar--on">T</span>田中（リード）</span>
-                                <span class="mock-team__status mock-team__status--on">ACTIVE</span>
-                            </div>
-                            <div class="mock-team__row">
-                                <span class="mock-team__user"><span class="mock-team__avatar mock-team__avatar--off">S</span>佐藤</span>
-                                <span class="mock-team__status mock-team__status--off">—</span>
-                            </div>
-                            <div class="mock-team__row">
-                                <span class="mock-team__user"><span class="mock-team__avatar mock-team__avatar--off">S</span>鈴木</span>
-                                <span class="mock-team__status mock-team__status--off">—</span>
-                            </div>
-                            <div class="mock-team__row">
-                                <span class="mock-team__user"><span class="mock-team__avatar mock-team__avatar--off">T</span>高橋</span>
-                                <span class="mock-team__status mock-team__status--off">—</span>
-                            </div>
-                            <div class="mock-team__row">
-                                <span class="mock-team__user"><span class="mock-team__avatar mock-team__avatar--on">Y</span>山田</span>
-                                <span class="mock-team__status mock-team__status--on">ACTIVE</span>
+                            <div class="mock__body">
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">開発部</span>
+                                    <span class="mock-metric__badge mock-metric__badge--ok">ADOPTED</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">企画部</span>
+                                    <span class="mock-metric__badge mock-metric__badge--warn">検討中</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">営業部</span>
+                                    <span class="mock-metric__badge mock-metric__badge--warn">未着手</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">経理部</span>
+                                    <span class="mock-metric__badge mock-metric__badge--warn">未着手</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">人事部</span>
+                                    <span class="mock-metric__badge mock-metric__badge--warn">未着手</span>
+                                </div>
                             </div>
                             <div class="mock__footer">
-                                <span>総活用率</span>
-                                <span class="mock__footer-value mock__footer-value--alert">2 / 5 (40%)</span>
+                                <span>全社展開率</span>
+                                <span class="mock__footer-value mock__footer-value--alert">1 / 5 (20%)</span>
                             </div>
                         </div>
                     </div>
                     <div class="challenge__body">
-                        <span class="challenge__tag">SILOED</span>
+                        <span class="challenge__tag">SCALE STUCK</span>
                         <span class="challenge__no">CASE 01</span>
-                        <h3>一部のエンジニアしか使えず、組織全体の成果に繋がらない</h3>
-                        <p>先行者の個人スキルに依存し、チーム・部門横断での標準化が進まない。</p>
+                        <h3>一部の部署だけで止まり、全社展開に進まない</h3>
+                        <p>開発部門だけがAIを使い、他部門への横展開が進まない。経営から見ると「投資が小規模に閉じている」状態に。</p>
                     </div>
                 </article>
 
-                <!-- Card 02: 学習停止 - 進捗ダッシュボード -->
-                <article class="challenge reveal">
-                    <div class="challenge__visual" aria-hidden="true">
-                        <div class="mock">
-                            <div class="mock__head">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 12l8 4 8-4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                                <strong>Claude Code 習熟度</strong>
-                            </div>
-                            <div class="mock-progress__row">
-                                <span class="mock-progress__label">基礎</span>
-                                <div class="mock-progress__bar"><div class="mock-progress__bar-fill mock-progress__bar-fill--high"></div></div>
-                                <span class="mock-progress__pct">75%</span>
-                            </div>
-                            <div class="mock-progress__row">
-                                <span class="mock-progress__label">中級</span>
-                                <div class="mock-progress__bar"><div class="mock-progress__bar-fill mock-progress__bar-fill--mid"></div></div>
-                                <span class="mock-progress__pct">25%</span>
-                            </div>
-                            <div class="mock-progress__row">
-                                <span class="mock-progress__label">応用</span>
-                                <div class="mock-progress__bar"><div class="mock-progress__bar-fill mock-progress__bar-fill--zero"></div></div>
-                                <span class="mock-progress__pct mock-progress__pct--zero">0%</span>
-                            </div>
-                            <div class="mock-progress__row">
-                                <span class="mock-progress__label">実務</span>
-                                <div class="mock-progress__bar"><div class="mock-progress__bar-fill mock-progress__bar-fill--zero"></div></div>
-                                <span class="mock-progress__pct mock-progress__pct--zero">0%</span>
-                            </div>
-                            <div class="mock__footer">
-                                <span>最終アクセス</span>
-                                <span class="mock__footer-value mock__footer-value--alert">23 days ago</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="challenge__body">
-                        <span class="challenge__tag">STALLED</span>
-                        <span class="challenge__no">CASE 02</span>
-                        <h3>何から学べばいいかわからず、学習が途中で止まってしまう</h3>
-                        <p>公式ドキュメントだけでは業務への橋渡しが難しく、最初の一歩が踏み出せない。</p>
-                    </div>
-                </article>
-
-                <!-- Card 03: 形骸化 - 利用率推移 -->
+                <!-- Card 02: ROI/投資対効果が見えない -->
                 <article class="challenge reveal">
                     <div class="challenge__visual" aria-hidden="true">
                         <div class="mock">
                             <div class="mock__head">
                                 <svg viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                <strong>月次アクティブユーザー</strong>
+                                <strong>AI 投資対効果レポート</strong>
                             </div>
-                            <div class="mock-chart__chart">
-                                <div class="mock-chart__bar" style="height: 95%; background: linear-gradient(180deg, var(--coral-500), var(--coral-700));"></div>
-                                <div class="mock-chart__bar" style="height: 78%; background: linear-gradient(180deg, var(--coral-400), var(--coral-500));"></div>
-                                <div class="mock-chart__bar" style="height: 56%; background: var(--coral-400);"></div>
-                                <div class="mock-chart__bar" style="height: 38%; background: var(--coral-300);"></div>
-                                <div class="mock-chart__bar" style="height: 18%; background: var(--coral-100); border: 1px solid var(--coral-300);"></div>
-                                <div class="mock-chart__bar" style="height: 6%; background: var(--ink-100); border: 1px solid var(--ink-200);"></div>
-                            </div>
-                            <div class="mock-chart__labels">
-                                <span>M1</span><span>M2</span><span>M3</span><span>M4</span><span>M5</span><span>M6</span>
+                            <div class="mock__body">
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">投資額（半期）</span>
+                                    <span class="mock-metric__value mock-metric__value--ok">¥6.8M</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">業務時間削減</span>
+                                    <span class="mock-metric__value mock-metric__value--missing">未計測</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">売上貢献</span>
+                                    <span class="mock-metric__value mock-metric__value--missing">不明</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">コスト削減</span>
+                                    <span class="mock-metric__value mock-metric__value--missing">未計測</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">ナレッジ蓄積</span>
+                                    <span class="mock-metric__value mock-metric__value--missing">未計測</span>
+                                </div>
                             </div>
                             <div class="mock__footer">
-                                <span>直近30日</span>
-                                <span class="mock__footer-value mock__footer-value--alert">↓ -92%</span>
+                                <span>ROI</span>
+                                <span class="mock__footer-value mock__footer-value--alert">算出不能</span>
                             </div>
                         </div>
                     </div>
                     <div class="challenge__body">
-                        <span class="challenge__tag">FADING</span>
+                        <span class="challenge__tag">ROI UNCLEAR</span>
+                        <span class="challenge__no">CASE 02</span>
+                        <h3>投資対効果が説明できず、追加投資の判断が止まる</h3>
+                        <p>導入はしたが、業務時間削減や売上貢献が数字で見えない。経営会議で説明できず、次の打ち手も決まらない。</p>
+                    </div>
+                </article>
+
+                <!-- Card 03: 推進担当依存・継続性リスク -->
+                <article class="challenge reveal">
+                    <div class="challenge__visual" aria-hidden="true">
+                        <div class="mock">
+                            <div class="mock__head">
+                                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                <strong>AI 推進体制ヘルスチェック</strong>
+                            </div>
+                            <div class="mock__body">
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">推進責任者</span>
+                                    <span class="mock-metric__value mock-metric__value--ok">田中（兼務）</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">バックアップ人材</span>
+                                    <span class="mock-metric__value mock-metric__value--missing">なし</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">運用ガイドライン</span>
+                                    <span class="mock-metric__value mock-metric__value--missing">未整備</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">ナレッジドキュメント</span>
+                                    <span class="mock-metric__value mock-metric__value--missing">未整備</span>
+                                </div>
+                                <div class="mock-metric__row">
+                                    <span class="mock-metric__label">社内プロセス化</span>
+                                    <span class="mock-metric__value mock-metric__value--missing">個人ベース</span>
+                                </div>
+                            </div>
+                            <div class="mock__footer">
+                                <span>継続性リスク</span>
+                                <span class="mock-metric__badge mock-metric__badge--risk">HIGH</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="challenge__body">
+                        <span class="challenge__tag">KEY-PERSON RISK</span>
                         <span class="challenge__no">CASE 03</span>
-                        <h3>導入後の運用設計が甘く、使われないまま立ち消えに</h3>
-                        <p>ガイドラインやレビュー体制が整わず、利用が形骸化してしまう。</p>
+                        <h3>推進担当者の個人努力に依存し、辞めたら止まる</h3>
+                        <p>AI活用ノウハウが特定の担当者に集中。退職や異動で組織から消える「キーパーソンリスク」を抱えたまま走り続けている。</p>
                     </div>
                 </article>
             </div>
