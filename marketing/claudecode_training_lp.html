@@ -743,6 +743,28 @@
             line-height: 1.95;
             color: var(--ink-500);
         }
+        .program__chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: var(--coral-50);
+            border: 1px solid var(--coral-100);
+            color: var(--coral-700);
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            width: fit-content;
+            margin-top: -4px;
+        }
+        .program__chip::before {
+            content: "";
+            width: 6px; height: 6px;
+            border-radius: 999px;
+            background: var(--coral-500);
+            box-shadow: 0 0 0 3px rgba(217,119,87,.18);
+        }
         .program__visual {
             border-radius: var(--radius-md);
             overflow: hidden;
@@ -1184,8 +1206,8 @@
                     </h1>
                     <p class="hero__lead reveal">
                         ツールを導入するだけでは、現場は変わらない。<br>
-                        <strong style="color:var(--ink-800); font-weight:600;">研修</strong>と<strong style="color:var(--ink-800); font-weight:600;">コンサルティング</strong>、2つのプログラムで<br>
-                        AI駆動の働き方を組織の当たり前へ。
+                        <strong style="color:var(--ink-800); font-weight:600;">完全フルカスタマイズの研修</strong>と、<strong style="color:var(--ink-800); font-weight:600;">マンツーマン伴走のコンサルティング</strong>。<br>
+                        2つのアプローチで、AI駆動の働き方を組織の当たり前へ。
                     </p>
                     <div class="hero__cta reveal">
                         <a class="btn btn--primary" href="https://timerex.net/s/r.okawa_54e9_ded1/a9ae1912" target="_blank" rel="noopener">
@@ -1307,11 +1329,11 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="eyebrow reveal">Programs</span>
-                <h2 class="reveal">2つのアプローチ。<br>どちらでも、組み合わせても。</h2>
+                <h2 class="reveal">フルカスタマイズの研修と、<br>マンツーマン伴走のコンサルティング。</h2>
                 <p class="reveal">
-                    「現場のリテラシーを引き上げたい」なら <strong style="color:var(--ink-900); font-weight:700;">Training</strong>。<br>
-                    「戦略から運用定着まで伴走してほしい」なら <strong style="color:var(--ink-900); font-weight:700;">Consulting</strong>。<br>
-                    ご状況に合わせて、どちらか選んでも、組み合わせても選べます。
+                    パッケージプランは作りません。<br>
+                    貴社のコードベース・組織・課題に合わせて、毎回ゼロから設計します。<br>
+                    どちらか一方でも、組み合わせても、ご状況に合わせて選べます。
                 </p>
             </div>
 
@@ -1328,7 +1350,8 @@
                             <h3>Claude Code 研修</h3>
                         </div>
                     </div>
-                    <p class="program__lead">Claude Codeを現場で使いこなせる状態を、短期集中で作ります。貴社の業務とコードベースに完全カスタマイズした研修を、3つのステップで提供します。</p>
+                    <span class="program__chip">完全フルカスタマイズ × ハンズオン中心</span>
+                    <p class="program__lead">市販の研修パッケージは、ひとつも持ちません。貴社の業務・コードベース・組織の現状をゼロから題材に組み込み、3つのステップで「翌日から使える」状態を作ります。</p>
 
                     <div class="program__steps">
                         <div class="program-step">
@@ -1355,10 +1378,10 @@
                     </div>
 
                     <ul class="program__list">
-                        <li>パッケージプランは持たない（フルカスタマイズ）</li>
+                        <li><strong>パッケージプランは持たない</strong>。業種・組織・課題に合わせ毎回ゼロ設計</li>
+                        <li>貴社のコードベース・業務題材を使ったハンズオン</li>
                         <li>エンジニア／非エンジニア別のカリキュラム対応</li>
-                        <li>集合・オンライン・ハイブリッド対応</li>
-                        <li>半日ワークショップ〜複数回シリーズまで設計可能</li>
+                        <li>半日WS〜複数回シリーズまで形式・期間を選べる</li>
                     </ul>
                 </article>
 
@@ -1373,7 +1396,8 @@
                             <h3>Claude Code コンサルティング</h3>
                         </div>
                     </div>
-                    <p class="program__lead">マンツーマンで伴走する、貴社専属のAI顧問サービスです。戦略の言語化から現場への実装、社内への横展開まで、3つのフェーズで一気通貫でサポートします。</p>
+                    <span class="program__chip">マンツーマン × 経営・事業・組織の3視点</span>
+                    <p class="program__lead">4,000名超のAIプロ人材から、貴社専属の顧問をアサイン。技術支援にとどまらず、経営・事業・組織の3視点で、戦略の言語化から実装・定着まで一気通貫で伴走します。</p>
 
                     <div class="program__steps">
                         <div class="program-step">
@@ -1400,9 +1424,9 @@
                     </div>
 
                     <ul class="program__list">
-                        <li>4,000名超のAIプロ人材から最適な担当をアサイン</li>
-                        <li>経営・事業・組織の3視点で伴走</li>
-                        <li>月次／隔週MTGで継続支援</li>
+                        <li><strong>4,000名超のAIプロ人材</strong>から、貴社の業種・課題に最適な担当をアサイン</li>
+                        <li><strong>経営・事業・組織の3視点</strong>で伴走（単なる技術支援ではない）</li>
+                        <li>マンツーマン専属顧問として、月次／隔週MTGで継続支援</li>
                         <li>MTG外でもSlack・メールで相談対応</li>
                     </ul>
                 </article>
