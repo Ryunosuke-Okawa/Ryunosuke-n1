@@ -503,9 +503,10 @@
             background: linear-gradient(135deg, var(--cream-deep) 0%, var(--cream) 100%);
             padding: 22px 22px 20px;
             border-bottom: 1px solid var(--ink-100);
-            min-height: 200px;
+            height: 290px;
             display: flex;
-            align-items: center;
+            align-items: stretch;
+            overflow: hidden;
             transition: background .3s ease;
         }
         .challenge:hover .challenge__visual {
@@ -562,7 +563,11 @@
             padding: 14px 14px 12px;
             font-size: 11.5px;
             box-shadow: 0 4px 12px rgba(31,27,22,.04);
+            display: flex;
+            flex-direction: column;
         }
+        .mock__body { flex: 1; display: flex; flex-direction: column; gap: 0; }
+        .mock__footer { margin-top: auto; }
         .mock__head {
             display: flex;
             align-items: center;
@@ -707,6 +712,66 @@
             padding-top: 4px;
         }
         .mock-chart__labels span { flex: 1; text-align: center; }
+
+        /* Mock - generic metric row */
+        .mock-metric__row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            font-size: 11px;
+            color: var(--ink-700);
+            border-bottom: 1px dashed var(--ink-100);
+        }
+        .mock-metric__row:last-of-type { border-bottom: none; }
+        .mock-metric__label {
+            color: var(--ink-700);
+            font-weight: 500;
+        }
+        .mock-metric__value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 700;
+        }
+        .mock-metric__value--ok { color: var(--coral-700); }
+        .mock-metric__value--missing {
+            color: var(--ink-300);
+            font-weight: 600;
+        }
+        .mock-metric__value--missing::before {
+            content: "—  ";
+            color: var(--ink-300);
+        }
+        .mock-metric__value--alert { color: var(--coral-800); }
+        .mock-metric__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        .mock-metric__badge--ok {
+            background: var(--coral-50);
+            color: var(--coral-700);
+        }
+        .mock-metric__badge--warn {
+            background: var(--ink-50);
+            color: var(--ink-400);
+        }
+        .mock-metric__badge--risk {
+            background: rgba(159,74,48,.08);
+            color: var(--coral-800);
+        }
+        .mock-metric__badge::before {
+            content: "";
+            width: 5px; height: 5px;
+            border-radius: 999px;
+            background: currentColor;
+        }
         .challenge__no {
             font-family: 'JetBrains Mono', monospace;
             font-size: 11.5px;
