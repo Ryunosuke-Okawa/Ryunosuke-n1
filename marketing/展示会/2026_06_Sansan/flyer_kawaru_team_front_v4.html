@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team フライヤー表面 v4</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange:      #FF6600;
+    --orange-dark: #0F3057;
+    --white:       #ffffff;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .flyer {
+    width: 210mm;
+    height: 297mm;
+    background: #FF6600;
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12mm 14mm;
+    overflow: hidden;
+  }
+
+  /* ========== Header ========== */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    width: 100%;
+  }
+  .logo-k {
+    width: 11mm; height: 11mm;
+    background: var(--white);
+    border-radius: 2mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange); font-weight: 900; font-size: 15pt;
+  }
+  .logo-text {
+    font-size: 13pt;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .tag {
+    margin-left: auto;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: var(--white);
+    padding: 1.5mm 3.5mm;
+    border-radius: 20mm;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* ========== Main copy（中央の一言） ========== */
+  .main-copy {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .catch-main {
+    font-size: 32pt;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.55;
+    letter-spacing: -0.5px;
+    text-align: center;
+  }
+  .catch-main .deco {
+    display: inline-block;
+    font-size: 30pt;
+  }
+  .catch-main .em {
+  }
+
+  /* ========== Footer（中央揃え） ========== */
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5mm;
+    padding-top: 6mm;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    width: 100%;
+  }
+  .company {
+    font-size: 8pt;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    line-height: 1.7;
+  }
+  .company .co-name {
+    font-size: 10pt;
+    font-weight: 900;
+    color: var(--white);
+    display: block;
+    margin-bottom: 1mm;
+  }
+  .lead-to-back {
+    font-size: 10pt;
+    font-weight: 800;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    letter-spacing: 0.5px;
+  }
+  .lead-to-back .arrow { font-size: 13pt; }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-k">K</div>
+    <div class="logo-text">Kawaru Team</div>
+    <div class="tag">AI Research Program</div>
+  </div>
+
+  <!-- 中央の一言 -->
+  <div class="main-copy">
+
+    <!-- ========== 案B-1（現在表示） ========== -->
+    <h1 class="catch-main">
+      御社の社員、AIを<span class="deco">「知っている」</span>で<br>
+      <span class="em">止まっていませんか？</span>
+    </h1>
+
+    <!-- 案A-1: 「AIはそのうちやる」——その"そのうち"は、いつですか？
+    <h1 class="catch-main">
+      <span class="deco">「AIはそのうちやる」</span><br>
+      ——その<span class="em">"そのうち"</span>は、<br>
+      いつですか？
+    </h1>
+    -->
+
+    <!-- 案A-2: AI時代に「様子見」という選択肢は、もうありません。
+    <h1 class="catch-main">
+      AI時代に<span class="deco">「様子見」</span>という<br>
+      選択肢は、<span class="em">もうありません。</span>
+    </h1>
+    -->
+
+    <!-- 案A-3: 「まだ早い」と言っている間に、競合はもう動いています。
+    <h1 class="catch-main">
+      <span class="deco">「まだ早い」</span>と言っている間に、<br>
+      競合は<span class="em">もう動いています。</span>
+    </h1>
+    -->
+
+    <!-- 案B-2: AIを「知っている」と「使える」の差が、そのまま競争力の差になる。
+    <h1 class="catch-main">
+      AIを「知っている」と「使える」の差が、<br>
+      そのまま<span class="em">競争力の差になる。</span>
+    </h1>
+    -->
+
+    <!-- 案C-1: 1年後、「あのとき始めていれば」と言わないために。
+    <h1 class="catch-main">
+      1年後、<span class="deco">「あのとき始めていれば」</span><br>
+      と言わないために。
+    </h1>
+    -->
+
+    <!-- 案D-1: AI、「やりたい」は、あるのに。
+    <h1 class="catch-main">
+      AI、<span class="deco">「やりたい」</span>は、<br>
+      <span class="em">あるのに。</span>
+    </h1>
+    -->
+
+  </div>
+
+  <!-- Footer（中央揃え） -->
+  <div class="footer">
+    <div class="company">
+      <span class="co-name">株式会社エヌイチ</span>
+      Kawaru事業部
+    </div>
+    <div class="lead-to-back">
+      気になる方は裏面へ <span class="arrow">▼</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
