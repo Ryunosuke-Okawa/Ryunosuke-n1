@@ -35,3 +35,18 @@
   - CTA: TimeRex予約（https://timerex.net/s/r.okawa_54e9_ded1/a9ae1912）＋ LINE（https://liff.line.me/2007309014-D4N3WV34/landing?follow=%40172ilyxr&lp=WevSoA&liff_id=2007309014-D4N3WV34）の2パス
   - ローカルソース: `marketing/claudecode_training_lp.html`
   - デプロイログ: `marketing/claudecode_lp_deploy_log.md`
+
+## 2026-04-26
+- Claude Code LP Challenges 3カード設計（最終版）
+  - **設計ロジック**: Claude Code導入ジャーニー3段階の壁（Technology Acceptance Modelに準拠）
+    - 触り始め → 学習 → 業務適用 の3ドロップオフポイント
+  - **CASE 01 SETUP STUCK**: 「そもそも、インストールや設定で詰まる」（Node.js/ターミナル/APIキーの壁）
+  - **CASE 02 JARGON OVERLOAD**: 「専門用語ばかりで、何が何だか分からない」（CLI/npm/git/MCP/API等）
+  - **CASE 03 NO USE-CASE**: 「動かせるけど、仕事で何に使えばいいか分からない」（ツールと業務の深い溝）
+  - **レイアウト**: テキスト（タグ・CASE No・タイトル・本文）を上、イラスト（240px）を下
+  - **イラスト**: 各カード大きなSVGイラスト
+    - CASE 01: コーラル色の鍵（Padlock）＋ 周辺に技術用語タグ（Node.js / ターミナル / APIキー / npm）
+    - CASE 02: 困惑顔（バツ目）＋ 飛び交う用語タグ（CLI / npm / MCP / git / API / トークン / フック / リポジトリ）
+    - CASE 03: 左にClaude Codeターミナル、右に書類＋ブリーフケース、間に深い溝＋大きな「？」
+  - **背景**: SNS・YouTube・ブログでよく言及される「経営課題」レベルではなく、実際にツールを触った人がぶつかる「身近で泥臭いつまずき」に焦点
+  - **関連ファイル**: `marketing/claudecode_training_lp.html`
