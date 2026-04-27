@@ -74,7 +74,8 @@
       "Bash(npm -v)",
       "Bash(npm install *)",
       "Bash(npx playwright *)",
-      "Bash(/rename Kawaru_LPデザイナー返信)"
+      "Bash(/rename Kawaru_LPデザイナー返信)",
+      "Bash(open /Users/kyouyuu/claude/strategy/AI社員5人_発表_20260426.pptx)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
