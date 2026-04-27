@@ -73,7 +73,8 @@
       "Bash(mv /Users/kyouyuu/claude/.claude/agents/*.md /Users/kyouyuu/claude/archive/agents_legacy/)",
       "Bash(npm -v)",
       "Bash(npm install *)",
-      "Bash(npx playwright *)"
+      "Bash(npx playwright *)",
+      "Bash(/rename Kawaru_LPデザイナー返信)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
