@@ -67,7 +67,8 @@
       "WebFetch(domain:claudecode.n1-inc.co.jp)",
       "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v4.html)",
       "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v4.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v5.html)",
-      "Bash(open team_front_back_combined.png team_front_v4.png team_back_v5.png)"
+      "Bash(open team_front_back_combined.png team_front_v4.png team_back_v5.png)",
+      "Bash(grep -i \"^gh$\")"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
