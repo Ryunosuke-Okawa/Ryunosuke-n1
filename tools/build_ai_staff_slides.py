@@ -1,6 +1,7 @@
 """
-AI社員5人 発表スライド生成スクリプト（4月末発表用・11枚構成）
+AI社員5人 発表スライド生成スクリプト（4月末発表用・13枚構成）
 白×紺×Kawaru ブルー基調 / 4サービスカラーは一覧時のみ
+視認性重視・装飾要素追加
 """
 from pptx import Presentation
 from pptx.util import Inches, Pt
@@ -10,13 +11,13 @@ from pptx.enum.shapes import MSO_SHAPE
 
 C = {
     'white':         RGBColor(0xFF, 0xFF, 0xFF),
-    'navy':          RGBColor(0x1C, 0x35, 0x57),  # 紺（メイン文字色）
+    'navy':          RGBColor(0x1C, 0x35, 0x57),
     'navy_l':        RGBColor(0x4A, 0x6C, 0x8C),
-    'kawaru':        RGBColor(0x25, 0x63, 0xEB),  # Kawaru ブルー（アクセント）
+    'kawaru':        RGBColor(0x25, 0x63, 0xEB),
     'kawaru_l':      RGBColor(0xDB, 0xEA, 0xFE),
-    'team':          RGBColor(0xFF, 0x66, 0x00),  # Kawaru Team
-    'coach':         RGBColor(0x7C, 0x3A, 0xED),  # Kawaru Coach
-    'bpo':           RGBColor(0x10, 0xBF, 0x16),  # Kawaru BPO
+    'team':          RGBColor(0xFF, 0x66, 0x00),
+    'coach':         RGBColor(0x7C, 0x3A, 0xED),
+    'bpo':           RGBColor(0x10, 0xBF, 0x16),
     'gray':          RGBColor(0x6B, 0x72, 0x80),
     'light_gray':    RGBColor(0xF3, 0xF4, 0xF6),
     'border':        RGBColor(0xE5, 0xE7, 0xEB),
@@ -25,7 +26,7 @@ C = {
 FONT = 'Noto Sans JP'
 SLIDE_W = Inches(13.33)
 SLIDE_H = Inches(7.50)
-TOTAL = 11
+TOTAL = 13
 
 
 class Builder:
@@ -83,75 +84,167 @@ class Builder:
         s.line.fill.background()
         return s
 
+    def _arrow(self, slide, x, y, w, h, color):
+        """矢印図形"""
+        s = slide.shapes.add_shape(MSO_SHAPE.DOWN_ARROW, Inches(x), Inches(y), Inches(w), Inches(h))
+        s.fill.solid()
+        s.fill.fore_color.rgb = color
+        s.line.fill.background()
+        return s
+
+    def _arrow_right(self, slide, x, y, w, h, color):
+        s = slide.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW, Inches(x), Inches(y), Inches(w), Inches(h))
+        s.fill.solid()
+        s.fill.fore_color.rgb = color
+        s.line.fill.background()
+        return s
+
+    def _circle(self, slide, x, y, w, h, color):
+        s = slide.shapes.add_shape(MSO_SHAPE.OVAL, Inches(x), Inches(y), Inches(w), Inches(h))
+        s.fill.solid()
+        s.fill.fore_color.rgb = color
+        s.line.fill.background()
+        return s
+
     def _title(self, slide, text, page_num):
-        # ページ番号
-        self._block(slide, 12.0, 0.3, 1.1, 0.3, f"{page_num} / {TOTAL}", 10,
+        self._block(slide, 12.0, 0.3, 1.1, 0.3, f"{page_num} / {TOTAL}", 11,
                     color=C['gray'], align=PP_ALIGN.RIGHT)
-        # タイトル
-        self._block(slide, 0.5, 0.4, 11.5, 0.7, text, 22, bold=True, color=C['navy'])
-        # アクセントライン
-        self._line(slide, 0.5, 1.15, 1.5, C['kawaru'], 0.06)
+        self._block(slide, 0.5, 0.4, 11.5, 0.7, text, 24, bold=True, color=C['navy'])
+        self._line(slide, 0.5, 1.15, 1.8, C['kawaru'], 0.07)
 
     # ========== Slides ==========
 
     def s01_cover(self):
-        """表紙"""
         s = self._slide()
         self._bg(s)
-        # アクセントライン上
-        self._line(s, 5.5, 2.3, 2.33, C['kawaru'], 0.08)
+        # 上アクセント
+        self._line(s, 0, 0, 13.33, C['kawaru'], 0.15)
+        # 大きな円装飾（薄）
+        self._circle(s, 10.5, 0.5, 2.3, 2.3, C['kawaru_l'])
+        self._circle(s, 0.5, 5.5, 1.8, 1.8, C['kawaru_l'])
+
         # メインタイトル
-        self._block(s, 0.5, 2.5, 12.33, 1.4, 'AIハッカソン',
-                    48, bold=True, color=C['kawaru'],
+        self._block(s, 0.5, 2.5, 12.33, 1.6, 'AIハッカソン',
+                    60, bold=True, color=C['kawaru'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # 区切り
-        self._line(s, 5.5, 4.0, 2.33, C['border'], 0.04)
-        # 事業部
-        self._block(s, 0.5, 4.2, 12.33, 0.7, 'Kawaru事業部',
-                    24, bold=True, color=C['navy'],
+        self._line(s, 5.5, 4.3, 2.33, C['navy'], 0.06)
+        self._block(s, 0.5, 4.5, 12.33, 0.8, 'Kawaru事業部',
+                    28, bold=True, color=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # 名前
-        self._block(s, 0.5, 5.0, 12.33, 0.7, '大川 龍之介',
-                    20, color=C['navy'],
+        self._block(s, 0.5, 5.4, 12.33, 0.7, '大川 龍之介',
+                    22, color=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # 日付
-        self._block(s, 0.5, 6.5, 12.33, 0.4, '2026.04',
-                    13, color=C['gray'],
-                    align=PP_ALIGN.CENTER)
-
-    def s02_intro(self):
-        """コストダウンの話ができない"""
-        s = self._slide()
-        self._bg(s)
-        self._block(s, 0.5, 2.0, 12.33, 1.5,
-                    '私たちは「コストダウン」の話ができません',
-                    36, bold=True, color=C['navy'],
-                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 0.5, 3.5, 12.33, 0.5,
-                    'Kawaru事業部の前提',
+        self._block(s, 0.5, 6.8, 12.33, 0.4, '2026.04',
                     14, color=C['gray'], align=PP_ALIGN.CENTER)
-        # 対比
-        self._block(s, 1.5, 4.7, 4.5, 1.5,
-                    '既存事業\n固定業務がある\n削減対象が見える',
-                    16, color=C['gray'], bg=C['light_gray'], rounded=True,
-                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 6.0, 4.7, 1.33, 1.5, '←→', 28, color=C['kawaru'], bold=True,
-                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 7.33, 4.7, 4.5, 1.5,
-                    'Kawaru事業部\n業務が毎月変わる\n削減対象がない',
-                    16, color=C['navy'], bg=C['kawaru_l'], rounded=True, bold=True,
-                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # ページ番号
-        self._block(s, 12.0, 7.1, 1.1, 0.3, "2 / 11", 10, color=C['gray'], align=PP_ALIGN.RIGHT)
 
-    def s03_4services(self):
-        """Kawaru事業部の4サービス（田の字）"""
+    def s02_premise(self):
+        """前提：コストの話がしにくい"""
         s = self._slide()
         self._bg(s)
-        self._title(s, 'Kawaru事業部の4サービス', 3)
+        # サブタイトル（小・グレー）
+        self._block(s, 0.5, 0.4, 12.33, 0.5, '前提', 14,
+                    color=C['gray'], align=PP_ALIGN.CENTER, bold=True)
+        self._line(s, 6.0, 1.0, 1.33, C['kawaru'], 0.06)
 
-        # 田の字レイアウト
-        # 左上：Kawaru、右上：Team、左下：Coach、右下：BPO
+        # メインメッセージ
+        self._block(s, 0.5, 1.6, 12.33, 1.4,
+                    'Kawaru事業部は',
+                    28, color=C['navy'], align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        self._block(s, 0.5, 2.7, 12.33, 1.2,
+                    'コストの話がしにくい',
+                    44, bold=True, color=C['kawaru'],
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+
+        # 対比（大きく）
+        self._block(s, 0.7, 4.6, 5.5, 2.0,
+                    '既存事業',
+                    18, bold=True, color=C['gray'], bg=C['light_gray'], rounded=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.TOP)
+        self._block(s, 0.7, 5.2, 5.5, 1.4,
+                    '固定業務がある\n削減対象が見える',
+                    16, color=C['gray'],
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+
+        # 矢印（大）
+        self._arrow_right(s, 6.4, 5.3, 0.8, 0.7, C['kawaru'])
+
+        self._block(s, 7.4, 4.6, 5.3, 2.0,
+                    'Kawaru事業部',
+                    18, bold=True, color=C['white'], bg=C['kawaru'], rounded=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.TOP)
+        self._block(s, 7.4, 5.2, 5.3, 1.4,
+                    '業務が毎月変わる\n削減対象がそもそもない',
+                    16, color=C['white'], bold=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+
+        self._block(s, 12.0, 7.1, 1.1, 0.3, "2 / 13", 11, color=C['gray'], align=PP_ALIGN.RIGHT)
+
+    def s03_status(self):
+        """現状：2人×4サービス"""
+        s = self._slide()
+        self._bg(s)
+        self._title(s, 'Kawaru事業部の現状', 3)
+
+        # 左：2人体制
+        self._block(s, 0.5, 1.7, 5.8, 0.6, '体制', 16, bold=True,
+                    color=C['gray'], align=PP_ALIGN.CENTER)
+        # 髙橋
+        self._block(s, 1.0, 2.5, 2.3, 1.5, '髙橋', 26, bold=True,
+                    color=C['white'], bg=C['navy'], rounded=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        # 大川
+        self._block(s, 3.5, 2.5, 2.3, 1.5, '大川', 26, bold=True,
+                    color=C['white'], bg=C['kawaru'], rounded=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        # 数字
+        self._block(s, 0.5, 4.3, 5.8, 1.5,
+                    '2人',
+                    72, bold=True, color=C['kawaru'],
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        self._block(s, 0.5, 5.8, 5.8, 0.5,
+                    'フルコミットメンバー',
+                    14, color=C['gray'], align=PP_ALIGN.CENTER)
+
+        # 区切り×
+        self._block(s, 6.3, 3.3, 0.8, 0.8, '×', 36, bold=True,
+                    color=C['gray'], align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+
+        # 右：4サービス
+        self._block(s, 7.2, 1.7, 5.6, 0.6, 'サービス', 16, bold=True,
+                    color=C['gray'], align=PP_ALIGN.CENTER)
+        self._block(s, 7.4, 2.5, 2.6, 1.0, 'Kawaru', 16, bold=True,
+                    color=C['white'], bg=C['kawaru'], rounded=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        self._block(s, 10.1, 2.5, 2.6, 1.0, 'Kawaru Team', 14, bold=True,
+                    color=C['white'], bg=C['team'], rounded=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        self._block(s, 7.4, 3.6, 2.6, 1.0, 'Kawaru Coach', 14, bold=True,
+                    color=C['white'], bg=C['coach'], rounded=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        self._block(s, 10.1, 3.6, 2.6, 1.0, 'Kawaru BPO', 14, bold=True,
+                    color=C['white'], bg=C['bpo'], rounded=True,
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        # 数字
+        self._block(s, 7.0, 4.3, 5.8, 1.5,
+                    '4',
+                    72, bold=True, color=C['kawaru'],
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        self._block(s, 7.0, 5.8, 5.8, 0.5,
+                    '事業部のサービス',
+                    14, color=C['gray'], align=PP_ALIGN.CENTER)
+
+        # 下メッセージ
+        self._block(s, 0.5, 6.5, 12.33, 0.7,
+                    '2人で 4つのサービス を動かしている',
+                    22, bold=True, color=C['navy'],
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+
+    def s04_4services(self):
+        """4サービス（田の字）"""
+        s = self._slide()
+        self._bg(s)
+        self._title(s, 'Kawaru事業部の4サービス', 4)
+
         cell_w = 5.5
         cell_h = 2.4
         gap = 0.3
@@ -160,93 +253,95 @@ class Builder:
         cy1 = 1.6
         cy2 = cy1 + cell_h + gap
 
-        self._block(s, cx1, cy1, cell_w, cell_h, 'Kawaru', 36, bold=True,
+        self._block(s, cx1, cy1, cell_w, cell_h, 'Kawaru', 44, bold=True,
                     color=C['white'], bg=C['kawaru'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, cx2, cy1, cell_w, cell_h, 'Kawaru Team', 36, bold=True,
+        self._block(s, cx2, cy1, cell_w, cell_h, 'Kawaru Team', 40, bold=True,
                     color=C['white'], bg=C['team'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, cx1, cy2, cell_w, cell_h, 'Kawaru Coach', 36, bold=True,
+        self._block(s, cx1, cy2, cell_w, cell_h, 'Kawaru Coach', 40, bold=True,
                     color=C['white'], bg=C['coach'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, cx2, cy2, cell_w, cell_h, 'Kawaru BPO', 36, bold=True,
+        self._block(s, cx2, cy2, cell_w, cell_h, 'Kawaru BPO', 40, bold=True,
                     color=C['white'], bg=C['bpo'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
-        # 下メッセージ
         self._block(s, 0.5, 6.85, 12.33, 0.5,
                     'この4つのサービスを動かしている',
-                    16, bold=True, color=C['navy'], align=PP_ALIGN.CENTER)
+                    18, bold=True, color=C['navy'], align=PP_ALIGN.CENTER)
 
-    def s04_2people(self):
-        """2人だけ、だからAI社員5人"""
+    def s05_directing(self):
+        """大川がAI社員5人を動かしている（指示構図）"""
         s = self._slide()
         self._bg(s)
-        self._title(s, 'でもフルコミットは2人だけ。だからAI社員5人で動かす', 4)
+        self._title(s, 'すでにAI社員5人を動かしている', 5)
 
-        # 上：髙橋と大川
-        self._block(s, 3.5, 1.7, 2.5, 1.0, '髙橋', 22, bold=True,
+        # 髙橋（最上部・小）
+        self._block(s, 5.67, 1.4, 2.0, 0.6, '髙橋', 16, bold=True,
                     color=C['white'], bg=C['navy'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 7.33, 1.7, 2.5, 1.0, '大川', 22, bold=True,
+        # 矢印（小）
+        self._arrow(s, 6.42, 2.05, 0.5, 0.4, C['gray'])
+
+        # 大川（中央・大きく）
+        self._block(s, 5.17, 2.5, 3.0, 1.0, '大川', 28, bold=True,
                     color=C['white'], bg=C['kawaru'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
-        # 矢印
-        self._block(s, 0.5, 3.0, 12.33, 0.6,
-                    '↓ AI社員に動いてもらう ↓',
-                    16, bold=True, color=C['kawaru'],
-                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-
-        # 下：5人のAI社員
+        # 5本の矢印（大川から5人へ）
         labels = ['マーケAI', '営業AI', 'デリバリーAI', '事務法務AI', '戦略AI']
+        # 5つのAI社員を下に並べる
         for i, l in enumerate(labels):
-            x = 0.7 + i*2.5
-            self._block(s, x, 3.9, 2.3, 1.4, l, 14, bold=True,
+            x = 0.5 + i*2.55
+            # 短い線で繋ぐ視覚的繋がり（下向き）
+            self._block(s, x + 0.95, 3.7, 0.4, 0.5, '↓', 24, bold=True,
+                        color=C['kawaru'],
+                        align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+            self._block(s, x, 4.3, 2.3, 1.5, l, 16, bold=True,
                         color=C['white'], bg=C['kawaru'], rounded=True,
                         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
-        # 下強調
-        self._block(s, 0.5, 5.7, 12.33, 1.1,
-                    '2人で4サービスは難しい。AI社員5人で動かす',
-                    22, bold=True, color=C['navy'],
+        # 下メッセージ
+        self._block(s, 0.5, 6.2, 12.33, 1.0,
+                    '大川主導で AI社員5人 を動かして事業部を回している',
+                    22, bold=True, color=C['kawaru'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE,
                     bg=C['kawaru_l'], rounded=True)
 
-    def s05_5agents(self):
-        """AI社員5人の構成"""
+    def s06_5agents(self):
+        """AI社員5人の構成（詳細・正式名称）"""
         s = self._slide()
         self._bg(s)
-        self._title(s, 'AI社員5人の構成', 5)
+        self._title(s, 'AI社員5人の構成', 6)
 
         roles = [
             ('マーケAI', 'LP / SNS / 展示会 / LINE配信 / 事例記事'),
             ('営業AI', '商談前準備 / 要件ヒアリング / 提案書 / フォロー'),
-            ('デリバリーAI', '研修運営 / Dify・N8N・GAS構築 / CSコンサル / PM'),
-            ('事務・法務AI', '契約 / 請求 / PL / 利用規約'),
-            ('戦略・プロダクトAI', '競合・市場・料金・データ分析(リサーチ・分析担当)'),
+            ('デリバリーAI', '研修運営 / Dify・n8n・GAS構築 / CSコンサル / PM'),
+            ('事務・法務AI', '契約書 / 請求書 / 利用契約書 / プライバシーポリシー / PL'),
+            ('戦略・プロダクトAI', '競合調査 / 市場調査 / 料金設計 / データ分析'),
         ]
         y = 1.5
-        h = 0.85
+        h = 0.95
         for name, desc in roles:
-            self._block(s, 0.5, y, 3.5, h, name, 16, bold=True,
+            self._block(s, 0.5, y, 3.5, h, name, 18, bold=True,
                         color=C['white'], bg=C['kawaru'], rounded=True,
                         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
             self._block(s, 4.1, y, 8.7, h, desc, 14, color=C['navy'],
                         bg=C['light_gray'], rounded=True,
                         align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.MIDDLE)
-            y += 0.95
-        self._block(s, 0.5, 6.55, 12.33, 0.4,
+            y += 1.05
+        # キャプション
+        self._block(s, 0.5, 6.85, 12.33, 0.4,
                     '4人 = 各領域の戦略 + 実行  /  戦略・プロダクトAI = リサーチ・分析担当',
                     11, color=C['gray'], align=PP_ALIGN.CENTER, bold=True)
 
-    def s06_all_business(self):
+    def s07_all_business(self):
         """これが事業でやるべき仕事のすべて"""
         s = self._slide()
         self._bg(s)
-        self._title(s, 'これが事業でやるべき仕事のすべて', 6)
+        self._title(s, 'これが事業でやるべき仕事のすべて', 7)
 
-        # 5機能を横並び
         funcs = [
             ('マーケ', '認知獲得'),
             ('営業', '商談・受注'),
@@ -259,76 +354,82 @@ class Builder:
         gap = 0.07
         for i, (name, desc) in enumerate(funcs):
             x = cx + i*(cw + gap)
-            self._block(s, x, 2.2, cw, 1.4, name, 18, bold=True,
+            self._block(s, x, 2.0, cw, 1.6, name, 22, bold=True,
                         color=C['white'], bg=C['kawaru'], rounded=True,
                         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-            self._block(s, x, 3.65, cw, 0.7, desc, 13,
+            self._block(s, x, 3.65, cw, 0.8, desc, 14,
                         color=C['navy'], bg=C['light_gray'], rounded=True,
                         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
-        # 下メッセージ
-        self._block(s, 0.5, 5.0, 12.33, 1.4,
-                    'マーケから戦略まで、事業の全部の仕事を 5人 で網羅している',
-                    22, bold=True, color=C['kawaru'],
+        self._block(s, 0.5, 5.0, 12.33, 1.6,
+                    '事業の全部の仕事を 5人で網羅している',
+                    26, bold=True, color=C['kawaru'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE,
                     bg=C['kawaru_l'], rounded=True)
 
-    def s07_how_use(self):
-        """AI社員をこう使っているイメージ"""
+    def s08_how_use(self):
+        """今こう使ってます（AI社員別の具体例）"""
         s = self._slide()
         self._bg(s)
-        self._title(s, 'AI社員をこう使っているイメージ', 7)
+        self._title(s, '今こう使ってます', 8)
 
-        # 左：Kawaru プロダクト作り
-        self._block(s, 0.5, 1.5, 6.0, 0.55, 'Kawaru プロダクト作り', 16, bold=True,
-                    color=C['white'], bg=C['kawaru'],
-                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        prod = [
-            ('プロダクト改善の提案たたき', '戦略AI'),
-            ('ローンチPM・LP・LINE配信', 'マーケAI + 戦略AI'),
-            ('競合・料金・データ分析', '戦略AI'),
+        # 5人のAI社員別に具体例を並列表示
+        items = [
+            ('マーケAI', 'LP・展示会クリエイティブ\nLINE配信シナリオ\nSNS投稿生成'),
+            ('営業AI', '商談前ブリーフィング\n提案書骨子\nフォローメール'),
+            ('デリバリーAI', '研修スライド作成\nDify構築（5h）\n案件PM'),
+            ('事務・法務AI', '契約書チェック\nPL自動更新\n受信トレイ整理'),
+            ('戦略AI', '競合調査\n料金設計\nプロダクト改善案'),
         ]
-        y = 2.15
-        for biz, ai in prod:
-            self._block(s, 0.5, y, 4.0, 0.85, biz, 13, color=C['navy'],
-                        bg=C['kawaru_l'],
-                        align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.MIDDLE)
-            self._block(s, 4.55, y, 1.95, 0.85, ai, 11, bold=True,
-                        color=C['kawaru'], bg=C['white'],
+        cw = 2.4
+        gap = 0.1
+        for i, (name, examples) in enumerate(items):
+            x = 0.5 + i * (cw + gap)
+            # ヘッダー（青）
+            self._block(s, x, 1.5, cw, 0.7, name, 14, bold=True,
+                        color=C['white'], bg=C['kawaru'], rounded=True,
                         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-            y += 0.93
-
-        # 右：Kawaru Team / Coach / BPO
-        self._block(s, 6.83, 1.5, 6.0, 0.55, 'Kawaru Team / Coach / BPO',
-                    16, bold=True, color=C['white'], bg=C['navy'],
-                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        deliv = [
-            ('展示会設計・クリエイティブ', 'マーケAI'),
-            ('提案書骨子作成', '営業AI'),
-            ('Dify / N8N / GAS構築', 'デリバリーAI'),
-        ]
-        y = 2.15
-        for biz, ai in deliv:
-            self._block(s, 6.83, y, 4.0, 0.85, biz, 13, color=C['navy'],
-                        bg=C['light_gray'],
-                        align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.MIDDLE)
-            self._block(s, 10.88, y, 1.95, 0.85, ai, 11, bold=True,
-                        color=C['navy'], bg=C['white'],
+            # 具体例
+            self._block(s, x, 2.3, cw, 3.0, examples, 13,
+                        color=C['navy'], bg=C['kawaru_l'], rounded=True,
                         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-            y += 0.93
 
         # 下メッセージ
-        self._block(s, 0.5, 5.5, 12.33, 1.0,
-                    'いろんな領域で AI社員を使っている',
-                    22, bold=True, color=C['kawaru'],
+        self._block(s, 0.5, 5.7, 12.33, 1.2,
+                    'いろんな領域で AI社員 を使い倒している',
+                    24, bold=True, color=C['kawaru'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE,
                     bg=C['kawaru_l'], rounded=True)
 
-    def s08_results(self):
-        """半期¥6,710,000、4案件すべてにAI社員"""
+    def s09_to_results(self):
+        """これが売上に直結している（橋渡し）"""
         s = self._slide()
         self._bg(s)
-        self._title(s, '半期 ¥6,710,000、4案件すべてにAI社員が動いている', 8)
+        # サブ
+        self._block(s, 0.5, 0.4, 12.33, 0.5, 'そして', 14,
+                    color=C['gray'], align=PP_ALIGN.CENTER, bold=True)
+        self._line(s, 6.0, 1.0, 1.33, C['kawaru'], 0.06)
+
+        # メイン
+        self._block(s, 0.5, 2.2, 12.33, 1.5,
+                    'これが',
+                    32, color=C['navy'],
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+        self._block(s, 0.5, 3.5, 12.33, 1.6,
+                    '売上に直結している',
+                    52, bold=True, color=C['kawaru'],
+                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+
+        # 矢印
+        self._arrow(s, 6.42, 5.5, 0.5, 0.6, C['kawaru'])
+
+        self._block(s, 12.0, 7.1, 1.1, 0.3, "9 / 13", 11, color=C['gray'], align=PP_ALIGN.RIGHT)
+
+    def s10_results(self):
+        """半期¥6,710,000"""
+        s = self._slide()
+        self._bg(s)
+        self._title(s, '半期 ¥6,710,000、4案件すべてにAI社員が動いている', 10)
 
         cases = [
             ('NTTネクシア', '¥5,000,000'),
@@ -339,66 +440,58 @@ class Builder:
         y = 1.7
         h = 0.7
         # ヘッダー
-        self._block(s, 0.5, y, 5.0, h, '案件', 14, bold=True,
+        self._block(s, 0.5, y, 5.0, h, '案件', 16, bold=True,
                     color=C['white'], bg=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 5.55, y, 3.0, h, '売上 (税抜)', 14, bold=True,
+        self._block(s, 5.55, y, 3.0, h, '売上 (税抜)', 16, bold=True,
                     color=C['white'], bg=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        y += 0.75
+        y += 0.78
         for case, amount in cases:
-            self._block(s, 0.5, y, 5.0, h, case, 14, color=C['navy'],
+            self._block(s, 0.5, y, 5.0, h, case, 16, color=C['navy'],
                         bg=C['light_gray'],
                         align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.MIDDLE)
-            self._block(s, 5.55, y, 3.0, h, amount, 14, color=C['navy'],
+            self._block(s, 5.55, y, 3.0, h, amount, 16, color=C['navy'],
                         bg=C['light_gray'],
                         align=PP_ALIGN.RIGHT, anchor=MSO_ANCHOR.MIDDLE)
-            y += 0.75
-        self._block(s, 0.5, y, 5.0, h, '半期合計', 16, bold=True,
+            y += 0.78
+        self._block(s, 0.5, y, 5.0, h, '半期合計', 18, bold=True,
                     color=C['white'], bg=C['kawaru'],
                     align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 5.55, y, 3.0, h, '¥6,710,000', 16, bold=True,
+        self._block(s, 5.55, y, 3.0, h, '¥6,710,000', 18, bold=True,
                     color=C['white'], bg=C['kawaru'],
                     align=PP_ALIGN.RIGHT, anchor=MSO_ANCHOR.MIDDLE)
 
         # 右強調枠
-        self._block(s, 9.0, 1.7, 3.83, 4.55,
-                    '月換算\n¥464,000\n\n=\n\nAI社員\n1.3人分\n稼働中',
-                    20, bold=True, color=C['white'], bg=C['kawaru'], rounded=True,
+        self._block(s, 9.0, 1.7, 3.83, 4.6,
+                    '月換算\n\n¥464,000\n\n=\n\nAI社員\n1.3人分\n稼働中',
+                    22, bold=True, color=C['white'], bg=C['kawaru'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
-    def s09_now_future(self):
+    def s11_now_future(self):
         """ここまで現状、ここから今後"""
         s = self._slide()
         self._bg(s)
-        # ライン
-        self._line(s, 5.5, 1.5, 2.33, C['kawaru'], 0.06)
-        # 中央タイトル
+        self._line(s, 5.5, 1.5, 2.33, C['kawaru'], 0.08)
         self._block(s, 0.5, 2.0, 12.33, 1.2, 'ここまでが現状の話',
-                    32, bold=True, color=C['gray'],
+                    34, bold=True, color=C['gray'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # 矢印
-        self._block(s, 0.5, 3.3, 12.33, 0.7, '↓',
-                    36, bold=True, color=C['kawaru'],
+        self._arrow(s, 6.17, 3.4, 1.0, 0.8, C['kawaru'])
+        self._block(s, 0.5, 4.4, 12.33, 1.5, 'ここから今後の話',
+                    50, bold=True, color=C['kawaru'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # 下：今後
-        self._block(s, 0.5, 4.2, 12.33, 1.5, 'ここから今後の話',
-                    44, bold=True, color=C['kawaru'],
+        self._block(s, 0.5, 6.0, 12.33, 0.6,
+                    '9月末までにAI社員5人を完成させる',
+                    18, color=C['navy'], bold=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # サブ
-        self._block(s, 0.5, 5.9, 12.33, 0.6,
-                    '9月末までにAI社員5人を完成させる、その道筋',
-                    16, color=C['navy'],
-                    align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # ページ番号
-        self._block(s, 12.0, 7.1, 1.1, 0.3, "9 / 11", 10,
+        self._block(s, 12.0, 7.1, 1.1, 0.3, "11 / 13", 11,
                     color=C['gray'], align=PP_ALIGN.RIGHT)
 
-    def s10_roadmap(self):
+    def s12_roadmap(self):
         """6月末2人分→9月末5人分"""
         s = self._slide()
         self._bg(s)
-        self._title(s, '6月末2人分 → 9月末5人分、Agent Teams も並走で構築', 10)
+        self._title(s, '6月末 2人分 → 9月末 5人分、Agent Teamsも並走', 12)
 
         rows = [
             ('4月 (現在)', '1.3人分', 'デリバリーAI + 戦略AI が稼働中', False),
@@ -407,89 +500,90 @@ class Builder:
             ('9月末 (最終)', '5人分', '5人フル稼働 + Agent Teams で協働', True),
         ]
         y = 1.5
-        h = 0.7
+        h = 0.75
         # ヘッダー
-        self._block(s, 0.5, y, 2.5, h, '月', 14, bold=True,
+        self._block(s, 0.5, y, 2.5, h, '月', 16, bold=True,
                     color=C['white'], bg=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 3.05, y, 2.0, h, '達成水準', 14, bold=True,
+        self._block(s, 3.05, y, 2.0, h, '達成水準', 16, bold=True,
                     color=C['white'], bg=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 5.10, y, 7.7, h, '動き', 14, bold=True,
+        self._block(s, 5.10, y, 7.7, h, '動き', 16, bold=True,
                     color=C['white'], bg=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        y += 0.8
+        y += 0.83
         for month, level, action, emp in rows:
             if emp:
-                bg_l = C['kawaru']
-                bg_r = C['kawaru_l']
-                fc_l = C['white']
-                fc_r = C['navy']
+                bg_l = C['kawaru']; bg_r = C['kawaru_l']
+                fc_l = C['white']; fc_r = C['navy']
             else:
-                bg_l = C['light_gray']
-                bg_r = C['light_gray']
-                fc_l = C['navy']
-                fc_r = C['navy']
-            self._block(s, 0.5, y, 2.5, h, month, 13, bold=emp, color=fc_l, bg=bg_l,
+                bg_l = C['light_gray']; bg_r = C['light_gray']
+                fc_l = C['navy']; fc_r = C['navy']
+            self._block(s, 0.5, y, 2.5, h, month, 14, bold=emp, color=fc_l, bg=bg_l,
                         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-            self._block(s, 3.05, y, 2.0, h, level, 16, bold=True, color=fc_l, bg=bg_l,
+            self._block(s, 3.05, y, 2.0, h, level, 18, bold=True, color=fc_l, bg=bg_l,
                         align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-            self._block(s, 5.10, y, 7.7, h, action, 12, color=fc_r, bg=bg_r,
+            self._block(s, 5.10, y, 7.7, h, action, 13, color=fc_r, bg=bg_r,
                         align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.MIDDLE)
-            y += 0.8
+            y += 0.83
 
-        self._block(s, 0.5, 6.0, 12.33, 0.9,
+        self._block(s, 0.5, 6.3, 12.33, 0.8,
                     '5人を網羅的に同時進行で育てる',
-                    18, bold=True, color=C['kawaru'],
+                    20, bold=True, color=C['kawaru'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
-    def s11_close(self):
+    def s13_close(self):
         """締め"""
         s = self._slide()
         self._bg(s)
-        # 大メッセージ
-        self._block(s, 0.5, 1.4, 12.33, 1.4,
+        self._line(s, 0, 0, 13.33, C['kawaru'], 0.15)
+        self._circle(s, 10.5, 0.8, 2.0, 2.0, C['kawaru_l'])
+        self._circle(s, 0.7, 5.5, 1.6, 1.6, C['kawaru_l'])
+
+        self._block(s, 0.5, 1.5, 12.33, 1.5,
                     'AI社員を動かして、',
-                    36, bold=True, color=C['navy'],
+                    40, bold=True, color=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 0.5, 2.7, 12.33, 1.5,
+        self._block(s, 0.5, 2.9, 12.33, 1.6,
                     'Kawaru事業部の事業を推進する',
-                    44, bold=True, color=C['kawaru'],
+                    50, bold=True, color=C['kawaru'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._line(s, 5.5, 4.4, 2.33, C['kawaru'], 0.06)
-        self._block(s, 0.5, 4.9, 12.33, 0.6,
-                    '2人 + AI社員5人 + Agent Teams で、Kawaru事業部を動かす',
-                    18, bold=True, color=C['navy'],
+        self._line(s, 5.5, 4.8, 2.33, C['kawaru'], 0.07)
+        self._block(s, 0.5, 5.0, 12.33, 0.6,
+                    '2人 + AI社員5人 + Agent Teams で動かす',
+                    20, bold=True, color=C['navy'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+
         # 4サービス
-        self._block(s, 1.0, 5.8, 3.5, 0.8, 'Kawaru', 14, bold=True,
+        self._block(s, 1.0, 6.0, 3.5, 0.8, 'Kawaru', 15, bold=True,
                     color=C['white'], bg=C['kawaru'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 4.7, 5.8, 2.6, 0.8, 'Kawaru Team', 13, bold=True,
+        self._block(s, 4.7, 6.0, 2.6, 0.8, 'Kawaru Team', 14, bold=True,
                     color=C['white'], bg=C['team'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 7.4, 5.8, 2.6, 0.8, 'Kawaru Coach', 13, bold=True,
+        self._block(s, 7.4, 6.0, 2.6, 0.8, 'Kawaru Coach', 14, bold=True,
                     color=C['white'], bg=C['coach'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 10.1, 5.8, 2.4, 0.8, 'Kawaru BPO', 13, bold=True,
+        self._block(s, 10.1, 6.0, 2.4, 0.8, 'Kawaru BPO', 14, bold=True,
                     color=C['white'], bg=C['bpo'], rounded=True,
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        # ページ番号
-        self._block(s, 12.0, 7.1, 1.1, 0.3, '11 / 11', 10,
+        self._block(s, 12.0, 7.1, 1.1, 0.3, '13 / 13', 11,
                     color=C['gray'], align=PP_ALIGN.RIGHT)
 
     def build(self, output):
         self.s01_cover()
-        self.s02_intro()
-        self.s03_4services()
-        self.s04_2people()
-        self.s05_5agents()
-        self.s06_all_business()
-        self.s07_how_use()
-        self.s08_results()
-        self.s09_now_future()
-        self.s10_roadmap()
-        self.s11_close()
+        self.s02_premise()
+        self.s03_status()
+        self.s04_4services()
+        self.s05_directing()
+        self.s06_5agents()
+        self.s07_all_business()
+        self.s08_how_use()
+        self.s09_to_results()
+        self.s10_results()
+        self.s11_now_future()
+        self.s12_roadmap()
+        self.s13_close()
         self.prs.save(output)
         print(f"Saved: {output}")
 
