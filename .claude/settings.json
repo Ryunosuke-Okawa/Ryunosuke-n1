@@ -68,7 +68,9 @@
       "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v4.html)",
       "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v4.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v5.html)",
       "Bash(open team_front_back_combined.png team_front_v4.png team_back_v5.png)",
-      "Bash(grep -i \"^gh$\")"
+      "Bash(grep -i \"^gh$\")",
+      "Bash(mkdir -p /Users/kyouyuu/claude/archive/agents_legacy)",
+      "Bash(mv /Users/kyouyuu/claude/.claude/agents/*.md /Users/kyouyuu/claude/archive/agents_legacy/)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
