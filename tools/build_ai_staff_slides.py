@@ -159,7 +159,7 @@ Kawaru事業部の大川です。AIハッカソンの発表を始めます。
 
         self._block(s, 0.5, 1.6, 12.33, 1.4, 'Kawaru事業部は、',
                     28, color=C['navy'], align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._block(s, 0.5, 2.7, 12.33, 1.2, '決まった業務がない',
+        self._block(s, 0.5, 2.7, 12.33, 1.2, '決まった業務が少ない',
                     48, bold=True, color=C['kawaru'],
                     align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
@@ -183,7 +183,7 @@ Kawaru事業部の大川です。AIハッカソンの発表を始めます。
 
         self._notes(s, """【前提・10秒】
 最初に前提を共有します。
-Kawaru事業部は、決まった業務がない事業部です。
+Kawaru事業部は、決まった業務が少ない事業部です。
 既存事業のように業務が固まっておらず、毎月内容が変わります。
 業務改善ではなく、業務を作っていく段階。
 だから今日は「業務削減」の話ではなく、「AI社員を動かして事業を推進する」という話をします。
