@@ -114,16 +114,12 @@ def main(R: int, I: int, A: int, S: int, E: int, C: int,
             "primary_type": primary_type,
             "secondary_type": secondary_type,
             "primary_companies": [],
-            "primary_reasons": [],
             "secondary_companies": [],
-            "secondary_reasons": [],
             "message": "今はまだ、特定のタイプに収まる時期ではありません。焦って就職先を決める前に、トモキャリで「一生使える自分の武器」を見つける旅を始めましょう。",
         }
 
     # ==============================
     # Step 2: 行動特性判定
-    # 【変更】Q50 >= 3（BtoB志向）を条件に追加。
-    #         BtoC寄りの学生には中西を案内せず、Step 4で通常判定に回す。
     # ==============================
     if Q30 >= 4 and Q31 >= 4 and Q50 >= 3:
         companies = company_db["nakanishi"]["BtoB"]
@@ -132,16 +128,12 @@ def main(R: int, I: int, A: int, S: int, E: int, C: int,
             "primary_type": primary_type,
             "secondary_type": secondary_type,
             "primary_companies": [c["group"] for c in companies],
-            "primary_reasons": [c["reason"] for c in companies],
             "secondary_companies": [],
-            "secondary_reasons": [],
             "message": "あなたの主体性と変革意欲は、安定基盤×ベンチャー志向の企業で大きく花開きます。",
         }
 
     # ==============================
     # Step 3: タイプ×志向判定
-    # 【変更】Q50 >= 3（BtoB志向）を条件に追加。
-    #         BtoC寄りの学生には中西を案内せず、Step 4で通常判定に回す。
     # ==============================
     nakanishi_types = {"E", "I", "A"}
     top2 = {primary_type, secondary_type}
@@ -154,9 +146,7 @@ def main(R: int, I: int, A: int, S: int, E: int, C: int,
             "primary_type": primary_type,
             "secondary_type": secondary_type,
             "primary_companies": [c["group"] for c in companies],
-            "primary_reasons": [c["reason"] for c in companies],
             "secondary_companies": [],
-            "secondary_reasons": [],
             "message": "あなたの志向性とBtoB・インフラへの適性は、社会基盤を支える企業で活かされます。",
         }
 
@@ -171,8 +161,6 @@ def main(R: int, I: int, A: int, S: int, E: int, C: int,
         "primary_type": primary_type,
         "secondary_type": secondary_type,
         "primary_companies": [c["group"] for c in p_companies],
-        "primary_reasons": [c["reason"] for c in p_companies],
         "secondary_companies": [c["group"] for c in s_companies],
-        "secondary_reasons": [c["reason"] for c in s_companies],
         "message": f"あなたは{primary_type}型の特性が最も強く、{secondary_type}型の側面も備わっています。",
     }
