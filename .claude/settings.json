@@ -77,7 +77,8 @@
       "Bash(/rename Kawaru_LPデザイナー返信)",
       "Bash(open /Users/kyouyuu/claude/strategy/AI社員5人_発表_20260426.pptx)",
       "Bash(open /tmp/AI社員5人_発表_v2_22-20.pptx)",
-      "Bash(open /tmp/AI社員5人_発表_v3_22-18.pptx)"
+      "Bash(open /tmp/AI社員5人_発表_v3_22-18.pptx)",
+      "Bash(obsidian open *)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
