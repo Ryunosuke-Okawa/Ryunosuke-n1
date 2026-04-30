@@ -36,6 +36,11 @@ C = {
     'black':     RGBColor(0x00, 0x00, 0x00),
     'light_acc': RGBColor(0xE0, 0xF2, 0xF4),
     'dark_head': RGBColor(0x1E, 0x40, 0x5F),     # dark header bar
+    # === Kawaru Brand Colors（展示会フライヤー準拠） ===
+    'kawaru_blue':   RGBColor(0x1E, 0x90, 0xFF),  # Kawaru（本体）= 青
+    'kawaru_orange': RGBColor(0xFF, 0x66, 0x00),  # Kawaru Team   = オレンジ
+    'kawaru_green':  RGBColor(0x10, 0xBF, 0x16),  # Kawaru BPO    = 緑
+    'kawaru_purple': RGBColor(0x7C, 0x3A, 0xED),  # Kawaru Coach  = 紫
 }
 
 FONT = 'Noto Sans JP'
@@ -209,12 +214,12 @@ class ProposalBuilder:
                     bg=C['highlight'], tc=C['body'], bold=True,
                     bar_color=C['accent'], align=PP_ALIGN.CENTER,
                     anchor=MSO_ANCHOR.MIDDLE)
-        # Right: service cards with colored accent bars
+        # Right: service cards with Kawaru brand colors（展示会フライヤー準拠）
         svcs = [
-            ('Kawaru', '業務自動化SaaS', C['accent']),
-            ('Kawaru Team', 'フルカスタマイズAI研修', C['info_bar']),
-            ('Kawaru BPO', 'AI業務効率化代行', C['ok_bar']),
-            ('Kawaru Coach', 'AI顧問サービス', C['warn_bar']),
+            ('Kawaru', '業務自動化SaaS', C['kawaru_blue']),
+            ('Kawaru Team', 'フルカスタマイズAI研修', C['kawaru_orange']),
+            ('Kawaru BPO', 'AI業務効率化代行', C['kawaru_green']),
+            ('Kawaru Coach', 'AI顧問サービス', C['kawaru_purple']),
         ]
         sx, sw = 7.30, 5.53
         sy = y
