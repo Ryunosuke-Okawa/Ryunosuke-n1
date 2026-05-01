@@ -82,7 +82,8 @@
       "Bash(open \"obsidian://open?vault=claude&file=marketing%2Fclaudecode_lp_deploy_guide\")",
       "Bash(npm view *)",
       "WebFetch(domain:www.npmjs.com)",
-      "mcp__notion-local__API-get-block-children"
+      "mcp__notion-local__API-get-block-children",
+      "Bash(claude-session rename *)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
