@@ -200,7 +200,38 @@ UPSIDERサポートチーム竹ケ原氏より一次回答メール受領。
 - **2026-04-28** 木村さんからCloud Logging抽出結果受領：0件（監査ログ有効化前）→ フォールバックで使用量メトリクス画面スクショ受領
 - **2026-04-28** Aljhon氏より返信受領（内部チーム調査エンゲージ・2-3営業日）
 - **2026-04-28** Aljhon氏へ返信送付（Cloud Logging 0件の説明＋メトリクス追加証拠＋満額クレジット要求）
+- **2026-05-01** Gab（Gabriel）氏より返信受領：「請求増は確認、不正の証拠は確認できず」／エスカレーション or Goodwill調整の2択提示（再）
+- **2026-05-01** **Aljhon氏より最終回答受領（事実上のクローズ示唆）**：「unauthorized transactions investigation team が "unable to confirm fraudulent activity"」「銀行に dispute / Billingチームに連絡せよ」とたらい回し
+- **2026-05-02** Aljhon氏宛に強い反論メール下書き作成（Gmail Drafts）：①Bhavani侵害認定発言の再引用②2ケース矛盾の表化③クローズ拒否④マネージャーエスカレーション要求⑤満額クレジット要求⑥3営業日以内の substantive response 要求
 - （以降、進展があれば追記）
+
+### 2026-05-01〜02（Aljhon氏クローズ示唆・反論準備）
+
+> [!warning] 重大な逆風：Google社内で判定が分裂
+> #70423599（Aljhon／Gabriel）が「不正と確認できない」で事実上クローズしようとしている。
+> #70540423（Bhavani／リスクチーム）の「API compromised」公式認定との直接矛盾。
+
+**Aljhon氏5/1メールの要旨：**
+- "unable to confirm fraudulent activity"
+- 銀行（UPSIDER）にdispute請求してほしい
+- Billingチームに連絡してほしい
+- → これは事実上の「Google側からの撤退通告」
+
+**5/2 反論メール（下書き済み・Gmail Drafts）の要点：**
+1. Bhavani氏の発言（"On checking I see you got unauthorized charges for a API compromised..."）を直接引用
+2. 同インシデントに対するGoogle社内の判定矛盾を表で可視化
+3. 4/28送付の証拠（Cloud Logging 0件の理由＋メトリクス3パターン）が読まれた形跡なし → 書面での説明要求
+4. たらい回し（bank / Billing team）拒否：Google起点インシデントを第三者に転嫁するな
+5. **"I do not accept this determination"** とクローズ阻止を明示
+6. **マネージャー / シニアサポートへのエスカレーション**を formal 要求
+7. **3営業日以内** の substantive response 要求（6/6引落しを根拠にurgency確保）
+
+**並行アクション（5/2以降）：**
+- [ ] Bhavani氏（#70540423）に状況共有＋進捗催促
+- [ ] Support Portalで両ケース（#70423599／#70540423）に同内容コメント投稿
+- [ ] UPSIDER竹ケ原氏に Google側の現況共有（保険ライン強化）
+- [ ] 経理にキャッシュフロー確保確認（6/6・67万円）
+- [ ] 髙橋COOに進捗共有（Google側分裂・反論メール送付の判断）
 
 ### 2026-04-28（Aljhon氏対応・追加証拠送付）
 
