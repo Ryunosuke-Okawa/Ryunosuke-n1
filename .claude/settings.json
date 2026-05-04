@@ -83,7 +83,8 @@
       "Bash(npm view *)",
       "WebFetch(domain:www.npmjs.com)",
       "mcp__notion-local__API-get-block-children",
-      "Bash(claude-session rename *)"
+      "Bash(claude-session rename *)",
+      "Bash(claude session *)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
