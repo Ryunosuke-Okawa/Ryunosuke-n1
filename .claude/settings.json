@@ -86,7 +86,9 @@
       "Bash(claude-session rename *)",
       "Bash(claude session *)",
       "Bash(claude --rename \"受信トレイ整理_2026-05-08\")",
-      "mcp__google-workspace__getRecentGoogleDocs"
+      "mcp__google-workspace__getRecentGoogleDocs",
+      "Bash(grep -r \"トスアップ\\\\|B2C営業\\\\|法人事業部\\\\|副業スクール\\\\|法人向け\\\\|コミッション\\\\|インセンティブ\" /Users/kyouyuu/claude --include=\"*.md\" ! -path \"*/archive/*\")",
+      "Bash(grep -r \"Kawaru\\\\|Claude Code\\\\|AIエージェント\\\\|通信側\" /Users/kyouyuu/claude --include=\"*.md\" ! -path \"*/archive/*\")"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
