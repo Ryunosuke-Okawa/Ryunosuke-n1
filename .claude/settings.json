@@ -102,7 +102,8 @@
       "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v9.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v5.html\")",
       "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v10.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v6.html\")",
       "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v7.html\")",
-      "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v8.html\")"
+      "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v8.html\")",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=840,1180 --screenshot=/Users/kyouyuu/Desktop/Kawaru_BPO_front.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v3b.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
