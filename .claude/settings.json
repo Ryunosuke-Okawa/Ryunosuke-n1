@@ -89,7 +89,8 @@
       "mcp__google-workspace__getRecentGoogleDocs",
       "Bash(grep -r \"トスアップ\\\\|B2C営業\\\\|法人事業部\\\\|副業スクール\\\\|法人向け\\\\|コミッション\\\\|インセンティブ\" /Users/kyouyuu/claude --include=\"*.md\" ! -path \"*/archive/*\")",
       "Bash(grep -r \"Kawaru\\\\|Claude Code\\\\|AIエージェント\\\\|通信側\" /Users/kyouyuu/claude --include=\"*.md\" ! -path \"*/archive/*\")",
-      "Bash(grep -r \"Eight EXPO\\\\|8EXPO\\\\|AI-PAX\\\\|展示会\\\\|出展\" /Users/kyouyuu/claude --include=\"*.md\" --include=\"*.txt\" ! -path \"*/archive/*\" -l)"
+      "Bash(grep -r \"Eight EXPO\\\\|8EXPO\\\\|AI-PAX\\\\|展示会\\\\|出展\" /Users/kyouyuu/claude --include=\"*.md\" --include=\"*.txt\" ! -path \"*/archive/*\" -l)",
+      "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v3.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v2.html\")"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
