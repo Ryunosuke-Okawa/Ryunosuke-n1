@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Kawaru Coach フライヤー裏面 v3</title>
+<title>Kawaru Coach フライヤー裏面 v4</title>
 <style>
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -108,52 +108,86 @@
   .section-hero .section-number { width: 10mm; height: 10mm; font-size: 12pt; }
   .section-hero .section-text .main { font-size: 13pt; }
 
-  /* ========== Section ① ターゲット定義（全幅） ========== */
+  /* ========== Section ① 3列比較（採用 / コンサル / Kawaru Coach） ========== */
   .feature-hero { margin-bottom: 3mm; }
-  .target-panel {
+  .compare-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.5mm;
+  }
+  .compare-col {
     border-radius: 3mm;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(124,58,237,0.15);
-    background: var(--purple-lighter);
-    border: 1.5px solid var(--purple);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
   }
-  .target-headline-wrap {
-    background: var(--purple);
-    color: var(--white);
-    padding: 3mm 5mm;
+  .compare-col-head {
+    padding: 2.5mm 2mm;
+    font-size: 9.5pt;
+    font-weight: 900;
     text-align: center;
+    letter-spacing: 0.3px;
+    color: var(--white);
   }
-  .target-headline {
-    font-size: 14pt;
+  .compare-col.opt1 .compare-col-head { background: #555; }
+  .compare-col.opt2 .compare-col-head { background: #777; }
+  .compare-col.opt3 .compare-col-head { background: var(--purple); }
+  .compare-col-body {
+    flex: 1;
+    padding: 2.5mm 3mm;
+  }
+  .compare-col.opt1 .compare-col-body,
+  .compare-col.opt2 .compare-col-body {
+    background: #f8f8f8;
+  }
+  .compare-col.opt3 .compare-col-body {
+    background: var(--purple-lighter);
+  }
+  .compare-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5mm;
+    padding: 1.5mm 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+    font-size: 6.5pt;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row .icon {
+    flex-shrink: 0;
+    font-weight: 900;
+    font-size: 8pt;
+    line-height: 1.3;
+  }
+  .compare-col.opt1 .icon,
+  .compare-col.opt2 .icon { color: #c44; }
+  .compare-col.opt3 .icon { color: var(--purple); }
+  .compare-col.opt1 .compare-row,
+  .compare-col.opt2 .compare-row { color: #777; }
+  .compare-col.opt3 .compare-row { color: var(--purple-dark); }
+  .compare-conclusion {
+    padding: 2.5mm 2mm;
+    text-align: center;
+    font-size: 10pt;
     font-weight: 900;
     line-height: 1.3;
   }
-  .target-headline .em {
-    color: #FFD44A;
+  .compare-col.opt1 .compare-conclusion,
+  .compare-col.opt2 .compare-conclusion {
+    background: #3D3D3D;
+    color: var(--white);
   }
-  .target-pills {
-    padding: 3.5mm 5mm;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2.5mm;
+  .compare-col.opt3 .compare-conclusion {
+    background: var(--purple-dark);
+    color: var(--white);
   }
-  .target-pill {
-    background: var(--white);
-    border: 1.5px solid var(--purple);
-    color: var(--purple-dark);
-    padding: 1.5mm 3.5mm;
-    border-radius: 10mm;
-    font-size: 7.5pt;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 1.5mm;
-  }
-  .target-pill::before {
-    content: "✓";
-    color: var(--purple);
-    font-weight: 900;
+  .compare-conclusion .arrow {
+    display: block;
+    font-size: 9pt;
+    margin-bottom: 0.8mm;
+    opacity: 0.8;
   }
 
   /* ========== Section ②③ 2カラム ========== */
@@ -408,27 +442,62 @@
     <div class="sub">研修やコンサルじゃ大げさ。でも自社だけだと不安——そんな企業に、経験者がそばで伴走します。</div>
   </section>
 
-  <!-- Section ① ターゲット定義（全幅） -->
+  <!-- Section ① 3列比較：採用 vs コンサル vs Kawaru Coach -->
   <div class="feature-hero section-hero">
     <div class="section-title">
       <div class="section-number">1</div>
       <div class="section-text">
-        <div class="main">研修もコンサルも、そこまでじゃない。</div>
+        <div class="main">経験者を社内に置く、3つの選択肢。</div>
       </div>
     </div>
 
-    <div class="target-panel">
-      <div class="target-headline-wrap">
-        <div class="target-headline">
-          <span class="em">「自社で進めるノウハウが欲しい」</span>、そんなあなたに。
+    <div class="compare-3col">
+
+      <!-- 選択肢1：人を採用する -->
+      <div class="compare-col opt1">
+        <div class="compare-col-head">人を採用する</div>
+        <div class="compare-col-body">
+          <div class="compare-row"><span class="icon">✕</span><span>採用コストが重い</span></div>
+          <div class="compare-row"><span class="icon">✕</span><span>採用・育成に時間がかかる</span></div>
+          <div class="compare-row"><span class="icon">✕</span><span>フルタイム拘束が前提</span></div>
+          <div class="compare-row"><span class="icon">✕</span><span>属人化・離職リスクあり</span></div>
+        </div>
+        <div class="compare-conclusion">
+          <span class="arrow">▼</span>
+          重い・遅い
         </div>
       </div>
-      <div class="target-pills">
-        <div class="target-pill">自社主導でAIを進めたい</div>
-        <div class="target-pill">経験者が1人欲しい</div>
-        <div class="target-pill">ミスなく、迷わず進めたい</div>
-        <div class="target-pill">人を採用するほどじゃない</div>
+
+      <!-- 選択肢2：コンサルに頼む -->
+      <div class="compare-col opt2">
+        <div class="compare-col-head">コンサルに頼む</div>
+        <div class="compare-col-body">
+          <div class="compare-row"><span class="icon">✕</span><span>提案書で終わりがち</span></div>
+          <div class="compare-row"><span class="icon">✕</span><span>実装は別途必要</span></div>
+          <div class="compare-row"><span class="icon">✕</span><span>スポット・単発の関係</span></div>
+          <div class="compare-row"><span class="icon">✕</span><span>社内にノウハウが残らない</span></div>
+        </div>
+        <div class="compare-conclusion">
+          <span class="arrow">▼</span>
+          進まない
+        </div>
       </div>
+
+      <!-- 選択肢3：Kawaru Coach -->
+      <div class="compare-col opt3">
+        <div class="compare-col-head">Kawaru Coach</div>
+        <div class="compare-col-body">
+          <div class="compare-row"><span class="icon">✓</span><span>経験者が社内に並走</span></div>
+          <div class="compare-row"><span class="icon">✓</span><span>必要なタイミングで必要なだけ</span></div>
+          <div class="compare-row"><span class="icon">✓</span><span>実行・実装まで伴走</span></div>
+          <div class="compare-row"><span class="icon">✓</span><span>社内に経験者が育つ</span></div>
+        </div>
+        <div class="compare-conclusion">
+          <span class="arrow">▼</span>
+          確実に進む
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -523,16 +592,16 @@
             <div class="case-logo">CASE<br>01</div>
             <div>
               <div class="case-name">株式会社BIRDY 様</div>
-              <div class="case-industry">スタートアップ</div>
+              <div class="case-industry">「AIがわからない経営者」</div>
             </div>
           </div>
           <dl class="case-meta">
             <dt>課題</dt>
-            <dd>自社でAI活用を進めたいが、経験者が不在。判断軸が定まらず、進め方に迷いがあった</dd>
+            <dd>代表自身にAI知識がなく、どこから手をつけるべきか分からない。社内ITリテラシーも高くなく、導入しても定着しない不安があった</dd>
             <dt>支援内容</dt>
-            <dd>AIプロアドバイザーが定期MTGで戦略・実装方針・社内推進まで伴走。経験ベースの知見を提供</dd>
+            <dd>月額制でAIプロが伴走。バックオフィス業務の効率化・代表業務の仕組み化を、運用までセットで設計</dd>
             <dt>成果</dt>
-            <dd>社内に「AI活用の判断軸」が定着。自社主導でAI推進を進められる体制を構築</dd>
+            <dd>採用・営業・ブランド拡大へ経営資源をシフトできる体制に。代表「ITリテラシーが低い会社でも、ちゃんと導入・運用まで伴走してくれる」</dd>
           </dl>
         </div>
 
@@ -547,11 +616,11 @@
           </div>
           <dl class="case-meta">
             <dt>課題</dt>
-            <dd>経営層は本気でAI推進を進めたいが、社内に経験者がおらず、戦略と実装の橋渡しに苦戦</dd>
+            <dd>経営層はAI推進を進めたいが、社内に経験者がおらず、戦略と実装の橋渡しに苦戦していた</dd>
             <dt>支援内容</dt>
-            <dd>AIプロアドバイザーが社内推進担当者の壁打ち相手として常駐。戦略設計から実装まで並走</dd>
+            <dd>AIプロアドバイザーが社内推進担当者の壁打ち相手として並走。戦略設計から実装まで一気通貫で伴走</dd>
             <dt>成果</dt>
-            <dd>推進担当者が自走できるレベルに育成。組織全体のAI活用フェーズを引き上げ</dd>
+            <dd>推進担当者が自走できるレベルに育成。組織全体のAI活用フェーズを引き上げる体制を構築</dd>
           </dl>
         </div>
 
