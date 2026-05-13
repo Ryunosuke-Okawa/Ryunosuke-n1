@@ -106,7 +106,8 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=840,1180 --screenshot=/Users/kyouyuu/Desktop/Kawaru_BPO_front.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v3b.html)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=840,1180 --screenshot=/Users/kyouyuu/Desktop/Kawaru_BPO_back.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v6.html)",
       "Bash(sips -h)",
-      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=840,1180 --screenshot=/Users/kyouyuu/Desktop/_bpo_f.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v3b.html)"
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=840,1180 --screenshot=/Users/kyouyuu/Desktop/_bpo_f.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v3b.html)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=840,1180 --screenshot=/Users/kyouyuu/Desktop/_coach_f.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_front_v5.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
