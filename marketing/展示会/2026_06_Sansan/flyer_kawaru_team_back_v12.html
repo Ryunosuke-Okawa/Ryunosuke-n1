@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team フライヤー裏面 v12</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange:        #FF6600;
+    --orange-dark:   #0F3057;
+    --orange-light:  #FFF3E0;
+    --orange-lighter:#FFF8F2;
+    --white:         #ffffff;
+    --gray:          #4a6b8a;
+    --border:        #FFD0A0;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .flyer {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 8mm 10mm 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flyer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 70mm;
+    background: linear-gradient(180deg, var(--orange-light) 0%, rgba(255,243,224,0) 100%);
+    z-index: 0;
+  }
+  .flyer > * { position: relative; z-index: 1; }
+
+  /* ========== Header ========== */
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5mm;
+    height: 10mm;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 3mm; }
+  .logo-k {
+    width: 10mm; height: 10mm;
+    background: var(--orange-dark);
+    border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 14pt;
+  }
+  .logo-text { font-size: 11pt; font-weight: 800; color: var(--orange-dark); letter-spacing: 0.5px; }
+  .tag {
+    background: var(--orange); color: var(--white);
+    padding: 1.5mm 3.5mm;
+    border-radius: 20mm;
+    font-size: 7.5pt; font-weight: 700;
+  }
+
+  /* ========== Hero ========== */
+  .hero {
+    margin: 0 0 4mm;
+    text-align: center;
+  }
+  .hero .quote { color: var(--orange); font-weight: 900; }
+  .hero h1 {
+    font-size: 19pt; font-weight: 900;
+    color: var(--orange-dark); line-height: 1.3;
+  }
+  .hero .divider {
+    width: 12mm; height: 0.8mm;
+    background: var(--orange);
+    margin: 2mm auto 0; border-radius: 1mm;
+  }
+  .hero .sub {
+    font-size: 8.5pt; color: var(--gray); margin-top: 1.5mm; font-weight: 600;
+  }
+
+  /* ========== Section title ========== */
+  .section-title {
+    display: flex; align-items: center;
+    gap: 2.5mm; margin-bottom: 2.5mm;
+  }
+  .section-number {
+    width: 8mm; height: 8mm;
+    background: var(--orange); color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10pt; font-weight: 900; flex-shrink: 0;
+  }
+  .section-text .main {
+    font-size: 11pt; font-weight: 900;
+    color: var(--orange-dark); line-height: 1.2;
+  }
+  .section-text .sub {
+    font-size: 6.5pt; color: var(--gray);
+    font-weight: 600; margin-top: 0.3mm;
+  }
+  .section-hero .section-number { width: 10mm; height: 10mm; font-size: 12pt; }
+  .section-hero .section-text .main { font-size: 13pt; }
+  .section-hero .section-text .sub { font-size: 7.5pt; }
+
+  /* ========== Section ① 2プラン構成 ========== */
+  .feature-hero { margin-bottom: 3mm; }
+  .plans-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+  }
+  .plan-col {
+    border-radius: 3mm;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+  }
+  .plan-col-head {
+    padding: 3mm 3mm 2.5mm;
+    text-align: center;
+    color: var(--white);
+  }
+  .plan-col.semi .plan-col-head { background: #5A7B9A; }
+  .plan-col.full .plan-col-head { background: var(--orange); }
+  .plan-col-head .plan-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    color: var(--white);
+    font-size: 6pt;
+    font-weight: 900;
+    padding: 0.5mm 2mm;
+    border-radius: 10mm;
+    letter-spacing: 1px;
+    margin-bottom: 1.5mm;
+  }
+  .plan-col-head .plan-name {
+    font-size: 13pt;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+  .plan-col-head .plan-sub {
+    font-size: 7pt;
+    font-weight: 600;
+    margin-top: 1mm;
+    opacity: 0.9;
+  }
+  .plan-col-body {
+    flex: 1;
+    padding: 3mm 3.5mm;
+    background: var(--orange-lighter);
+  }
+  .plan-feat {
+    font-size: 7pt;
+    color: var(--orange-dark);
+    font-weight: 700;
+    line-height: 1.45;
+    padding: 1.3mm 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+    display: flex;
+    align-items: flex-start;
+    gap: 2mm;
+  }
+  .plan-feat:last-child { border-bottom: none; }
+  .plan-feat .ck {
+    color: var(--orange);
+    font-weight: 900;
+    flex-shrink: 0;
+    font-size: 8pt;
+  }
+  .plan-target {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 2mm 3mm;
+    text-align: center;
+  }
+  .plan-target .label {
+    font-size: 5.5pt;
+    font-weight: 900;
+    color: var(--orange);
+    letter-spacing: 1px;
+    margin-bottom: 0.5mm;
+  }
+  .plan-target .target {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: var(--orange-dark);
+    line-height: 1.3;
+  }
+
+  /* ========== Section ②③ 2カラム ========== */
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-bottom: 3mm;
+  }
+
+  .panel {
+    border: 1.5px solid var(--orange);
+    border-radius: 2mm;
+    background: var(--orange-lighter);
+    height: 55mm;
+    padding: 3.5mm 4mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .panel-headline {
+    font-size: 13pt;
+    font-weight: 900;
+    color: var(--orange-dark);
+    line-height: 1.3;
+    margin-bottom: 2mm;
+  }
+  .panel-headline .em {
+    color: var(--orange);
+  }
+  .panel-body {
+    font-size: 7pt;
+    color: var(--gray);
+    line-height: 1.55;
+    font-weight: 600;
+  }
+  .panel-tags {
+    margin-top: 2.5mm;
+    display: flex;
+    gap: 1.5mm;
+    flex-wrap: wrap;
+  }
+  .panel-tag {
+    background: var(--white);
+    border: 1px solid var(--orange);
+    color: var(--orange-dark);
+    padding: 1mm 2.5mm;
+    border-radius: 10mm;
+    font-size: 6pt;
+    font-weight: 800;
+  }
+
+  /* 実績パネル内の3項目 */
+  .achv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+    margin-top: 1mm;
+  }
+  .achv-item {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    background: var(--white);
+    border-left: 1mm solid var(--orange);
+    border-radius: 1mm;
+    padding: 1.5mm 2.5mm;
+  }
+  .achv-num {
+    font-size: 12pt;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 13mm;
+  }
+  .achv-num .unit {
+    font-size: 7pt;
+    margin-left: 0.5mm;
+  }
+  .achv-num.achv-text-style {
+    font-size: 8pt;
+    line-height: 1.1;
+    text-align: center;
+  }
+  .achv-text {
+    font-size: 6.2pt;
+    color: var(--orange-dark);
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  /* ========== 3強みカード（選べる・楽しい・実績） ========== */
+  .strengths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5mm;
+    margin-bottom: 4mm;
+  }
+  .strength-card {
+    background: var(--white);
+    border: 1.5px solid var(--orange);
+    border-radius: 2mm;
+    padding: 3mm 3mm;
+    text-align: center;
+    position: relative;
+  }
+  .strength-card .badge {
+    position: absolute;
+    top: -2mm;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--orange-dark);
+    color: var(--white);
+    font-size: 7pt;
+    font-weight: 900;
+    padding: 0.5mm 2.5mm;
+    border-radius: 10mm;
+    letter-spacing: 1px;
+  }
+  .strength-card .icon {
+    font-size: 18pt;
+    margin: 1.5mm 0 1mm;
+    line-height: 1;
+  }
+  .strength-card .title {
+    font-size: 15pt;
+    font-weight: 900;
+    color: var(--orange-dark);
+    margin: 0.3mm 0 1.5mm;
+    line-height: 1.2;
+    letter-spacing: 1px;
+  }
+  .strength-card .desc {
+    font-size: 6pt;
+    color: var(--gray);
+    line-height: 1.45;
+    font-weight: 600;
+  }
+
+  /* ========== 事例セクション + CTA ========== */
+  .bottom-section {
+    margin-top: auto;
+    margin-left: -10mm; margin-right: -10mm;
+  }
+  .cases-section {
+    background: var(--orange-dark); color: var(--white);
+    padding: 4mm 10mm;
+  }
+  .cases-section h2 {
+    font-size: 10pt; font-weight: 900;
+    color: var(--white); margin-bottom: 3mm; text-align: center;
+  }
+  .cases-section h2 .icon-badge {
+    display: inline-block;
+    background: var(--orange); color: var(--white);
+    font-size: 8.5pt; padding: 1mm 3mm;
+    border-radius: 10mm; margin-right: 2mm;
+  }
+  .case-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm;
+  }
+  .case-card {
+    background: var(--white); border-radius: 1.8mm; padding: 2.5mm 3mm;
+    display: flex; flex-direction: column; gap: 1.5mm;
+  }
+  .case-head {
+    display: flex; align-items: center; gap: 2mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.5mm solid var(--orange-light);
+  }
+  .case-logo {
+    width: 7mm; height: 7mm;
+    background: var(--orange-lighter);
+    border: 1px solid var(--orange);
+    border-radius: 1mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange-dark); font-weight: 900; font-size: 7pt;
+    flex-shrink: 0;
+    line-height: 1.1;
+    text-align: center;
+  }
+  .case-name {
+    font-size: 8pt; font-weight: 900; color: var(--orange-dark);
+    line-height: 1.2;
+  }
+  .case-industry {
+    font-size: 5.5pt; color: #888; font-weight: 600; margin-top: 0.3mm;
+  }
+  .case-meta {
+    display: grid; grid-template-columns: auto 1fr; gap: 1mm 2mm;
+    font-size: 5.5pt; line-height: 1.5;
+  }
+  .case-meta dt {
+    font-weight: 900; color: var(--orange);
+    background: var(--orange-lighter);
+    padding: 0.3mm 1.5mm;
+    border-radius: 0.8mm;
+    align-self: start;
+    white-space: nowrap;
+  }
+  .case-meta dd {
+    color: #444; font-weight: 600;
+  }
+
+  /* ========== CTA ========== */
+  .cta-footer {
+    background: var(--orange);
+    padding: 3.5mm 10mm;
+    display: flex; justify-content: space-between; align-items: center; gap: 4mm;
+  }
+  .cta-main { color: var(--white); font-size: 14pt; font-weight: 900; line-height: 1.2; }
+  .cta-sub { font-size: 7pt; color: rgba(255,255,255,0.9); font-weight: 600; margin-top: 0.5mm; }
+  .cta-right { display: flex; align-items: center; gap: 3mm; }
+  .qr-box {
+    width: 16mm; height: 16mm;
+    background: var(--white); border-radius: 1.5mm;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6.5pt; color: #888; flex-shrink: 0; font-weight: 700;
+    text-align: center; line-height: 1.4;
+  }
+  .cta-logo {
+    display: flex; align-items: center; gap: 2mm;
+    background: var(--white); padding: 2mm 3mm; border-radius: 1.8mm;
+  }
+  .cta-logo .logo-k-small {
+    width: 7mm; height: 7mm;
+    background: var(--orange-dark); border-radius: 1.2mm;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-weight: 900; font-size: 10pt;
+  }
+  .cta-logo .logo-text-small {
+    font-size: 9pt; font-weight: 800; letter-spacing: 0.5px; color: var(--orange-dark);
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- Header -->
+  <header class="top">
+    <div class="logo-wrap">
+      <div class="logo-k">K</div>
+      <div class="logo-text">Kawaru Team</div>
+    </div>
+    <div class="tag">AI研修・組織トランスフォーメーション</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>全員を、<span class="quote">「使いこなす社員」</span>に。<br>型にはめない、AI研修。</h1>
+    <div class="divider"></div>
+    <div class="sub">選べる2プラン × 楽しい × 圧倒的実績。</div>
+  </section>
+
+  <!-- Section ① 2プラン構成 -->
+  <div class="feature-hero section-hero">
+    <div class="section-title">
+      <div class="section-number">1</div>
+      <div class="section-text">
+        <div class="main">御社に合わせて選べる、2プラン構成。</div>
+      </div>
+    </div>
+
+    <div class="plans-2col">
+
+      <!-- セミカスタマイズ -->
+      <div class="plan-col semi">
+        <div class="plan-col-head">
+          <div class="plan-tag">PLAN A</div>
+          <div class="plan-name">🎯 セミカスタマイズ</div>
+          <div class="plan-sub">手をかけずに、すぐ始められる</div>
+        </div>
+        <div class="plan-col-body">
+          <div class="plan-feat"><span class="ck">✓</span>業種・職種別テンプレートを土台に</div>
+          <div class="plan-feat"><span class="ck">✓</span>ヒアリング1〜2回でOK</div>
+          <div class="plan-feat"><span class="ck">✓</span>短期間・低工数で導入</div>
+        </div>
+        <div class="plan-target">
+          <div class="label">こんな企業に</div>
+          <div class="target">手をかけず、本質的な研修を受けたい</div>
+        </div>
+      </div>
+
+      <!-- フルカスタマイズ -->
+      <div class="plan-col full">
+        <div class="plan-col-head">
+          <div class="plan-tag">PLAN B</div>
+          <div class="plan-name">🛠 フルカスタマイズ</div>
+          <div class="plan-sub">業務・組織に最適化した専用設計</div>
+        </div>
+        <div class="plan-col-body">
+          <div class="plan-feat"><span class="ck">✓</span>業務・課題・目標を徹底ヒアリング</div>
+          <div class="plan-feat"><span class="ck">✓</span>御社の実業務・実資料を題材に</div>
+          <div class="plan-feat"><span class="ck">✓</span>研修後の定着・内製化まで伴走</div>
+        </div>
+        <div class="plan-target">
+          <div class="label">こんな企業に</div>
+          <div class="target">本気で組織のAIレベルを引き上げたい</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section ②③ 2カラム -->
+  <div class="feature-row">
+
+    <!-- Section ② とにかく楽しく -->
+    <div>
+      <div class="section-title">
+        <div class="section-number">2</div>
+        <div class="section-text">
+          <div class="main">とにかく、楽しく学べる。</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-headline">
+          小難しい生成AIを、<br>
+          <span class="em">遊ぶように</span>使いこなす。
+        </div>
+        <div class="panel-body">
+          ゲーム・カード教材で、興味のない人も巻き込む体験型研修。楽しいから続く、続くから定着する。
+        </div>
+        <div class="panel-tags">
+          <div class="panel-tag">ゲーム形式</div>
+          <div class="panel-tag">体験型ワーク</div>
+          <div class="panel-tag">参加率UP</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section ③ 圧倒的な実績 -->
+    <div>
+      <div class="section-title">
+        <div class="section-number">3</div>
+        <div class="section-text">
+          <div class="main">圧倒的な研修知見とノウハウ。</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="achv-list">
+          <div class="achv-item">
+            <div class="achv-num">5,000<span class="unit">名+</span></div>
+            <div class="achv-text">AIスクールでの<br>累計教育実績</div>
+          </div>
+          <div class="achv-item">
+            <div class="achv-num achv-text-style">全社<br>活用</div>
+            <div class="achv-text">Claude Code・ChatGPT<br>Gemini・Copilotを日常活用</div>
+          </div>
+          <div class="achv-item">
+            <div class="achv-num achv-text-style">導入<br>実績</div>
+            <div class="achv-text">NTTグループ・キリングループ<br>はじめ大手研修実績多数</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 3強みカード：選べる・楽しい・実績 -->
+  <section class="strengths">
+    <div class="strength-card">
+      <div class="badge">POINT 01</div>
+      <div class="icon">🎯</div>
+      <div class="title">選べる</div>
+      <div class="desc">セミカス／フルカスの2プラン。負担感・本気度に応じて選択。</div>
+    </div>
+    <div class="strength-card">
+      <div class="badge">POINT 02</div>
+      <div class="icon">🎮</div>
+      <div class="title">楽しい</div>
+      <div class="desc">ゲーム・体験ワーク中心。興味のない人も巻き込む設計。</div>
+    </div>
+    <div class="strength-card">
+      <div class="badge">POINT 03</div>
+      <div class="icon">🏆</div>
+      <div class="title">実績</div>
+      <div class="desc">スクール5,000名・自社活用・大手研修。3軸で圧倒的に証明。</div>
+    </div>
+  </section>
+
+  <!-- 事例セクション + CTA -->
+  <div class="bottom-section">
+    <section class="cases-section">
+      <h2><span class="icon-badge">導入事例</span>こんな企業に選ばれています</h2>
+      <div class="case-grid">
+
+        <!-- 事例1：キリングループ様 -->
+        <div class="case-card">
+          <div class="case-head">
+            <div class="case-logo">CASE<br>01</div>
+            <div>
+              <div class="case-name">キリングループ 様</div>
+              <div class="case-industry">飲料メーカー</div>
+            </div>
+          </div>
+          <dl class="case-meta">
+            <dt>課題</dt>
+            <dd>AI未経験・活用イメージなし</dd>
+            <dt>支援</dt>
+            <dd>業務実態をヒアリング→フルカスタマイズで体験型研修を設計</dd>
+            <dt>成果</dt>
+            <dd>満足度 <strong>8.5点</strong>／受講者全員が「業務でAIを使いたい」と回答</dd>
+          </dl>
+        </div>
+
+        <!-- 事例2：株式会社ミズカラ -->
+        <div class="case-card">
+          <div class="case-head">
+            <div class="case-logo">CASE<br>02</div>
+            <div>
+              <div class="case-name">株式会社ミズカラ 様</div>
+              <div class="case-industry">人材・組織コーチング</div>
+            </div>
+          </div>
+          <dl class="case-meta">
+            <dt>課題</dt>
+            <dd>中間管理職に問い合わせ集中／ノウハウが属人化</dd>
+            <dt>支援</dt>
+            <dd>各部門の責任者ノウハウを学習させた専用GPTsを構築・社内展開</dd>
+            <dt>成果</dt>
+            <dd>営業統括 <strong>月50時間削減</strong>／マーケ クリエイティブ <strong>1案件2h→1h（月100時間削減）</strong></dd>
+          </dl>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="cta-footer">
+      <div>
+        <div class="cta-main">全員を、「使いこなす社員」に。</div>
+        <div class="cta-sub">初回ヒアリング無料 ／ 30分で貴社にフィットするプランをご提案。</div>
+      </div>
+      <div class="cta-right">
+        <div class="qr-box">QR<br>CODE</div>
+        <div class="cta-logo">
+          <div class="logo-k-small">K</div>
+          <div class="logo-text-small">Kawaru Team</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</div>
+</body>
+</html>
