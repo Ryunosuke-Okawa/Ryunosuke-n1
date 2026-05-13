@@ -94,7 +94,8 @@
       "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v3a.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_front_v3b.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v3.html\")",
       "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v4.html\")",
       "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v5.html\")",
-      "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v5.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v6.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_front_v3.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v2.html\")"
+      "Bash(open \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v5.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v6.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_front_v3.html\" \"file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_coach_back_v2.html\")",
+      "mcp__notion-local__API-post-search"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
