@@ -111,7 +111,8 @@
       "WebFetch(domain:rich82.com)",
       "WebFetch(domain:jobnavi-tokushima.jp)",
       "WebFetch(domain:baseconnect.in)",
-      "WebFetch(domain:www.topics.or.jp)"
+      "WebFetch(domain:www.topics.or.jp)",
+      "WebFetch(domain:startup-db.com)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
