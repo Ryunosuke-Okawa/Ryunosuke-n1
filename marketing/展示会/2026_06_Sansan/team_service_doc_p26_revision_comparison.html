@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team サービス資料 P26 修正指示（ビフォーアフター）</title>
+<style>
+  :root {
+    --orange: #FF6600;
+    --purple: #7C3AED;
+    --green: #10BF16;
+    --blue: #2563EB;
+    --orange-dark: #0F3057;
+    --orange-light: #FFF3EB;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e8e8e8;
+    padding: 24px;
+    color: var(--orange-dark);
+  }
+  .page-title { text-align: center; font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+  .page-subtitle { text-align: center; font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+  .compare-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .panel {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .panel-label {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .panel-label.before { background: var(--gray); }
+  .panel-label.after { background: var(--orange); }
+  .slide {
+    aspect-ratio: 16/9;
+    padding: 28px 30px;
+    background: var(--white);
+  }
+  .slide-header {
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+  .slide-tag { font-size: 10px; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
+  .slide-title { font-size: 17px; font-weight: 900; color: var(--orange-dark); }
+  .lead {
+    text-align: center;
+    font-size: 11px;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+  .service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .svc-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px;
+  }
+  .svc-card.highlight {
+    border: 2px solid var(--orange);
+    background: var(--orange-light);
+    box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
+  }
+  .svc-card .svc-name {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--orange-dark);
+    margin-bottom: 4px;
+  }
+  .svc-card.team .svc-name { color: var(--orange); }
+  .svc-card.coach .svc-name { color: var(--purple); }
+  .svc-card.bpo .svc-name { color: var(--green); }
+  .svc-card.kawaru .svc-name { color: var(--blue); }
+  .svc-desc {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: var(--orange-dark);
+  }
+  .badge-changed {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 8px;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 8px;
+    margin-left: 4px;
+  }
+  .changes {
+    background: var(--white);
+    margin: 32px auto 0;
+    max-width: 1600px;
+    padding: 20px 28px;
+    border-radius: 8px;
+    border-left: 6px solid var(--orange);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .changes h3 { font-size: 14px; font-weight: 900; margin-bottom: 10px; color: var(--orange); }
+  .changes ul { list-style: none; padding: 0; }
+  .changes li {
+    font-size: 12px;
+    padding: 4px 0 4px 22px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .changes li::before { content: "▸"; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
+  .strike { text-decoration: line-through; color: var(--gray); opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<div class="page-title">P26 「法人向けサービス一覧」 ビフォーアフター</div>
+<div class="page-subtitle">Kawaru Team行の説明文のみ差し替え（他3サービスは変更なし）</div>
+
+<div class="compare-wrapper">
+
+  <div class="panel">
+    <div class="panel-label before">BEFORE（現状）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">法人向けサービス一覧</div>
+        <div class="slide-title">AIの導入から定着まで、包括的にサポート</div>
+      </div>
+      <div class="service-grid">
+        <div class="svc-card team">
+          <div class="svc-name">Kawaru Team</div>
+          <div class="svc-desc">本質的な課題の特定×課題にアプローチしたフルカスタマイズ研修</div>
+        </div>
+        <div class="svc-card kawaru">
+          <div class="svc-name">Kawaru</div>
+          <div class="svc-desc">日常業務を自動化するSaaSツール</div>
+        </div>
+        <div class="svc-card coach">
+          <div class="svc-name">Kawaru Coach</div>
+          <div class="svc-desc">AI活用戦略の立案から実行まで伴走するAI顧問サービス</div>
+        </div>
+        <div class="svc-card bpo">
+          <div class="svc-name">Kawaru BPO</div>
+          <div class="svc-desc">AIプロによる業務効率化代行サービス</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label after">AFTER（修正後）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">法人向けサービス一覧</div>
+        <div class="slide-title">AIの導入から定着まで、包括的にサポート</div>
+      </div>
+      <div class="service-grid">
+        <div class="svc-card team highlight">
+          <div class="svc-name">Kawaru Team<span class="badge-changed">CHANGED</span></div>
+          <div class="svc-desc"><strong>AIを使いこなす人材を育てる、貴社専用設計のAI研修</strong></div>
+        </div>
+        <div class="svc-card kawaru">
+          <div class="svc-name">Kawaru</div>
+          <div class="svc-desc">日常業務を自動化するSaaSツール</div>
+        </div>
+        <div class="svc-card coach">
+          <div class="svc-name">Kawaru Coach</div>
+          <div class="svc-desc">AI活用戦略の立案から実行まで伴走するAI顧問サービス</div>
+        </div>
+        <div class="svc-card bpo">
+          <div class="svc-name">Kawaru BPO</div>
+          <div class="svc-desc">AIプロによる業務効率化代行サービス</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="changes">
+  <h3>変更ポイント（美優さん向け）</h3>
+  <ul>
+    <li><strong>Kawaru Team行の説明文のみ差し替え</strong>：<span class="strike">「本質的な課題の特定×課題にアプローチしたフルカスタマイズ研修」</span> → <strong>「AIを使いこなす人材を育てる、貴社専用設計のAI研修」</strong></li>
+    <li>他3サービス（Kawaru／Kawaru Coach／Kawaru BPO）の説明文は<strong>変更なし</strong></li>
+    <li>レイアウト・カード構造・色なども<strong>すべて現状維持</strong></li>
+  </ul>
+</div>
+
+</body>
+</html>

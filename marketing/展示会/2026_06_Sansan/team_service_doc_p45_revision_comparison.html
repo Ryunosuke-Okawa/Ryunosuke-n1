@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team サービス資料 P45 修正指示（ビフォーアフター）</title>
+<style>
+  :root {
+    --orange: #FF6600;
+    --orange-dark: #0F3057;
+    --orange-light: #FFF3EB;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e8e8e8;
+    padding: 24px;
+    color: var(--orange-dark);
+  }
+  .page-title { text-align: center; font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+  .page-subtitle { text-align: center; font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+  .compare-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .panel {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .panel-label {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .panel-label.before { background: var(--gray); }
+  .panel-label.after { background: var(--orange); }
+  .slide {
+    aspect-ratio: 16/9;
+    padding: 28px 30px;
+    background: var(--white);
+  }
+  .slide-header {
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+  .slide-tag { font-size: 10px; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
+  .slide-title { font-size: 17px; font-weight: 900; color: var(--orange-dark); }
+  .qa-item {
+    padding: 10px 0;
+    border-bottom: 1px dashed #e5e7eb;
+  }
+  .qa-item.highlight {
+    background: var(--orange-light);
+    border: 2px solid var(--orange);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+  }
+  .qa-row { display: flex; gap: 8px; align-items: flex-start; }
+  .qa-mark {
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+  }
+  .qa-mark.a { background: var(--orange-dark); }
+  .qa-text {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: var(--orange-dark);
+    flex: 1;
+  }
+  .qa-text.q { font-weight: 900; }
+  .qa-other {
+    font-size: 10px;
+    color: var(--gray);
+    padding: 8px 0;
+    border-bottom: 1px dashed #e5e7eb;
+  }
+  .badge-changed {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 8px;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 8px;
+    margin-left: 4px;
+  }
+  .changes {
+    background: var(--white);
+    margin: 32px auto 0;
+    max-width: 1600px;
+    padding: 20px 28px;
+    border-radius: 8px;
+    border-left: 6px solid var(--orange);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .changes h3 { font-size: 14px; font-weight: 900; margin-bottom: 10px; color: var(--orange); }
+  .changes ul { list-style: none; padding: 0; }
+  .changes li {
+    font-size: 12px;
+    padding: 4px 0 4px 22px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .changes li::before { content: "▸"; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
+  .strike { text-decoration: line-through; color: var(--gray); opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<div class="page-title">P45 「よくある質問」 ビフォーアフター</div>
+<div class="page-subtitle">1問目（Q1）のAだけ差し替え。他5問は変更なし</div>
+
+<div class="compare-wrapper">
+
+  <div class="panel">
+    <div class="panel-label before">BEFORE（現状）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">Q&A</div>
+        <div class="slide-title">よくある質問</div>
+      </div>
+      <div class="qa-item highlight">
+        <div class="qa-row" style="margin-bottom:6px;">
+          <div class="qa-mark">Q</div>
+          <div class="qa-text q">一般的なAI研修との違いは何ですか？</div>
+        </div>
+        <div class="qa-row">
+          <div class="qa-mark a">A</div>
+          <div class="qa-text">型にはまった内容ではなく、貴社の業務・課題に<strong>完全フルカスタマイズ</strong>した研修を提供します。また、研修だけでなく、ゴール設定から振り返りまで組織開発の視点で伴走します。</div>
+        </div>
+      </div>
+      <div class="qa-other">Q2: 研修後のフォローはありますか？／A: ...（変更なし）</div>
+      <div class="qa-other">Q3: 参加者のAIリテラシーがバラバラでも大丈夫ですか？／A: ...（変更なし）</div>
+      <div class="qa-other">Q4: 研修内容はどのように決まりますか？／A: ...（変更なし）</div>
+      <div class="qa-other">Q5: オンラインでの実施は可能ですか？／A: ...（変更なし）</div>
+      <div class="qa-other">Q6: 他のKawaruシリーズと併用できますか？／A: ...（変更なし）</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label after">AFTER（修正後）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">Q&A</div>
+        <div class="slide-title">よくある質問</div>
+      </div>
+      <div class="qa-item highlight">
+        <div class="qa-row" style="margin-bottom:6px;">
+          <div class="qa-mark">Q</div>
+          <div class="qa-text q">一般的なAI研修との違いは何ですか？<span class="badge-changed">CHANGED</span></div>
+        </div>
+        <div class="qa-row">
+          <div class="qa-mark a">A</div>
+          <div class="qa-text">型にはまった内容ではなく、<strong>貴社の状況に合わせて設計した研修</strong>を提供します。<strong>eラーニングや助成金パッケージとは異なり、現場の実態に沿った実践型</strong>。研修だけでなく、ゴール設定から振り返りまで組織開発の視点で伴走します。</div>
+        </div>
+      </div>
+      <div class="qa-other">Q2: 研修後のフォローはありますか？／A: ...（変更なし）</div>
+      <div class="qa-other">Q3: 参加者のAIリテラシーがバラバラでも大丈夫ですか？／A: ...（変更なし）</div>
+      <div class="qa-other">Q4: 研修内容はどのように決まりますか？／A: ...（変更なし）</div>
+      <div class="qa-other">Q5: オンラインでの実施は可能ですか？／A: ...（変更なし）</div>
+      <div class="qa-other">Q6: 他のKawaruシリーズと併用できますか？／A: ...（変更なし）</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="changes">
+  <h3>変更ポイント（美優さん向け）</h3>
+  <ul>
+    <li><strong>Q1のA文を修正</strong>。<span class="strike">「貴社の業務・課題に完全フルカスタマイズした研修を提供します」</span> → <strong>「貴社の状況に合わせて設計した研修を提供します。eラーニングや助成金パッケージとは異なり、現場の実態に沿った実践型」</strong></li>
+    <li>Q1以外の5問（Q2〜Q6）は<strong>変更なし</strong></li>
+    <li>レイアウト・Q/Aデザインも<strong>すべて現状維持</strong>。文字の差し替えのみ</li>
+  </ul>
+</div>
+
+</body>
+</html>

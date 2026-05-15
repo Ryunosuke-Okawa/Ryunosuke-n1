@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team サービス資料 P23 修正指示（ビフォーアフター）</title>
+<style>
+  :root {
+    --orange: #FF6600;
+    --orange-dark: #0F3057;
+    --orange-light: #FFF3EB;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e8e8e8;
+    padding: 24px;
+    color: var(--orange-dark);
+  }
+  .page-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+  .page-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .compare-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .panel {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .panel-label {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .panel-label.before { background: var(--gray); }
+  .panel-label.after { background: var(--orange); }
+  .slide {
+    aspect-ratio: 16/9;
+    background: var(--white);
+    color: var(--orange-dark);
+    position: relative;
+    padding: 30px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  /* cover header */
+  .cover-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cover-logo {
+    width: 28px; height: 28px;
+    background: var(--orange);
+    border-radius: 4px;
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 16px;
+  }
+  .cover-logotext {
+    font-size: 13px; font-weight: 900;
+  }
+  .cover-tag {
+    margin-left: auto;
+    font-size: 10px;
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+  }
+  .cover-main {
+    text-align: center;
+  }
+  .cover-main h1 {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--orange-dark);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .cover-main .sub {
+    font-size: 13px;
+    color: var(--orange-dark);
+    font-weight: 700;
+    line-height: 1.6;
+  }
+  .cover-footer {
+    font-size: 10px;
+    color: var(--gray);
+    text-align: center;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
+  }
+  .highlight {
+    background: linear-gradient(transparent 60%, #FFE4CC 60%);
+    padding: 0 2px;
+  }
+  .changes {
+    background: var(--white);
+    margin: 32px auto 0;
+    max-width: 1600px;
+    padding: 20px 28px;
+    border-radius: 8px;
+    border-left: 6px solid var(--orange);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .changes h3 {
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--orange);
+  }
+  .changes ul { list-style: none; padding: 0; }
+  .changes li {
+    font-size: 12px;
+    padding: 4px 0 4px 22px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .changes li::before {
+    content: "▸";
+    position: absolute; left: 0;
+    color: var(--orange);
+    font-weight: 900;
+  }
+  .strike { text-decoration: line-through; color: var(--gray); opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<div class="page-title">P23 「表紙」 ビフォーアフター</div>
+<div class="page-subtitle">メインコピーをフライヤー裏面H1と一致／サブコピーから「完全フルカスタマイズ」を除去</div>
+
+<div class="compare-wrapper">
+
+  <div class="panel">
+    <div class="panel-label before">BEFORE（現状）</div>
+    <div class="slide">
+      <div class="cover-header">
+        <div class="cover-logo">K</div>
+        <div class="cover-logotext">Kawaru Team</div>
+        <div class="cover-tag">株式会社エヌイチ ｜ ツール紹介資料</div>
+      </div>
+      <div class="cover-main">
+        <h1>AIで、業務が変わる。<br>チームが変わる。</h1>
+        <div class="sub">貴社の課題に完全フルカスタマイズ。<br>本質を捉えた組織開発型AI研修</div>
+      </div>
+      <div class="cover-footer">Kawaru Team</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label after">AFTER（修正後）</div>
+    <div class="slide">
+      <div class="cover-header">
+        <div class="cover-logo">K</div>
+        <div class="cover-logotext">Kawaru Team</div>
+        <div class="cover-tag">株式会社エヌイチ ｜ ツール紹介資料</div>
+      </div>
+      <div class="cover-main">
+        <h1><span class="highlight">全員を、「使いこなす社員」に。</span><br><span class="highlight">型にはめない、AI研修。</span></h1>
+        <div class="sub">貴社の状況に合わせて設計する、<br>本質を捉えた組織開発型AI研修</div>
+      </div>
+      <div class="cover-footer">Kawaru Team</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="changes">
+  <h3>変更ポイント（美優さん向け）</h3>
+  <ul>
+    <li><strong>メインコピー</strong>を <span class="strike">「AIで、業務が変わる。チームが変わる。」</span> → <strong>「全員を、『使いこなす社員』に。／型にはめない、AI研修。」</strong> に差し替え</li>
+    <li><strong>改行位置はフライヤー裏面（back_v12）と同一</strong>：「全員を、『使いこなす社員』に。」で改行 → 「型にはめない、AI研修。」</li>
+    <li><strong>サブコピー</strong>から「完全フルカスタマイズ」を除去。<span class="strike">「貴社の課題に完全フルカスタマイズ。本質を捉えた組織開発型AI研修」</span> → <strong>「貴社の状況に合わせて設計する、本質を捉えた組織開発型AI研修」</strong></li>
+    <li>ロゴ・タグ・フッターは現状維持</li>
+  </ul>
+</div>
+
+</body>
+</html>

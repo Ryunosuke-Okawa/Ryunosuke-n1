@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team サービス資料 P34 修正指示（ビフォーアフター）</title>
+<style>
+  :root {
+    --orange: #FF6600;
+    --orange-dark: #0F3057;
+    --orange-light: #FFF3EB;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e8e8e8;
+    padding: 24px;
+    color: var(--orange-dark);
+  }
+  .page-title { text-align: center; font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+  .page-subtitle { text-align: center; font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+  .compare-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .panel {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .panel-label {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .panel-label.before { background: var(--gray); }
+  .panel-label.after { background: var(--orange); }
+  .slide {
+    aspect-ratio: 16/9;
+    padding: 28px 30px;
+    background: var(--white);
+  }
+  .slide-header {
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  .slide-tag { font-size: 10px; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
+  .slide-title { font-size: 17px; font-weight: 900; color: var(--orange-dark); }
+  .strengths {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .strength {
+    background: var(--orange-light);
+    border-radius: 6px;
+    padding: 14px 12px;
+    text-align: center;
+    border-top: 4px solid var(--orange);
+  }
+  .strength-num {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .strength-title {
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--orange-dark);
+    margin-bottom: 8px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .strength-desc {
+    font-size: 10px;
+    color: var(--orange-dark);
+    line-height: 1.55;
+    text-align: left;
+  }
+  .badge-changed {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 8px;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 8px;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+  .changes {
+    background: var(--white);
+    margin: 32px auto 0;
+    max-width: 1600px;
+    padding: 20px 28px;
+    border-radius: 8px;
+    border-left: 6px solid var(--orange);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .changes h3 { font-size: 14px; font-weight: 900; margin-bottom: 10px; color: var(--orange); }
+  .changes ul { list-style: none; padding: 0; }
+  .changes li {
+    font-size: 12px;
+    padding: 4px 0 4px 22px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .changes li::before { content: "▸"; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
+  .strike { text-decoration: line-through; color: var(--gray); opacity: 0.7; }
+  .warn {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #FFF3EB;
+    border: 1px dashed var(--orange);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--orange-dark);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">P34 「3つの強み」 ビフォーアフター</div>
+<div class="page-subtitle">並び順入れ替え＋①を「貴社の状況に合わせて柔軟に設計」に書き換え（「2プラン」とは書かない）</div>
+
+<div class="compare-wrapper">
+
+  <div class="panel">
+    <div class="panel-label before">BEFORE（現状）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">特徴</div>
+        <div class="slide-title">Kawaru Teamの3つの強み</div>
+      </div>
+      <div class="strengths">
+        <div class="strength">
+          <div class="strength-num">01</div>
+          <div class="strength-title">組織開発を目的としたAI研修</div>
+          <div class="strength-desc">研修だけでなく、ゴール設定・課題の言語化・振り返りまで一気通貫でサポート（AI推進というPJT全体を、組織の成長として捉えます）</div>
+        </div>
+        <div class="strength">
+          <div class="strength-num">02</div>
+          <div class="strength-title">完全フルカスタマイズ</div>
+          <div class="strength-desc">貴社の業務・課題・目標に合わせて研修内容を一から設計（一般的な型にはまった研修は提供しません）</div>
+        </div>
+        <div class="strength">
+          <div class="strength-num">03</div>
+          <div class="strength-title">楽しく・楽に学べる</div>
+          <div class="strength-desc">興味のない人でも巻き込める、飽きさせない研修設計（座学中心ではなく、実践・体験型で学びを定着）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label after">AFTER（修正後）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">特徴</div>
+        <div class="slide-title">Kawaru Teamの3つの強み</div>
+      </div>
+      <div class="strengths">
+        <div class="strength">
+          <div class="strength-num">01</div>
+          <div class="strength-title">貴社の状況に合わせて、<br>柔軟に設計<span class="badge-changed">NEW</span></div>
+          <div class="strength-desc">「本質から組織を変えたい」企業も、「まずは研修を始めたい」企業も、目的・状況に合わせてカスタマイズ。型にはめた研修は提供しません</div>
+        </div>
+        <div class="strength">
+          <div class="strength-num">02</div>
+          <div class="strength-title">楽しく・楽に学べる</div>
+          <div class="strength-desc">興味のない人でも巻き込める、飽きさせない研修設計（座学中心ではなく、実践・体験型で学びを定着）</div>
+        </div>
+        <div class="strength">
+          <div class="strength-num">03</div>
+          <div class="strength-title">組織開発を目的としたAI研修</div>
+          <div class="strength-desc">研修だけでなく、ゴール設定・課題の言語化・振り返りまで一気通貫でサポート（AI推進というPJT全体を、組織の成長として捉えます）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="changes">
+  <h3>変更ポイント（美優さん向け）</h3>
+  <ul>
+    <li><strong>①</strong>を新規書き換え：<span class="strike">「組織開発を目的としたAI研修」</span> → <strong>「貴社の状況に合わせて、柔軟に設計」</strong></li>
+    <li><strong>①の説明文も新規</strong>：「『本質から組織を変えたい』企業も、『まずは研修を始めたい』企業も、目的・状況に合わせてカスタマイズ。型にはめた研修は提供しません」</li>
+    <li><strong>②と③は中身そのまま、並び順を入れ替え</strong>。旧②「完全フルカスタマイズ」は削除し、②に旧③「楽しく・楽に学べる」を、③に旧①「組織開発を目的としたAI研修」を配置</li>
+    <li>レイアウト・01/02/03の番号付きデザインは<strong>現状維持</strong></li>
+  </ul>
+  <div class="warn">
+    ⚠️ このページには「2プラン」「セミ」「フル」という単語は<strong>入れない</strong>でください。料金プラン（P44）まで温存。
+  </div>
+</div>
+
+</body>
+</html>

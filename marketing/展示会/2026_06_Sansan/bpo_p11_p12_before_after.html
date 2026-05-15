@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru BPO サービス資料 P11・P12 ビフォーアフター</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #f0f2f5;
+    padding: 30px;
+    color: #1a1a1a;
+  }
+
+  /* ========== レイアウト ========== */
+  .container {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  h1.doc-title {
+    font-size: 22pt;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: #0A5208;
+  }
+  .doc-sub {
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 10pt;
+  }
+
+  .page-section {
+    margin-bottom: 50px;
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .page-section h2 {
+    font-size: 16pt;
+    font-weight: 900;
+    margin-bottom: 16px;
+    color: #0A5208;
+    border-bottom: 3px solid #10BF16;
+    padding-bottom: 8px;
+  }
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .ba-card {
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+  }
+  .ba-card.before { border-color: #bbb; background: #fafafa; }
+  .ba-card.after { border-color: #10BF16; background: #F1F8F1; }
+  .ba-label {
+    font-size: 10pt;
+    font-weight: 900;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+  .ba-card.before .ba-label { background: #888; }
+  .ba-card.after .ba-label { background: #10BF16; }
+
+  .arrow-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36pt;
+    color: #10BF16;
+    font-weight: 900;
+  }
+
+  /* ========== ページプレビュー（A4縦横比） ========== */
+  .preview {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .preview-title-sm {
+    font-size: 8pt;
+    color: #888;
+    font-weight: 700;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+  }
+  .preview-title-lg {
+    font-size: 14pt;
+    font-weight: 900;
+    color: #0A5208;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .before .preview-title-lg { color: #444; }
+
+  /* ===== P11 ビフォー：4ステップフロー ===== */
+  .flow-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+  }
+  .flow-text {
+    font-size: 8.5pt;
+    line-height: 1.7;
+    color: #555;
+  }
+  .flow-text .closer {
+    margin-top: 12px;
+    font-weight: 900;
+    color: #444;
+  }
+  .flow-diagram {
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .flow-step {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 8pt;
+    font-weight: 700;
+    color: #555;
+  }
+  .flow-arrow {
+    text-align: center;
+    color: #888;
+    font-weight: 900;
+  }
+  .flow-step.start { background: #e8e8e8; }
+  .flow-step.kawaru { background: #d0e8d0; border-color: #10BF16; color: #0A5208; }
+
+  /* ===== P11 アフター：比較マトリクス ===== */
+  .matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    flex: 1;
+  }
+  .matrix-col {
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .matrix-head {
+    padding: 8px;
+    text-align: center;
+    font-size: 9pt;
+    font-weight: 900;
+    color: white;
+  }
+  .matrix-col.bad .matrix-head { background: #666; }
+  .matrix-col.good .matrix-head { background: #10BF16; }
+  .matrix-body {
+    flex: 1;
+    padding: 6px 10px;
+  }
+  .matrix-col.bad .matrix-body { background: #f5f5f5; }
+  .matrix-col.good .matrix-body { background: #E8F5E9; }
+  .matrix-row {
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    font-size: 7.5pt;
+    line-height: 1.4;
+  }
+  .matrix-row:last-child { border-bottom: none; }
+  .matrix-row .axis {
+    font-size: 6.5pt;
+    font-weight: 900;
+    color: #999;
+    display: inline-block;
+    margin-right: 4px;
+  }
+  .matrix-col.good .axis { color: #10BF16; }
+  .matrix-col.bad .matrix-row { color: #777; }
+  .matrix-col.good .matrix-row { color: #0A5208; font-weight: 600; }
+  .matrix-conclusion {
+    padding: 6px;
+    text-align: center;
+    font-size: 8.5pt;
+    font-weight: 900;
+    color: white;
+  }
+  .matrix-col.bad .matrix-conclusion { background: #444; }
+  .matrix-col.good .matrix-conclusion { background: #0A5208; }
+  .matrix-closer {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 8.5pt;
+    font-weight: 900;
+    color: #0A5208;
+    padding: 6px;
+    background: #F1F8F1;
+    border-radius: 6px;
+    border: 1px dashed #10BF16;
+  }
+
+  /* ===== P12 共通：3カード ===== */
+  .point-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    flex: 1;
+  }
+  .point-card {
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .before .point-card { border-color: #ccc; background: #fafafa; }
+  .after .point-card { border-color: #10BF16; background: white; position: relative; }
+  .point-card .badge {
+    font-size: 7pt;
+    font-weight: 900;
+    color: #666;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .after .point-card .badge {
+    background: #0A5208;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    width: fit-content;
+    margin: 0 auto 8px;
+  }
+  .point-card .icon {
+    font-size: 22pt;
+    margin: 4px 0 6px;
+  }
+  .point-card .title {
+    font-size: 11pt;
+    font-weight: 900;
+    color: #0A5208;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .before .point-card .title { color: #444; }
+  .after .point-card .title {
+    font-size: 16pt;
+    letter-spacing: 2px;
+  }
+  .point-card .desc {
+    font-size: 7pt;
+    line-height: 1.5;
+    color: #666;
+    text-align: left;
+  }
+
+  /* ========== 変更ポイント注釈 ========== */
+  .change-note {
+    margin-top: 16px;
+    background: #FFF7E5;
+    border-left: 4px solid #FF9F00;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 9.5pt;
+    line-height: 1.7;
+    color: #444;
+  }
+  .change-note strong { color: #B36B00; }
+  .change-note ul { margin-left: 1.2em; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1 class="doc-title">Kawaru BPO サービス資料 P11・P12 ビフォーアフター</h1>
+  <div class="doc-sub">2026-05-15 大川／フライヤー裏面（back_v9）の訴求3軸をBPOサービス資料に反映する案</div>
+
+  <!-- ====================================== P11 ====================================== -->
+  <div class="page-section">
+    <h2>P11（旧：課題解決 → 新：解決策）</h2>
+
+    <div class="ba-grid">
+
+      <!-- ビフォー -->
+      <div class="ba-card before">
+        <div class="ba-label">BEFORE（現状）</div>
+        <div class="preview before">
+          <div class="preview-title-sm">課題解決</div>
+          <div class="preview-title-lg">Kawaru BPOが全プロセス、<br>丸ごと代行します。</div>
+          <div class="flow-content">
+            <div class="flow-text">
+              業務改善を進めたいが、どの業務から手をつけるか、誰がやるか、どう定着させるか——そのすべてを、Kawaru BPOが代行します。<br><br>
+              お客様はヒアリングに応じるだけ。実行は全て、私たちが担います。<br><br>
+              AIは手段です。しかし、その手段が未来の選択肢を何十倍にも変える。
+              <div class="closer">3ヶ月で、組織が変わります。</div>
+            </div>
+            <div class="flow-diagram">
+              <div class="flow-step start">お客様：<br>ヒアリングに応じるだけ</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step kawaru">課題特定</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step kawaru">実行・自動化</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step kawaru">定着・内製化</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-center">→</div>
+
+      <!-- アフター -->
+      <div class="ba-card after">
+        <div class="ba-label">AFTER（修正案）</div>
+        <div class="preview after">
+          <div class="preview-title-sm">解決策</div>
+          <div class="preview-title-lg">自社で対応する vs Kawaru BPOに任せる。</div>
+          <div class="matrix">
+            <div class="matrix-col bad">
+              <div class="matrix-head">自社で行う場合</div>
+              <div class="matrix-body">
+                <div class="matrix-row"><span class="axis">🔍 業務選定</span>AIで使える業務を自分たちで特定する必要</div>
+                <div class="matrix-row"><span class="axis">📋 業務整理</span>業務棚卸し・プロセス整理を社内で進める</div>
+                <div class="matrix-row"><span class="axis">🎓 AIの知識</span>AIを知るところから社員が学ばないといけない</div>
+                <div class="matrix-row"><span class="axis">⚙️ 自動化</span>設計・実装・テストに莫大な工数がかかる</div>
+              </div>
+              <div class="matrix-conclusion">▼ 莫大な時間と労力</div>
+            </div>
+            <div class="matrix-col good">
+              <div class="matrix-head">Kawaru BPOに任せる</div>
+              <div class="matrix-body">
+                <div class="matrix-row"><span class="axis">🔍 業務選定</span>業務棚卸しから一気通貫で外注できる</div>
+                <div class="matrix-row"><span class="axis">📋 業務整理</span>棚卸し後、優先順位を一緒にすり合わせ</div>
+                <div class="matrix-row"><span class="axis">🎓 AIの知識</span>AIコンサルタントが専属で担当</div>
+                <div class="matrix-row"><span class="axis">⚙️ 自動化</span>設計・実装・テストまで丸投げ可能</div>
+              </div>
+              <div class="matrix-conclusion">▼ 圧倒的な速さと品質</div>
+            </div>
+          </div>
+          <div class="matrix-closer">お客様はヒアリングに応じるだけ。実行は全て、AIのプロチームが担います。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="change-note">
+      <strong>変更ポイント</strong>
+      <ul>
+        <li><strong>左の説明文＋右の縦4ステップ図</strong> を、<strong>2列比較マトリクス</strong>に作り替え（フライヤー裏面 Section① と同構造）</li>
+        <li>見出しを「課題解決／Kawaru BPOが全プロセス、丸ごと代行します。」→「<strong>解決策／自社で対応する vs Kawaru BPOに任せる。</strong>」に変更</li>
+        <li>「3ヶ月で、組織が変わります。」は<strong>削除</strong>（大川指示）</li>
+        <li>マトリクス4行：<strong>業務選定 / 業務整理 / AIの知識 / 自動化</strong>（フライヤーと同じ4観点・絵文字も同じ）</li>
+        <li>結論を「莫大な時間と労力」⇔「圧倒的な速さと品質」で対比</li>
+        <li>ページ最下に締めコピー「お客様はヒアリングに応じるだけ。実行は全て、AIのプロチームが担います。」を1行追加</li>
+        <li>色設計：左＝グレー基調／右＝Kawaruグリーン基調</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ====================================== P12 ====================================== -->
+  <div class="page-section">
+    <h2>P12（旧：選ばれる3つの特徴 → 新：3つの強み「楽・早い・育つ」）</h2>
+
+    <div class="ba-grid">
+
+      <!-- ビフォー -->
+      <div class="ba-card before">
+        <div class="ba-label">BEFORE（現状）</div>
+        <div class="preview before">
+          <div class="preview-title-sm">選ばれる理由</div>
+          <div class="preview-title-lg">Kawaru BPOが選ばれる3つの特徴</div>
+          <div class="point-cards">
+            <div class="point-card">
+              <div class="badge">FEATURE 01</div>
+              <div class="title">最短1週間で<br>業務自動化が可能</div>
+              <div class="desc">生成AI活用とn8nなどの連携ツールを活用し、営業・マーケ・バックオフィスなど全領域でのワークフロー自動化を実現。</div>
+            </div>
+            <div class="point-card">
+              <div class="badge">FEATURE 02</div>
+              <div class="title">5,000名以上の<br>AIコンサルタントを保有</div>
+              <div class="desc">AIスクール事業で多数の実績。法人向けAIコンサルタントや16,000人規模のAIコミュニティ講師も在籍。</div>
+            </div>
+            <div class="point-card">
+              <div class="badge">FEATURE 03</div>
+              <div class="title">AI活用の<br>内製化まで支援</div>
+              <div class="desc">代行するだけでなく、自社でAI活用を推進できる組織づくりまでサポート。自走できる体制の構築を目指します。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow-center">→</div>
+
+      <!-- アフター -->
+      <div class="ba-card after">
+        <div class="ba-label">AFTER（修正案）</div>
+        <div class="preview after">
+          <div class="preview-title-sm">3つの強み</div>
+          <div class="preview-title-lg">楽・早い・育つ、を、ひとつのパッケージで。</div>
+          <div class="point-cards">
+            <div class="point-card">
+              <div class="badge">POINT 01</div>
+              <div class="icon">😌</div>
+              <div class="title">楽</div>
+              <div class="desc">御社はヒアリングに答えるだけ。社内リソース不要で業務改善が進む。<br>（業務棚卸し・課題特定・ツール選定・実装まで一気通貫で代行）</div>
+            </div>
+            <div class="point-card">
+              <div class="badge">POINT 02</div>
+              <div class="icon">⚡</div>
+              <div class="title">早い</div>
+              <div class="desc">AIプロチームが専属で並走。最短1週間で着手、並列で複数業務。<br>（5,000名規模のAIコンサルタントから貴社の課題に最適な人材をアサイン）</div>
+            </div>
+            <div class="point-card">
+              <div class="badge">POINT 03</div>
+              <div class="icon">🌱</div>
+              <div class="title">育つ</div>
+              <div class="desc">代行で終わらず、社内に「動ける人」が残る。<br>（日々のコミュニケーションでスキルが移植。AI活用が自走できる体制へ）</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="change-note">
+      <strong>変更ポイント</strong>
+      <ul>
+        <li>ページ見出しを「選ばれる理由／Kawaru BPOが選ばれる3つの特徴」→「<strong>3つの強み／楽・早い・育つ、を、ひとつのパッケージで。</strong>」に変更</li>
+        <li>3カードを「FEATURE 01〜03」→「<strong>POINT 01｜楽 / 02｜早い / 03｜育つ</strong>」に作り替え（フライヤー裏面の3強みカードと完全一致）</li>
+        <li>順番はフライヤーと統一：<strong>楽 → 早い → 育つ</strong>（大川指示）</li>
+        <li>アイコン：😌（楽）／⚡（早い）／🌱（育つ）</li>
+        <li>各カードは「大文字キーワード（楽／早い／育つ）＋一文の説明＋括弧書きの補足（5,000名・16,000人などの裏付け数字をここに温存）」</li>
+        <li>旧3要素（1週間／5000名／内製化）の情報はすべて新カードの補足説明に再配置（数字訴求は失わない）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ====================================== 補足：P22料金プラン ====================================== -->
+  <div class="page-section">
+    <h2>【補足】P22 料金プラン 修正方向（議論用）</h2>
+    <div class="change-note" style="background: #E8F5E9; border-left-color: #10BF16;">
+      <strong>大川指示の反映ポイント</strong>
+      <ul>
+        <li><strong>初期費用：30万円 → 0円</strong>に変更</li>
+        <li>稼働単価：30万円（維持）／<strong>「最低目安30万円から」</strong>と見せる（ミニマムは30万、それ以下もあり得る含み）</li>
+        <li>「助成金活用にも対応可能」は<strong>削除</strong>（言わない）</li>
+        <li>「プロジェクト開始まで 最短1週間で開始可能」は<strong>維持</strong></li>
+        <li>※ P04の「最短1週間で納品」表現とP22の「開始まで1週間」の整合性について別途確認中</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
