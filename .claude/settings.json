@@ -119,7 +119,8 @@
       "Bash(open /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/team_service_doc_p33_revision_comparison.html /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/team_service_doc_p44_revision_comparison.html)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/team_service_doc_p33_revision_comparison.png --window-size=1700,1300 file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/team_service_doc_p33_revision_comparison.html)",
       "mcp__google-workspace__insertLocalImage",
-      "Bash(open \"/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/bpo_p11_p12_before_after.html\")"
+      "Bash(open \"/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/bpo_p11_p12_before_after.html\")",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=1700,1700 --screenshot=/Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/bpo_p11_p12_before_after.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/bpo_p11_p12_before_after.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
