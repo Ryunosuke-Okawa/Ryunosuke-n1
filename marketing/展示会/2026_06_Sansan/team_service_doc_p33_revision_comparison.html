@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team サービス資料 P33 修正指示（ビフォーアフター）</title>
+<style>
+  :root {
+    --orange: #FF6600;
+    --orange-dark: #0F3057;
+    --orange-light: #FFF3EB;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --red: #DC2626;
+    --green: #059669;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e8e8e8;
+    padding: 24px;
+    color: var(--orange-dark);
+  }
+  .page-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: var(--orange-dark);
+  }
+  .page-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .compare-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .panel {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .panel-label {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .panel-label.before { background: var(--gray); }
+  .panel-label.after { background: var(--orange); }
+  .slide {
+    padding: 30px 28px;
+    aspect-ratio: 16/9;
+    background: var(--white);
+    position: relative;
+  }
+  .slide-header {
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+  .slide-tag {
+    font-size: 10px;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .slide-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--orange-dark);
+  }
+  .lead {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .compare-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .col {
+    border-radius: 6px;
+    padding: 14px 12px;
+  }
+  .col.left {
+    background: var(--gray-light);
+    border: 1px solid #d1d5db;
+  }
+  .col.right {
+    background: var(--orange-light);
+    border: 2px solid var(--orange);
+  }
+  .col-heading {
+    font-size: 11px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed currentColor;
+  }
+  .col.left .col-heading { color: var(--gray); }
+  .col.right .col-heading { color: var(--orange); }
+  .item {
+    font-size: 10.5px;
+    line-height: 1.55;
+    margin-bottom: 8px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .item.cross::before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--red);
+    font-weight: 900;
+  }
+  .item.check::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--green);
+    font-weight: 900;
+  }
+  .item .strong {
+    font-weight: 900;
+    color: var(--orange-dark);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .item.new {
+    background: #FFE8D6;
+    padding: 8px 8px 8px 28px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  .item.new::before {
+    left: 8px;
+    top: 8px;
+  }
+  .badge-new {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 8px;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 8px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .footer-note {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--orange-dark);
+    font-weight: 700;
+    padding: 8px 16px;
+    background: var(--orange-light);
+    border-radius: 4px;
+  }
+  .changes {
+    background: var(--white);
+    margin: 32px auto 0;
+    max-width: 1600px;
+    padding: 20px 28px;
+    border-radius: 8px;
+    border-left: 6px solid var(--orange);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .changes h3 {
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--orange);
+  }
+  .changes ul {
+    list-style: none;
+    padding: 0;
+  }
+  .changes li {
+    font-size: 12px;
+    padding: 4px 0 4px 22px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .changes li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-weight: 900;
+  }
+  .strike {
+    text-decoration: line-through;
+    color: var(--gray);
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">P33 「導入の効果：解決策」 ビフォーアフター</div>
+<div class="page-subtitle">対比構造は維持。左の中身を全面入れ替え／右に「助成金活用」を追加</div>
+
+<div class="compare-wrapper">
+
+  <!-- ========= BEFORE ========= -->
+  <div class="panel">
+    <div class="panel-label before">BEFORE（現状）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">導入の効果</div>
+        <div class="slide-title">Kawaru Teamが解決します</div>
+      </div>
+      <div class="lead">
+        組織にAIを浸透させるために、研修を実施する企業は多い。<br>
+        しかし、多くの研修は型にはまった内容で、現場の実務に活かせない。
+      </div>
+      <div class="compare-cols">
+        <div class="col left">
+          <div class="col-heading">現状：一般的なAI研修の課題</div>
+          <div class="item cross">一般的なプロンプト講座</div>
+          <div class="item cross">業界を問わない汎用的な事例紹介</div>
+          <div class="item cross">楽しくない、実践につながらない座学</div>
+        </div>
+        <div class="col right">
+          <div class="col-heading">解決策：完全フルカスタマイズ研修</div>
+          <div class="item check">貴社の業務・課題に完全フルカスタマイズ</div>
+          <div class="item check">現場の実務に直結する実践的内容</div>
+          <div class="item check">楽しく学べる、エンゲージメントの高い形式</div>
+        </div>
+      </div>
+      <div class="footer-note">
+        Kawaru Teamは、貴社の業務・課題に<strong>完全フルカスタマイズ</strong>した研修で、<br>
+        「本当に使える」AI人材を育成します。
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= AFTER ========= -->
+  <div class="panel">
+    <div class="panel-label after">AFTER（修正後）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">導入の効果</div>
+        <div class="slide-title">Kawaru Teamが解決します</div>
+      </div>
+      <div class="lead">
+        組織にAIを浸透させるために、研修を実施する企業は多い。<br>
+        しかし、多くの研修は型にはまった内容で、現場の実務に活かせない。
+      </div>
+      <div class="compare-cols">
+        <div class="col left">
+          <div class="col-heading">世の中の一般的なAI研修</div>
+          <div class="item cross">
+            <span class="strong">eラーニング型研修</span>
+            動画を見るだけ。そもそも見ない人も多く、現場の実務に結びつかない
+          </div>
+          <div class="item cross">
+            <span class="strong">助成金パッケージ研修</span>
+            助成金ありきの汎用カリキュラム。自社の課題と噛み合わない
+          </div>
+          <div class="item cross">
+            <span class="strong">型にはめた集合研修</span>
+            型通りの内容で、現場の実態とズレている
+          </div>
+        </div>
+        <div class="col right">
+          <div class="col-heading">Kawaru Teamの研修</div>
+          <div class="item check">
+            <span class="strong">貴社の目的・状況に合わせて設計</span>
+            本質から変えたい企業も、まず始めたい企業も対応
+          </div>
+          <div class="item check">現場の実務に直結する実践型</div>
+          <div class="item check">楽しく学べる、エンゲージメントの高い形式</div>
+          <div class="item check new">
+            <span class="strong">助成金の活用にも対応可能<span class="badge-new">NEW</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note">
+        Kawaru Teamは、<strong>型にはめない研修</strong>で<br>
+        「本当に使える」AI人材を育成します。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="changes">
+  <h3>変更ポイント（美優さん向け）</h3>
+  <ul>
+    <li><strong>左ブロックの見出し</strong>を「一般的なAI研修の課題」→「<strong>世の中の一般的なAI研修</strong>」に変更</li>
+    <li><strong>左ブロックの3項目</strong>を全面入れ替え。<span class="strike">一般的なプロンプト講座／汎用的な事例紹介／座学</span> → <strong>eラーニング／助成金パッケージ／型にはめた集合研修</strong>に</li>
+    <li>左の各項目に<strong>「サブ見出し＋説明文」構造</strong>を追加（太字＋説明文の2行構成）</li>
+    <li><strong>右ブロックの見出し</strong>を「解決策：完全フルカスタマイズ研修」→「<strong>Kawaru Teamの研修</strong>」に変更</li>
+    <li>右①の文言を「貴社の業務・課題に完全フルカスタマイズ」→「<strong>貴社の目的・状況に合わせて設計</strong>（本質から変えたい企業も、まず始めたい企業も対応）」に変更</li>
+    <li><strong>右④に「助成金の活用にも対応可能」を新規追加</strong>（NEWバッジ or 強調デザインで目立たせる）</li>
+    <li>締めコピーから「完全フルカスタマイズ」を削除し、「<strong>型にはめない研修</strong>」に置換</li>
+  </ul>
+</div>
+
+</body>
+</html>

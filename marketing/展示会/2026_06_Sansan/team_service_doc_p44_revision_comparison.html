@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Team サービス資料 P44 修正指示（ビフォーアフター）</title>
+<style>
+  :root {
+    --orange: #FF6600;
+    --orange-dark: #0F3057;
+    --orange-light: #FFF3EB;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --green: #059669;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #e8e8e8;
+    padding: 24px;
+    color: var(--orange-dark);
+  }
+  .page-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: var(--orange-dark);
+  }
+  .page-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .compare-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .panel {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .panel-label {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .panel-label.before { background: var(--gray); }
+  .panel-label.after { background: var(--orange); }
+  .slide {
+    padding: 30px 28px;
+    aspect-ratio: 16/9;
+    background: var(--white);
+  }
+  .slide-header {
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .slide-tag {
+    font-size: 10px;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .slide-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--orange-dark);
+  }
+
+  /* === BEFORE: 1 plan === */
+  .plan-grid-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  /* === AFTER: 2 plans === */
+  .plan-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .plan-card {
+    border: 2px solid var(--orange);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .plan-name {
+    background: var(--orange);
+    color: var(--white);
+    text-align: center;
+    padding: 8px 6px;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+  }
+  .plan-price-row {
+    text-align: center;
+    padding: 14px 10px 10px;
+    border-bottom: 1px dashed #e5e7eb;
+  }
+  .price-label {
+    font-size: 9px;
+    color: var(--gray);
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .price-value {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1.1;
+  }
+  .price-unit {
+    font-size: 10px;
+    color: var(--orange-dark);
+    font-weight: 700;
+  }
+  .plan-spec {
+    padding: 10px 12px;
+  }
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #e5e7eb;
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-label { color: var(--gray); font-weight: 700; }
+  .spec-value { color: var(--orange-dark); font-weight: 900; }
+  .check-list {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--orange-light);
+    border-radius: 6px;
+    text-align: center;
+  }
+  .check-item {
+    font-size: 11px;
+    color: var(--orange-dark);
+    font-weight: 700;
+    display: inline-block;
+    margin: 0 8px;
+  }
+  .check-item::before {
+    content: "✓ ";
+    color: var(--green);
+    font-weight: 900;
+  }
+  .footer-note {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 10px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+  .footer-note.after-note {
+    color: var(--orange-dark);
+    font-weight: 700;
+    background: var(--orange-light);
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+  .badge-new {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 8px;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 8px;
+    margin-left: 4px;
+  }
+  .changes {
+    background: var(--white);
+    margin: 32px auto 0;
+    max-width: 1600px;
+    padding: 20px 28px;
+    border-radius: 8px;
+    border-left: 6px solid var(--orange);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .changes h3 {
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--orange);
+  }
+  .changes ul {
+    list-style: none;
+    padding: 0;
+  }
+  .changes li {
+    font-size: 12px;
+    padding: 4px 0 4px 22px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .changes li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-weight: 900;
+  }
+  .strike {
+    text-decoration: line-through;
+    color: var(--gray);
+    opacity: 0.7;
+  }
+  .warn {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: #FFF3EB;
+    border: 1px dashed var(--orange);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--orange-dark);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">P44 「料金プラン」 ビフォーアフター</div>
+<div class="page-subtitle">1プラン → セミ／フル の併記化（※「2プラン」とは表記しない）</div>
+
+<div class="compare-wrapper">
+
+  <!-- ========= BEFORE ========= -->
+  <div class="panel">
+    <div class="panel-label before">BEFORE（現状）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">料金</div>
+        <div class="slide-title">料金プラン</div>
+      </div>
+
+      <div class="plan-grid-1">
+        <div class="plan-card">
+          <div class="plan-name">スタンダード</div>
+          <div class="plan-price-row">
+            <div class="price-label">料金</div>
+            <div class="price-value">150,000<span class="price-unit"> 円/人</span></div>
+          </div>
+          <div class="plan-spec">
+            <div class="spec-row"><span class="spec-label">研修時間</span><span class="spec-value">10〜15時間/人</span></div>
+            <div class="spec-row"><span class="spec-label">研修回数</span><span class="spec-value">3〜5回</span></div>
+            <div class="spec-row"><span class="spec-label">参加人数</span><span class="spec-value">15〜25名</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-list">
+        <span class="check-item">組織開発の視点</span>
+        <span class="check-item">完全カスタマイズ</span>
+        <span class="check-item">実践型研修</span>
+      </div>
+
+      <div class="footer-note">
+        ご要望に応じてプランのカスタマイズも可能です。<br>
+        詳しくはお問い合わせください。
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= AFTER ========= -->
+  <div class="panel">
+    <div class="panel-label after">AFTER（修正後）</div>
+    <div class="slide">
+      <div class="slide-header">
+        <div class="slide-tag">料金</div>
+        <div class="slide-title">料金プラン</div>
+      </div>
+
+      <div class="plan-grid-2">
+        <div class="plan-card">
+          <div class="plan-name">セミカスタマイズ<span class="badge-new">NEW</span></div>
+          <div class="plan-price-row">
+            <div class="price-label">料金</div>
+            <div class="price-value">100,000<span class="price-unit"> 円/人</span></div>
+          </div>
+          <div class="plan-spec">
+            <div class="spec-row"><span class="spec-label">研修時間</span><span class="spec-value">10〜15時間/人</span></div>
+            <div class="spec-row"><span class="spec-label">研修回数</span><span class="spec-value">3〜5回</span></div>
+            <div class="spec-row"><span class="spec-label">参加人数</span><span class="spec-value">15〜25名</span></div>
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">フルカスタマイズ</div>
+          <div class="plan-price-row">
+            <div class="price-label">料金</div>
+            <div class="price-value">150,000<span class="price-unit"> 円/人</span></div>
+          </div>
+          <div class="plan-spec">
+            <div class="spec-row"><span class="spec-label">研修時間</span><span class="spec-value">10〜15時間/人</span></div>
+            <div class="spec-row"><span class="spec-label">研修回数</span><span class="spec-value">3〜5回</span></div>
+            <div class="spec-row"><span class="spec-label">参加人数</span><span class="spec-value">15〜25名</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-list">
+        <span class="check-item">貴社の状況に合わせた柔軟な設計</span>
+        <span class="check-item">楽しく・楽に学べる</span>
+        <span class="check-item">組織開発を目的としたAI研修</span>
+      </div>
+
+      <div class="footer-note after-note">
+        ご要望に応じて、内容のカスタマイズや<strong>助成金活用にも対応可能</strong>です。<br>
+        詳しくはお問い合わせください。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="changes">
+  <h3>変更ポイント（美優さん向け）</h3>
+  <ul>
+    <li><strong>料金カードを1個→2個</strong>に。横並び（左：セミカスタマイズ／右：フルカスタマイズ）でレイアウト</li>
+    <li>セミカスタマイズ：<strong>新規プラン／100,000円/人</strong>。プラン名横にNEWバッジ推奨</li>
+    <li>フルカスタマイズ：<strong>旧スタンダード（150,000円/人）から名称変更</strong>のみ。金額は据え置き</li>
+    <li><strong>研修時間／研修回数／参加人数は両プラン共通</strong>（10〜15時間／3〜5回／15〜25名）。維持</li>
+    <li>チェック3点：<span class="strike">①組織開発の視点／②完全カスタマイズ／③実践型研修</span> → <strong>①貴社の状況に合わせた柔軟な設計／②楽しく・楽に学べる／③組織開発を目的としたAI研修</strong>（P34と統一）</li>
+    <li>補助コピーに「<strong>助成金活用にも対応可能</strong>」を追記</li>
+  </ul>
+  <div class="warn">
+    ⚠️ ページ上に「2プラン」「2種類のプラン」など<strong>プラン数を限定する表現は使わない</strong>でください。「料金プラン」の見出しだけで、カードを横に2枚並べるレイアウトでOK。
+  </div>
+</div>
+
+</body>
+</html>
