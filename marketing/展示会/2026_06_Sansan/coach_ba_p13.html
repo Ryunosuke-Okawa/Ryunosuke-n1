@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Kawaru Coach P13 ビフォーアフター</title>
+<style>
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a1a;
+    padding: 20px;
+  }
+  :root {
+    --purple: #7C3AED;
+    --purple-dark: #1E0A3C;
+    --purple-light: #EDE4FB;
+    --purple-lighter: #F6F1FE;
+  }
+  .ba-section {
+    width: 1500px;
+    background: white;
+    padding: 28px 32px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+  .ba-section h2.section-title {
+    font-size: 18pt;
+    font-weight: 900;
+    margin-bottom: 4px;
+    color: var(--purple-dark);
+  }
+  .ba-section .section-sub {
+    color: #555;
+    font-size: 10pt;
+    margin-bottom: 18px;
+  }
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 14px;
+    align-items: stretch;
+  }
+  .ba-card {
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 18px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .ba-card.before { border-color: #bbb; background: #fafafa; }
+  .ba-card.after { border-color: var(--purple); background: var(--purple-lighter); }
+  .ba-label {
+    font-size: 10pt;
+    font-weight: 900;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+  .ba-card.before .ba-label { background: #888; }
+  .ba-card.after .ba-label { background: var(--purple); }
+  .arrow-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36pt;
+    color: var(--purple);
+    font-weight: 900;
+  }
+  .preview {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .change-note {
+    margin-top: 14px;
+    background: #FFF7E5;
+    border-left: 4px solid #FF9F00;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 9.5pt;
+    line-height: 1.7;
+    color: #444;
+  }
+  .change-note strong { color: #B36B00; }
+  .change-note ul { margin-left: 1.2em; margin-top: 4px; }
+  .preview-title-sm {
+    font-size: 8pt;
+    color: #888;
+    font-weight: 700;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+  }
+  .preview-title-lg {
+    font-size: 14pt;
+    font-weight: 900;
+    color: var(--purple-dark);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .before .preview-title-lg { color: #444; }
+
+
+  .p13-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; flex: 1; }
+  .p13-card-old { background: white; border: 1.5px solid #ccc; border-radius: 8px; padding: 12px 10px; text-align: left; display: flex; flex-direction: column; gap: 6px; }
+  .p13-card-old .head { font-size: 9pt; font-weight: 900; color: #444; line-height: 1.3; }
+  .p13-card-old .desc { font-size: 7pt; line-height: 1.5; color: #666; }
+  .p13-card-new { background: white; border: 1.5px solid var(--purple); border-radius: 8px; padding: 14px 10px 12px; text-align: center; position: relative; display: flex; flex-direction: column; gap: 4px; }
+  .p13-card-new .badge { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: var(--purple-dark); color: white; font-size: 7pt; font-weight: 900; padding: 2px 8px; border-radius: 20px; letter-spacing: 1px; }
+  .p13-card-new .icon { font-size: 22pt; margin: 4px 0 2px; }
+  .p13-card-new .title { font-size: 15pt; font-weight: 900; color: var(--purple-dark); letter-spacing: 2px; }
+  .p13-card-new .desc { font-size: 7pt; color: #666; line-height: 1.5; margin-top: 4px; }
+
+</style>
+</head>
+<body>
+
+<div class="ba-section">
+  <h2 class="section-title">P13（選ばれる理由）★3カード全面入れ替え＋大キャッチ変更</h2>
+  <div class="section-sub">大キャッチを「なぜKawaru Coachは、AI推進が進むのか」に／3カードはPOINT 01 育てる/02 推進/03 開発</div>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <div class="ba-label">BEFORE（現状）</div>
+      <div class="preview">
+        <div class="preview-title-sm">選ばれる理由</div>
+        <div class="preview-title-lg">Kawaru Coachが選ばれる3つの理由</div>
+        <div class="p13-cards">
+          <div class="p13-card-old">
+            <div class="head">圧倒的な<br>コンサルタントの数と質</div>
+            <div class="desc">累計1,600名以上への企業研修・AI活用支援実績を持ち、AIスクール事業で5,000人以上のAIコンサルタントを保有。</div>
+          </div>
+          <div class="p13-card-old">
+            <div class="head">経営・事業・<br>組織視点でのサポート</div>
+            <div class="desc">ツールの使い方にとどまらず、経営課題・事業課題を起点にしたAI活用を設計。</div>
+          </div>
+          <div class="p13-card-old">
+            <div class="head">マンツーマンの<br>短期集中型伴走支援</div>
+            <div class="desc">専属コンサルタントが担当者1人につき、自走できるようになるまで徹底的に伴走。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="arrow-center">→</div>
+    <div class="ba-card after">
+      <div class="ba-label">AFTER（修正案）</div>
+      <div class="preview">
+        <div class="preview-title-sm">選ばれる理由</div>
+        <div class="preview-title-lg">なぜKawaru Coachは、AI推進が進むのか</div>
+        <div class="p13-cards" style="padding-top: 8px;">
+          <div class="p13-card-new">
+            <div class="badge">POINT 01</div>
+            <div class="icon">🎓</div>
+            <div class="title">育てる</div>
+            <div class="desc">5,000名育成の知見で、推進担当者をAI人材に。<br>（AIスクール5,000名超の教育知見を、貴社の担当者育成に転用）</div>
+          </div>
+          <div class="p13-card-new">
+            <div class="badge">POINT 02</div>
+            <div class="icon">🌱</div>
+            <div class="title">推進</div>
+            <div class="desc">自社の日常活用から語れる、社内推進のリアル。<br>（Claude Code・ChatGPT・Gemini・Copilotを全社活用）</div>
+          </div>
+          <div class="p13-card-new">
+            <div class="badge">POINT 03</div>
+            <div class="icon">🚀</div>
+            <div class="title">開発</div>
+            <div class="desc">大手・スタートアップ向けAI事業開発の実績。<br>（NTTグループ・キリングループはじめ多数の開発実績）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="change-note">
+    <strong>変更ポイント</strong>
+    <ul>
+      <li>大キャッチ：「Kawaru Coachが選ばれる3つの理由」→「<strong>なぜKawaru Coachは、AI推進が進むのか</strong>」（見出し小「選ばれる理由」は維持）</li>
+      <li>3カード全面入れ替え：旧（コンサル数と質／経営視点／マンツーマン伴走）→ 新<strong>POINT 01 育てる🎓／POINT 02 推進🌱／POINT 03 開発🚀</strong>（フライヤー裏面Section③と完全統一）</li>
+      <li>POINTバッジ＋大文字（育てる／推進／開発）＋一文の説明＋括弧書きの補足、の構成</li>
+      <li>5,000名・全社活用・大手導入実績の数字は補足説明に温存</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
