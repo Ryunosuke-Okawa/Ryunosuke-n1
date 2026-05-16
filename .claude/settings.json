@@ -124,7 +124,12 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=1600,4800 --screenshot=/Users/kyouyuu/Desktop/bpo_ba_all_full.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/bpo_ba_all.html)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --window-size=1600,900 --screenshot=/Users/kyouyuu/Desktop/bpo_ba___TRACKED_VAR__.png file:///Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/bpo_ba___TRACKED_VAR__.html)",
       "mcp__google-workspace__insertText",
-      "Bash(/rename 法人トスアップ_定義整理)"
+      "Bash(/rename 法人トスアップ_定義整理)",
+      "Bash(grep -oE '<h[1-6][^>]*>[^<]*</h[1-6]>|<p[^>]*>[^<]{5,200}</p>|<li[^>]*>[^<]{3,150}</li>' /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v12.html)",
+      "Bash(grep -oE '<h[1-6][^>]*>[^<]*</h[1-6]>|<p[^>]*>[^<]{5,200}</p>|<li[^>]*>[^<]{3,150}</li>|<span[^>]*>[^<]{3,150}</span>' /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v5.html)",
+      "Bash(grep -oE '>[^<>{}\\\\n]{3,200}<' /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_back_v12.html)",
+      "Bash(grep -v '^\\\\s*$')",
+      "Bash(grep -oE '>[^<>{}\\\\n]{3,200}<' /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v5.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
