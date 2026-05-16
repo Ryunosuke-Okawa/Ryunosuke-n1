@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code / Codex 研修｜株式会社エヌイチ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --cream: #FAF6F0;
+    --cream-deep: #F2EADE;
+    --ink-900: #1F1B16;
+    --ink-700: #3D362E;
+    --ink-500: #6B625A;
+    --ink-300: #A89F94;
+    --ink-200: #D6CFC5;
+    --ink-100: #EBE6DD;
+
+    --orange-700: #E55A00;
+    --orange-600: #FF6600;
+    --orange-500: #FF7A1F;
+    --orange-100: #FFE6D5;
+    --orange-50:  #FFF4EC;
+
+    --term-bg:    #1A1712;
+    --term-border:#3A342C;
+    --term-text:  #E8E1D4;
+    --term-green: #8AB968;
+    --term-dim:   #A69B8A;
+
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-xl: 32px;
+
+    --shadow-card: 0 24px 60px rgba(31,27,22,.08), 0 4px 12px rgba(31,27,22,.04);
+    --shadow-orange: 0 30px 80px rgba(255,102,0,.25), 0 8px 20px rgba(255,102,0,.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    margin: 0;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+    color: var(--ink-900);
+    background: var(--paper);
+    line-height: 1.7;
+    font-feature-settings: "palt" 1;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; }
+
+  /* ============ Header ============ */
+  .header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--ink-100);
+  }
+  .header-inner {
+    max-width: 1240px; margin: 0 auto; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--ink-900);
+    display: grid; place-items: center;
+    color: var(--orange-600); font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 18px;
+  }
+  .brand-name { font-weight: 700; font-size: 15px; letter-spacing: .02em; }
+  .brand-name span { color: var(--ink-500); font-weight: 500; }
+
+  .nav { display: flex; gap: 28px; align-items: center; }
+  .nav a { font-size: 14px; font-weight: 500; color: var(--ink-700); }
+  .nav a:hover { color: var(--orange-600); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 999px;
+    font-weight: 700; font-size: 14px;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary {
+    background: var(--orange-600); color: white;
+    box-shadow: 0 8px 20px rgba(255,102,0,.28);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(255,102,0,.36); }
+  .btn-ghost {
+    background: white; color: var(--ink-900);
+    border: 1.5px solid var(--ink-200);
+  }
+  .btn-ghost:hover { border-color: var(--ink-900); }
+
+  .btn-arrow { font-size: 16px; transition: transform .15s ease; }
+  .btn:hover .btn-arrow { transform: translateX(3px); }
+
+  /* ============ Hero ============ */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 80px 32px 120px;
+    background:
+      radial-gradient(1100px 600px at 110% 10%, var(--orange-50) 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% 80%, var(--cream) 0%, transparent 55%),
+      white;
+  }
+  .hero-inner {
+    max-width: 1240px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px;
+    align-items: center;
+  }
+
+  /* --- Left: copy --- */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px; border-radius: 999px;
+    background: white; border: 1px solid var(--orange-100);
+    color: var(--orange-700); font-size: 13px; font-weight: 700;
+    letter-spacing: .04em;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 8px rgba(31,27,22,.04);
+  }
+  .eyebrow-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--orange-600);
+    box-shadow: 0 0 0 4px rgba(255,102,0,.18);
+  }
+
+  h1.hero-title {
+    margin: 0;
+    font-family: 'Noto Sans JP', 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    color: var(--ink-900);
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--orange-600);
+    position: relative;
+  }
+  .hero-title em::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: 4px; height: 10px;
+    background: var(--orange-100);
+    z-index: -1; border-radius: 4px;
+  }
+
+  .hero-sub {
+    margin: 28px 0 0; max-width: 560px;
+    color: var(--ink-500); font-size: 17px; line-height: 1.9;
+  }
+
+  .hero-cta {
+    margin: 40px 0 0;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .hero-cta .btn { padding: 16px 28px; font-size: 15px; }
+
+  /* --- Trust bar --- */
+  .trust-bar {
+    margin: 48px 0 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    padding: 24px 28px;
+    background: white;
+    border: 1px solid var(--ink-100);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+  .trust-item {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .trust-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800; font-size: 24px;
+    color: var(--orange-600); letter-spacing: -0.02em;
+  }
+  .trust-num small { font-size: 14px; color: var(--ink-700); font-weight: 700; }
+  .trust-label {
+    font-size: 12px; color: var(--ink-500); font-weight: 500;
+    letter-spacing: .02em;
+  }
+
+  /* --- Right: visual --- */
+  .hero-visual { position: relative; height: 560px; }
+
+  .visual-circle {
+    position: absolute; top: 50%; left: 50%;
+    width: 480px; height: 480px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--orange-500) 0%, var(--orange-600) 60%, var(--orange-700) 100%);
+    box-shadow: var(--shadow-orange);
+  }
+  .visual-circle::before {
+    content: ''; position: absolute; inset: -40px;
+    border: 1.5px dashed var(--orange-100); border-radius: 50%;
+    opacity: .6;
+  }
+
+  .terminal {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-2deg);
+    width: 480px; max-width: calc(100% - 32px);
+    background: var(--term-bg);
+    border-radius: 12px; padding: 16px 0 18px;
+    box-shadow: 0 30px 60px rgba(31,27,22,.32), 0 8px 18px rgba(31,27,22,.18);
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid var(--term-border);
+  }
+  .term-bar {
+    display: flex; gap: 7px; padding: 0 16px 14px;
+    border-bottom: 1px solid var(--term-border);
+  }
+  .term-bar span {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: #4a4540;
+  }
+  .term-bar span:nth-child(1) { background: #FF5F57; }
+  .term-bar span:nth-child(2) { background: #FEBC2E; }
+  .term-bar span:nth-child(3) { background: #28C840; }
+
+  .term-body {
+    padding: 16px 20px 4px;
+    font-size: 13px; color: var(--term-text);
+    line-height: 1.85;
+  }
+  .term-line { display: flex; gap: 10px; align-items: baseline; }
+  .term-prompt { color: var(--orange-500); font-weight: 700; }
+  .term-cmd { color: var(--term-text); }
+  .term-comment { color: var(--term-dim); font-style: italic; }
+  .term-out { color: var(--term-green); }
+  .cursor {
+    display: inline-block; width: 8px; height: 14px;
+    background: var(--term-green); margin-left: 4px;
+    animation: blink 1s steps(2) infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* --- Floating chips --- */
+  .chip {
+    position: absolute;
+    background: white;
+    padding: 12px 18px; border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 700;
+    border: 1px solid var(--ink-100);
+  }
+  .chip-icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--orange-50); color: var(--orange-600);
+    display: grid; place-items: center; font-size: 14px;
+    flex-shrink: 0;
+  }
+  .chip-text small { display: block; font-size: 11px; color: var(--ink-500); font-weight: 500; }
+  .chip-text strong { color: var(--ink-900); }
+
+  .chip-1 { top: 8%; left: -4%; animation: float 6s ease-in-out infinite; }
+  .chip-2 { top: 50%; right: -2%; animation: float 7s ease-in-out infinite 1s; }
+  .chip-3 { bottom: 6%; left: 6%; animation: float 5.5s ease-in-out infinite .5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* ============ Responsive ============ */
+  @media (max-width: 960px) {
+    .nav { display: none; }
+    .hero { padding: 60px 24px 80px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+    .hero-visual { height: 420px; }
+    .visual-circle { width: 360px; height: 360px; }
+    .terminal { width: 92%; }
+    .trust-bar { grid-template-columns: 1fr; gap: 16px; padding: 20px; }
+    .chip { font-size: 12px; padding: 10px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">&gt;_</div>
+      <div class="brand-name">Claude Code / Codex 研修<br><span>by 株式会社エヌイチ</span></div>
+    </div>
+    <nav class="nav">
+      <a href="#program">研修プログラム</a>
+      <a href="#cases">活用事例</a>
+      <a href="#voices">導入企業</a>
+      <a href="#faq">よくある質問</a>
+      <a href="#contact" class="btn btn-primary">無料相談 <span class="btn-arrow">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- Left: copy -->
+    <div class="hero-copy">
+      <span class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Kawaru Team — AI 研修 × 組織トランスフォーメーション
+      </span>
+
+      <h1 class="hero-title">
+        全員を、<em>「使いこなす社員」</em>に。<br>
+        型にはめない、<br>
+        Claude Code／Codex 研修。
+      </h1>
+
+      <p class="hero-sub">
+        Claude Code または Codex を、貴社の業務に組み込める社員を育てる。<br>
+        業種・職種・リテラシーに合わせて設計する、<br>
+        本質を捉えた組織開発型 AI 研修です。
+      </p>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">無料相談はこちら <span class="btn-arrow">→</span></a>
+        <a href="#download" class="btn btn-ghost">サービス資料をダウンロード</a>
+      </div>
+
+      <div class="trust-bar">
+        <div class="trust-item">
+          <div class="trust-num">5,000<small>名+</small></div>
+          <div class="trust-label">累計 AI 人材育成実績</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">大手<small>研修実績</small></div>
+          <div class="trust-label">キリングループ・ミズカラ ほか</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">100<small>%</small></div>
+          <div class="trust-label">全社員で Claude Code を日常活用</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: visual -->
+    <div class="hero-visual">
+      <div class="visual-circle"></div>
+
+      <div class="terminal">
+        <div class="term-bar"><span></span><span></span><span></span></div>
+        <div class="term-body">
+          <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">claude-code "今週の商談議事録を要約して"</span></div>
+          <div class="term-line"><span class="term-comment"># 議事録3件を読み込み、ネクストアクション抽出中...</span></div>
+          <div class="term-line"><span class="term-out">✓ 議事録要約完了 / NA 12件を Slack に送信</span></div>
+          <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">codex --task "請求書ドラフトを生成"</span></div>
+          <div class="term-line"><span class="term-out">✓ freee 連携: 6件の請求書を下書き保存</span></div>
+          <div class="term-line"><span class="term-prompt">$</span> <span class="cursor"></span></div>
+        </div>
+      </div>
+
+      <div class="chip chip-1">
+        <div class="chip-icon">⚡</div>
+        <div class="chip-text"><small>削減</small><strong>92%</strong></div>
+      </div>
+      <div class="chip chip-2">
+        <div class="chip-icon">👥</div>
+        <div class="chip-text"><small>受講対象</small><strong>非エンジニア対応</strong></div>
+      </div>
+      <div class="chip chip-3">
+        <div class="chip-icon">💡</div>
+        <div class="chip-text"><small>2 PLANS</small><strong>セミ / フル</strong></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
