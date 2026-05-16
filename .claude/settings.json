@@ -131,7 +131,8 @@
       "Bash(grep -v '^\\\\s*$')",
       "Bash(grep -oE '>[^<>{}\\\\n]{3,200}<' /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_team_front_v5.html)",
       "Bash(open /Users/kyouyuu/claude/marketing/claudecode_codex_training_lp_hero_v1.html)",
-      "Bash(grep -oE '>[^<>{}\\\\n]{3,200}<' /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v9.html)"
+      "Bash(grep -oE '>[^<>{}\\\\n]{3,200}<' /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v9.html)",
+      "Read(//private/var/folders/**)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
