@@ -147,9 +147,10 @@
   }
   .hero-inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
   .hero-title {
-    font-size: clamp(2.6rem, 5.6vw, 4.4rem);
-    line-height: 1.18; letter-spacing: -0.03em; font-weight: 900;
+    font-size: clamp(2rem, 4.2vw, 3.4rem);
+    line-height: 1.25; letter-spacing: -0.03em; font-weight: 900;
   }
+  .hero-title-main { display: block; white-space: nowrap; }
   .hero-title .quote { color: var(--orange-600); position: relative; display: inline-block; }
   .hero-title .quote::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 18px;
@@ -933,9 +934,7 @@
       <div class="hero-copy fade-up">
         <h1 class="hero-title">
           <span class="hero-title-small">─── そもそも、の話ですが。</span>
-          まだ、<br>
-          <span class="quote">人を雇って</span><br>
-          いますか？
+          <span class="hero-title-main">まだ<span class="quote">人を雇ってる</span>んですか？</span>
         </h1>
         <div class="hero-sub">
           <span class="big">1</span> 人で <span class="big">10</span> 人分が動く、<br>
