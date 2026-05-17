@@ -138,7 +138,8 @@
       "Bash(mkdir -p /Users/kyouyuu/claude/marketing/ai_staff_training_lp/images)",
       "Bash(cp /Users/kyouyuu/claude/marketing/claudecode_codex_training_lp/index.html /Users/kyouyuu/claude/marketing/ai_staff_training_lp/index.html)",
       "Bash(cp /Users/kyouyuu/claude/marketing/claudecode_codex_training_lp/images/* /Users/kyouyuu/claude/marketing/ai_staff_training_lp/images/)",
-      "Bash(open /Users/kyouyuu/claude/marketing/ai_staff_training_lp/index.html)"
+      "Bash(open /Users/kyouyuu/claude/marketing/ai_staff_training_lp/index.html)",
+      "Bash(grep -n \"final-cta-sub\\\\|final-cta h2\\\\|images/cta_team\\\\|あなたの会社に\\\\|Kawaru Team$\\\\|株式会社エヌイチ ／ AI\" /Users/kyouyuu/claude/marketing/ai_staff_bpo_lp/index.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
@@ -149,7 +150,8 @@
       "/Users/kyouyuu/claude",
       "/Users/kyouyuu/claude/finance",
       "/tmp",
-      "/Users/kyouyuu/Desktop"
+      "/Users/kyouyuu/Desktop",
+      "/Users/kyouyuu/claude/marketing/ai_staff_training_lp/images"
     ]
   }
 }
