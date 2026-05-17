@@ -147,14 +147,15 @@
   }
   .hero-inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
   .hero-title {
-    font-size: clamp(1.85rem, 3.4vw, 2.85rem);
-    line-height: 1.35; letter-spacing: -0.02em;
+    font-size: clamp(2.6rem, 5.6vw, 4.4rem);
+    line-height: 1.18; letter-spacing: -0.03em; font-weight: 900;
   }
   .hero-title .quote { color: var(--orange-600); position: relative; display: inline-block; }
   .hero-title .quote::after {
-    content: ''; position: absolute; left: 0; right: 0; bottom: 6px; height: 12px;
+    content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 18px;
     background: var(--orange-100); z-index: -1; border-radius: 4px;
   }
+  .hero-title-small { display: block; font-size: 0.55em; color: var(--ink-700); font-weight: 800; margin-bottom: 14px; letter-spacing: -0.01em; }
   .hero-sub {
     font-size: clamp(1.4rem, 2.4vw, 1.85rem);
     margin-top: 28px; font-weight: 800; color: var(--ink-900); line-height: 1.5;
@@ -931,7 +932,9 @@
     <div class="hero-inner">
       <div class="hero-copy fade-up">
         <h1 class="hero-title">
-          <span class="quote">まだ、人を雇って</span><br>
+          <span class="hero-title-small">─── そもそも、の話ですが。</span>
+          まだ、<br>
+          <span class="quote">人を雇って</span><br>
           いますか？
         </h1>
         <div class="hero-sub">
@@ -994,8 +997,8 @@
 <section class="catalog">
   <div class="wrap">
     <div class="section-head fade-up">
-      <h2>AI 社員って、<span class="accent">どんな働き手？</span></h2>
-      <p class="lead">まずは、当社が実際に運用している <strong>21 人の AI 社員チーム</strong> をご覧ください。<br>営業・SEO・採用の 3 部門で、24 時間 365 日働き続けている "メンバー" たちです。</p>
+      <h2>AI 社員って何？　<span class="accent">何をする？</span></h2>
+      <p class="lead">当社が実際に運用している <strong>21 人の AI 社員チーム</strong> をご覧ください。<br>営業・SEO・採用の 3 部門で、24 時間 365 日働き続けている "メンバー" たちです。</p>
     </div>
 
     <!-- TEAM 01 -->
@@ -1219,27 +1222,27 @@
 <section class="paradigm">
   <div class="wrap">
     <div class="section-head fade-up">
-      <h2>使う AI から、<span class="accent">雇う AI</span> へ。</h2>
-      <p class="lead">"使う" 段階で止まっているからこそ、人手が減らない。<br>必要なのは、業務を <strong>任せられる相手</strong> ―― AI 社員です。</p>
+      <h2>AI を <strong>使う</strong>、から、<br>AI を <span class="accent">働かせる</span>、へ。</h2>
+      <p class="lead">"使う" 段階で止まっているからこそ、人手が減らない。<br>必要なのは、業務を <strong>任せて働いてもらう</strong> 相手 ―― それが AI 社員です。</p>
     </div>
     <div class="paradigm-grid fade-up">
       <div class="paradigm-col before">
-        <h3>従来の AI 研修</h3>
+        <h3>AI を「使う」</h3>
         <ul>
-          <li>社員が AI を <strong>使う</strong></li>
-          <li>個人の生産性が上がる</li>
+          <li>社員が AI を <strong>道具として使う</strong></li>
+          <li>個人の生産性が上がるだけ</li>
           <li>ツールの理解が目的</li>
-          <li>業務単位の効率化</li>
+          <li>業務単位の効率化どまり</li>
         </ul>
       </div>
       <div class="paradigm-arrow">→</div>
       <div class="paradigm-col after">
-        <h3>AI 社員構築研修</h3>
+        <h3>AI を「働かせる」</h3>
         <ul>
-          <li>AI 社員が業務を <strong>やる</strong></li>
+          <li>AI 社員が <strong>業務をやる</strong></li>
           <li>組織として業務が <strong>回る</strong></li>
           <li>業務 <strong>代替</strong> が目的</li>
-          <li>機能単位の <strong>常駐戦力</strong></li>
+          <li>機能単位の <strong>常駐戦力</strong> に</li>
         </ul>
       </div>
     </div>
@@ -1353,8 +1356,8 @@
 <section class="target">
   <div class="wrap">
     <div class="section-head fade-up">
-      <h2>ここから、<span class="accent">研修</span>のご案内です。</h2>
-      <p class="lead">こんな企業様に向けて設計しています ── AI を「使える社員」を増やすのではなく、組織として AI 社員に業務を任せたい企業様のための研修です。</p>
+      <h2>ひとつでも当てはまったら、<br><span class="accent">この研修</span>が役に立ちます。</h2>
+      <p class="lead">AI を「使える社員」を増やすのではなく、組織として AI 社員に業務を任せたい企業様のために設計しています。</p>
     </div>
     <div class="target-grid">
       <div class="target-card fade-up">
