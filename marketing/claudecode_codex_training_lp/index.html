@@ -125,6 +125,11 @@
   .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-orange-hover); }
   .btn-ghost { background: white; color: var(--orange-600); border: 2px solid var(--orange-300); }
   .btn-ghost:hover { background: var(--orange-50); border-color: var(--orange-600); transform: translateY(-2px); }
+  .btn-line {
+    background: #06C755; color: white;
+    box-shadow: 0 8px 20px rgba(6,199,85,.25);
+  }
+  .btn-line:hover { background: #05A948; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(6,199,85,.36); }
   .btn-arrow { font-size: 18px; transition: transform .15s var(--easing); }
   .btn:hover .btn-arrow { transform: translateX(4px); }
 
@@ -648,6 +653,7 @@
     max-width: var(--max); margin: 0 auto; padding: 0 24px;
     display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px;
   }
+  .footer-inner-simple { grid-template-columns: 1fr; }
   .footer-brand { font-weight: 700; color: white; font-size: 15px; margin-bottom: 10px; }
   .footer-brand-sub { font-size: 12px; color: rgba(255,255,255,.5); margin-bottom: 18px; line-height: 1.85; }
   .footer h5 { color: white; font-size: 13px; margin-bottom: 14px; font-weight: 700; }
@@ -761,7 +767,7 @@
         </p>
         <div class="hero-cta">
           <a href="#contact" class="btn btn-primary">無料相談はこちら <span class="btn-arrow">→</span></a>
-          <a href="#download" class="btn btn-ghost">サービス資料をダウンロード</a>
+          <a href="#download" class="btn btn-line"><svg width="20" height="20" viewBox="0 0 28 28" fill="currentColor" style="margin-right:2px"><path d="M14 2C7 2 1 6.5 1 12.5c0 5.4 4.9 9.9 11.6 10.7.5.1 1.1.3 1.2.7.1.4.1 1-.1 1.5l-.2 1.2c-.1.4-.3 1.5 1.3.8 1.6-.7 8.7-5.1 11.9-8.8C28.6 16 30 14.4 30 12.5 30 6.5 23 2 14 2zM9.5 16.5h-3c-.4 0-.7-.3-.7-.7v-6c0-.4.3-.7.7-.7s.7.3.7.7v5.3h2.3c.4 0 .7.3.7.7s-.3.7-.7.7zm3-.7c0 .4-.3.7-.7.7s-.7-.3-.7-.7v-6c0-.4.3-.7.7-.7s.7.3.7.7v6zm6.7 0c0 .3-.2.6-.5.7-.1 0-.1 0-.2 0-.2 0-.5-.1-.6-.3l-3-4v3.6c0 .4-.3.7-.7.7s-.7-.3-.7-.7v-6c0-.3.2-.6.5-.7.1 0 .2 0 .2 0 .2 0 .4.1.6.3l3 4V9.8c0-.4.3-.7.7-.7s.7.3.7.7v6zm4.7-3.4c.4 0 .7.3.7.7s-.3.7-.7.7h-2.3v1.4h2.3c.4 0 .7.3.7.7s-.3.7-.7.7h-3c-.4 0-.7-.3-.7-.7v-6c0-.4.3-.7.7-.7h3c.4 0 .7.3.7.7s-.3.7-.7.7h-2.3v1.4h2.3z"/></svg>LINE で質問する</a>
         </div>
       </div>
       <div class="hero-visual fade-up">
@@ -810,7 +816,7 @@
 <section class="target">
   <div class="wrap">
     <div class="section-head fade-up">
-      <h2>こんな企業のための研修です</h2>
+      <h2>こんな企業のための<span class="accent">研修</span>です</h2>
       <p class="lead">全社で Claude Code／Codex を導入し、成果につなげたい企業様のための研修です。</p>
     </div>
     <div class="target-grid">
@@ -1384,6 +1390,10 @@
         <div class="faq-q"><span class="qmark">Q</span><span>研修後のサポートはありますか？</span><span class="arrow">▾</span></div>
         <div class="faq-a"><div class="faq-a-inner"><div class="faq-a-content"><span class="amark">A</span><span>フルカスタマイズプランでは、定着・内製化まで伴走します。</span></div></div></div>
       </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q"><span class="qmark">Q</span><span>カスタマイズはどこまで可能ですか？</span><span class="arrow">▾</span></div>
+        <div class="faq-a"><div class="faq-a-inner"><div class="faq-a-content"><span class="amark">A</span><span>業務題材・時間配分・対象者層まで、貴社の課題に合わせて完全カスタマイズ可能です。詳細は無料相談でお聞かせください。</span></div></div></div>
+      </div>
     </div>
     <div class="faq-foot fade-up">
       <svg class="ico" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a12 12 0 0 1 24 0v8"/><rect x="4" y="14" width="6" height="10" rx="2"/><rect x="22" y="14" width="6" height="10" rx="2"/></svg>
@@ -1401,7 +1411,7 @@
         <p class="final-cta-sub">初回ヒアリング無料／<span class="num">30</span>分で貴社にフィットするプランをご提案。</p>
         <div class="final-cta-btns">
           <a href="#" class="btn btn-primary">無料相談はこちら <span class="btn-arrow">→</span></a>
-          <a href="#" class="btn btn-ghost">サービス資料をダウンロード</a>
+          <a href="#" class="btn btn-line"><svg width="20" height="20" viewBox="0 0 28 28" fill="currentColor" style="margin-right:2px"><path d="M14 2C7 2 1 6.5 1 12.5c0 5.4 4.9 9.9 11.6 10.7.5.1 1.1.3 1.2.7.1.4.1 1-.1 1.5l-.2 1.2c-.1.4-.3 1.5 1.3.8 1.6-.7 8.7-5.1 11.9-8.8C28.6 16 30 14.4 30 12.5 30 6.5 23 2 14 2zM9.5 16.5h-3c-.4 0-.7-.3-.7-.7v-6c0-.4.3-.7.7-.7s.7.3.7.7v5.3h2.3c.4 0 .7.3.7.7s-.3.7-.7.7zm3-.7c0 .4-.3.7-.7.7s-.7-.3-.7-.7v-6c0-.4.3-.7.7-.7s.7.3.7.7v6zm6.7 0c0 .3-.2.6-.5.7-.1 0-.1 0-.2 0-.2 0-.5-.1-.6-.3l-3-4v3.6c0 .4-.3.7-.7.7s-.7-.3-.7-.7v-6c0-.3.2-.6.5-.7.1 0 .2 0 .2 0 .2 0 .4.1.6.3l3 4V9.8c0-.4.3-.7.7-.7s.7.3.7.7v6zm4.7-3.4c.4 0 .7.3.7.7s-.3.7-.7.7h-2.3v1.4h2.3c.4 0 .7.3.7.7s-.3.7-.7.7h-3c-.4 0-.7-.3-.7-.7v-6c0-.4.3-.7.7-.7h3c.4 0 .7.3.7.7s-.3.7-.7.7h-2.3v1.4h2.3z"/></svg>LINE で質問する</a>
         </div>
         <small class="final-cta-note">※ 無理な営業は一切いたしません。安心してご相談ください。</small>
       </div>
@@ -1440,36 +1450,10 @@
 
 <!-- ============ Footer ============ -->
 <footer class="footer">
-  <div class="footer-inner">
+  <div class="footer-inner footer-inner-simple">
     <div>
       <div class="footer-brand">Kawaru Team</div>
-      <div class="footer-brand-sub">株式会社エヌイチ ／<br>Claude Code・Codex 研修<br>「使ってる社員」を、全員に。</div>
-    </div>
-    <div>
-      <h5>研修について</h5>
-      <ul>
-        <li><a href="#">研修プログラム</a></li>
-        <li><a href="#">カリキュラム</a></li>
-        <li><a href="#">活用事例</a></li>
-        <li><a href="#">FAQ</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5>会社情報</h5>
-      <ul>
-        <li><a href="#">会社概要</a></li>
-        <li><a href="#">Kawaru シリーズ</a></li>
-        <li><a href="#">採用情報</a></li>
-        <li><a href="#">お問い合わせ</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5>規約・ポリシー</h5>
-      <ul>
-        <li><a href="#">プライバシーポリシー</a></li>
-        <li><a href="#">利用規約</a></li>
-        <li><a href="#">特定商取引法に基づく表記</a></li>
-      </ul>
+      <div class="footer-brand-sub">株式会社エヌイチ ／ Claude Code・Codex 研修</div>
     </div>
   </div>
   <div class="footer-bottom">
