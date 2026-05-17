@@ -133,7 +133,12 @@
       "Bash(open /Users/kyouyuu/claude/marketing/claudecode_codex_training_lp_hero_v1.html)",
       "Bash(grep -oE '>[^<>{}\\\\n]{3,200}<' /Users/kyouyuu/claude/marketing/展示会/2026_06_Sansan/flyer_kawaru_bpo_back_v9.html)",
       "Read(//private/var/folders/**)",
-      "Bash(open /Users/kyouyuu/claude/marketing/claudecode_codex_training_lp/index.html)"
+      "Bash(open /Users/kyouyuu/claude/marketing/claudecode_codex_training_lp/index.html)",
+      "Bash(/rename AI社員構築研修LP作成)",
+      "Bash(mkdir -p /Users/kyouyuu/claude/marketing/ai_staff_training_lp/images)",
+      "Bash(cp /Users/kyouyuu/claude/marketing/claudecode_codex_training_lp/index.html /Users/kyouyuu/claude/marketing/ai_staff_training_lp/index.html)",
+      "Bash(cp /Users/kyouyuu/claude/marketing/claudecode_codex_training_lp/images/* /Users/kyouyuu/claude/marketing/ai_staff_training_lp/images/)",
+      "Bash(open /Users/kyouyuu/claude/marketing/ai_staff_training_lp/index.html)"
     ],
     "additionalDirectories": [
       "/tmp/claude-template/.claude",
