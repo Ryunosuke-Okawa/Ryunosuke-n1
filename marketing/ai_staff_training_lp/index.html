@@ -63,7 +63,7 @@
   p { margin: 0; color: var(--ink-500); }
   .accent { color: var(--orange-600); }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-  section { padding: clamp(48px, 6vw, 84px) 0; position: relative; }
+  section { padding: clamp(36px, 4.5vw, 60px) 0; position: relative; }
 
   /* ===== Header ===== */
   .header {
@@ -104,7 +104,7 @@
     color: var(--orange-600); font-weight: 700; font-size: 14px;
     background: var(--paper);
   }
-  .section-head { text-align: center; margin-bottom: 40px; }
+  .section-head { text-align: center; margin-bottom: 28px; }
   .section-head .badge { margin-bottom: 20px; }
   .section-head h2 {
     font-size: clamp(1.65rem, 3.2vw, 2.4rem);
@@ -678,7 +678,7 @@
   }
   .paradigm-col {
     background: white; border: 1px solid var(--ink-100); border-radius: var(--radius-lg);
-    padding: 32px 28px; box-shadow: var(--shadow-card);
+    padding: 22px 24px; box-shadow: var(--shadow-card);
   }
   .paradigm-col.before { background: var(--gray-bg); }
   .paradigm-col.after { background: white; border: 2px solid var(--orange-600); }
@@ -690,7 +690,7 @@
   .paradigm-col.after h3 { color: var(--orange-600); }
   .paradigm-col ul { list-style: none; padding: 0; margin: 0; }
   .paradigm-col li {
-    padding: 14px 0; border-bottom: 1px solid var(--ink-100); font-size: 14.5px;
+    padding: 10px 0; border-bottom: 1px solid var(--ink-100); font-size: 14.5px;
     color: var(--ink-700); font-weight: 600; line-height: 1.6;
   }
   .paradigm-col li:last-child { border-bottom: none; }
@@ -701,10 +701,10 @@
     font-size: 32px; font-weight: 900;
   }
   .paradigm-note {
-    background: white; border-radius: var(--radius-lg); padding: 26px 32px;
-    margin-top: 32px; max-width: 1100px; margin-left: auto; margin-right: auto;
+    background: white; border-radius: var(--radius-lg); padding: 18px 28px;
+    margin-top: 22px; max-width: 1100px; margin-left: auto; margin-right: auto;
     border: 1px solid var(--ink-100); box-shadow: var(--shadow-card);
-    text-align: center; font-size: 15.5px; color: var(--ink-900); font-weight: 700; line-height: 1.85;
+    text-align: center; font-size: 15px; color: var(--ink-900); font-weight: 700; line-height: 1.8;
   }
   .paradigm-note .accent { color: var(--orange-600); }
 
@@ -716,9 +716,9 @@
   }
   .plan-card {
     background: white; border: 1px solid var(--ink-100); border-radius: var(--radius-lg);
-    padding: 36px 32px; box-shadow: var(--shadow-card);
+    padding: 24px 26px; box-shadow: var(--shadow-card);
     transition: transform .25s var(--easing), box-shadow .25s var(--easing);
-    display: flex; flex-direction: column; gap: 16px;
+    display: flex; flex-direction: column; gap: 12px;
   }
   .plan-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
   .plan-card.featured { border: 2px solid var(--orange-600); }
@@ -751,8 +751,8 @@
   .plan-foot strong { color: var(--orange-600); font-weight: 700; }
   .plans-spec {
     background: var(--cream-deep); border-radius: var(--radius-lg);
-    padding: 26px 32px; max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    padding: 18px 26px; max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
   }
   .plans-spec-item { display: flex; gap: 12px; align-items: center; }
   .plans-spec-item .ico {
@@ -767,7 +767,7 @@
   .catalog { background: var(--cream-deep); }
   .catalog-team {
     background: white; border-radius: var(--radius-xl);
-    padding: 36px 36px 32px; margin-bottom: 28px;
+    padding: 26px 28px 22px; margin-bottom: 18px;
     box-shadow: var(--shadow-card); border: 1px solid var(--ink-100);
     position: relative; overflow: hidden;
   }
@@ -777,7 +777,7 @@
   }
   .catalog-team-head {
     display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   .catalog-team-num {
     background: var(--orange-600); color: white; font-weight: 900;
@@ -792,8 +792,8 @@
   }
   .catalog-team-kpi .big { font-size: 18px; }
   .catalog-team-lead {
-    font-size: 14px; color: var(--ink-700); line-height: 1.85; margin-bottom: 26px;
-    background: var(--orange-50); padding: 16px 22px; border-radius: var(--radius-md);
+    font-size: 14px; color: var(--ink-700); line-height: 1.75; margin-bottom: 18px;
+    background: var(--orange-50); padding: 12px 18px; border-radius: var(--radius-md);
     border-left: 3px solid var(--orange-600);
   }
   .staff-grid {
@@ -820,8 +820,8 @@
   .staff-card.boss .staff-name { color: var(--orange-700); }
   .staff-role { font-size: 11.5px; color: var(--ink-500); line-height: 1.7; flex-grow: 1; }
   .catalog-perf {
-    margin-top: 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    background: var(--gray-bg); border-radius: var(--radius-md); padding: 18px 22px;
+    margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    background: var(--gray-bg); border-radius: var(--radius-md); padding: 14px 18px;
   }
   .catalog-perf-item { display: flex; gap: 10px; align-items: center; font-size: 12.5px; }
   .catalog-perf-item .ico {
